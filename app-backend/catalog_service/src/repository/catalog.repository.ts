@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { ICatalogRepository } from '../interfaces/catalog.interface';
 import { Product } from '../models/product.model';
+import { NotFoundError } from '../utils/error/errors';
 
 export class CatalogRepository implements ICatalogRepository {
 	private readonly _prisma: PrismaClient;
@@ -29,10 +30,19 @@ export class CatalogRepository implements ICatalogRepository {
 	}
 
 	async find(limit: number, offset: number): Promise<Product[]> {
-		throw new Error('Method not implemented.');
+		return this._prisma.product.findMany({
+			take: limit,
+			skip: offset,
+		});
 	}
 
 	async findOne(id: number): Promise<Product> {
-		throw new Error('Method not implemented.');
+		const product = await this._prisma.product.findFirst({
+			where: { id },
+		});
+		if (product) {
+			return Promise.resolve(product);
+		}
+		throw new NotFoundError('product not found');
 	}
 }
