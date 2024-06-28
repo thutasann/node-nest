@@ -20,6 +20,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18.x'
+
+      - name: Change directory to Catalog Service
+        run: cd catalog_service
+
       - name: Install dependencies
         run: yarn install --ignore-engines
 
@@ -28,5 +32,4 @@ jobs:
 
       - name: Run Build Catalog
         run: |
-          cd catalog_service
           yarn build
