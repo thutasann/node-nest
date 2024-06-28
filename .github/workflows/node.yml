@@ -10,18 +10,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ./app-backend/catalog_service
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Use Node.js 18.x
         uses: actions/setup-node@v4
         with:
           node-version: '18.x'
-
-      - name: Change directory to Backend
-        run: cd app-backend
-
-      - name: Change directory to Catalog Service
-        run: cd catalog_service
 
       - name: Install dependencies
         run: yarn install --ignore-engines
@@ -33,5 +33,4 @@ jobs:
         run: npx prisma generate --schema=./prisma/schema.prisma
 
       - name: Run Build Catalog
-        run: |
-          yarn build
+        run: yarn build
