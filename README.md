@@ -10,3 +10,14 @@ This is the tiny microservices with Kafka and elastic search from scratch.
 - Prisma
 - Graphql
 - Postgres
+- Nextjs
+
+## Folder Structure
+
+```bash
+└───node-kafka
+  |    ├───app-backend
+  |    |   ├───catalog_service
+  |    |   ├───order_service
+  |    ├───app-frontend
+```
