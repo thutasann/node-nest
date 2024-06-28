@@ -27,6 +27,9 @@ jobs:
       - name: Install dependencies
         run: yarn install --ignore-engines
 
+      - name: List files for debugging
+        run: ls -R
+
       - name: Generate Prisma client
         run: npx prisma generate --schema=./prisma/schema.prisma
 
