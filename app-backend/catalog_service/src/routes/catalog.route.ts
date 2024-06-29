@@ -5,13 +5,35 @@ import express, {
 } from 'express';
 import { CatalogService } from '../services/catalog.service';
 import { CatalogRepository } from '../repository/catalog.repository';
-import { error } from 'console';
 import { RequestValidator } from '../utils/requestValidator';
-import { CreateProductRequest } from '../dto/product.dto';
+import { CreateProductRequest, UpdateProductRequest } from '../dto/product.dto';
+import { IGetProductsQuery, IGetSingleProductParams } from '../dto/catalog.dto';
 
 const router = express.Router();
 
 export const catalogService = new CatalogService(new CatalogRepository());
+
+/**
+ * @swagger
+ * /example:
+ *   get:
+ *     summary: Example endpoint
+ *     description: Get an example response
+ *     responses:
+ *       200:
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Hello, world!"
+ */
+router.get('/example', (req: Request, res: Response) => {
+	res.json({ message: 'Hello, world!' });
+});
 
 router.post('/products', async (req: Request, res: Response) => {
 	try {
@@ -29,3 +51,71 @@ router.post('/products', async (req: Request, res: Response) => {
 		return res.status(500).json(error.message);
 	}
 });
+
+router.patch(
+	'/products/:id',
+	async (req: Request<IGetSingleProductParams>, res: Response) => {
+		try {
+			const id = parseInt(req.params.id);
+			const { errors, input } = await RequestValidator(
+				UpdateProductRequest,
+				req.body,
+			);
+			if (errors) return res.status(400).json(errors);
+
+			const data = await catalogService.updateProduct({ id, ...input });
+			return res.status(200).json(data);
+		} catch (error) {
+			const err = error as Error;
+			return res.status(500).json(err.message);
+		}
+	},
+);
+
+router.get(
+	'/products',
+	async (req: Request<{}, {}, {}, IGetProductsQuery>, res: Response) => {
+		const limit = Number(req.query['limit']);
+		const offset = Number(req.query['offset']);
+		try {
+			const data = await catalogService.getProducts(limit, offset);
+			return res.status(200).json(data);
+		} catch (error) {
+			const err = error as Error;
+			return res.status(500).json(err.message);
+		}
+	},
+);
+
+router.get(
+	'/products/:id',
+	async (
+		req: Request<IGetSingleProductParams>,
+		res: Response,
+		next: NextFunction,
+	) => {
+		const id = parseInt(req.params.id) || 0;
+		try {
+			const data = await catalogService.getProduct(id);
+			return res.status(200).json(data);
+		} catch (error) {
+			return next(error);
+		}
+	},
+);
+
+router.delete(
+	'/products/:id',
+	async (req: Request<IGetSingleProductParams>, res: Response) => {
+		const id = parseInt(req.params.id);
+		try {
+			const data = await catalogService.deleteProduct(id);
+			return res.status(200).json(data);
+		} catch (error) {
+			const err = error as Error;
+			return res.status(500).json(err.message);
+		}
+	},
+);
+
+export default router;

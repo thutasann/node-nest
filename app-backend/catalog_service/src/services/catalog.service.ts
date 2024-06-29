@@ -19,7 +19,7 @@ export class CatalogService {
 		return data;
 	}
 
-	async updateProduct(payload: Product) {
+	async updateProduct(payload: any) {
 		const data = await this._catalogRepo.update(payload);
 		if (!data.id) {
 			throw new Error('unable to update product');
