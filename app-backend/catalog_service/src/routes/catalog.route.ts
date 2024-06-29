@@ -8,31 +8,17 @@ import { CatalogRepository } from '../repository/catalog.repository';
 import { RequestValidator } from '../utils/requestValidator';
 import { CreateProductRequest, UpdateProductRequest } from '../dto/product.dto';
 import { IGetProductsQuery, IGetSingleProductParams } from '../dto/catalog.dto';
+import { logger } from '../utils/logger';
+import { formatDate } from '../utils';
 
 const router = express.Router();
 
 export const catalogService = new CatalogService(new CatalogRepository());
 
-/**
- * @swagger
- * /example:
- *   get:
- *     summary: Example endpoint
- *     description: Get an example response
- *     responses:
- *       200:
- *         description: Successful response
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 message:
- *                   type: string
- *                   example: "Hello, world!"
- */
 router.get('/example', (req: Request, res: Response) => {
-	res.json({ message: 'Hello, world!' });
+	const message = `Hello, world! ${formatDate(new Date())}`;
+	logger.info(`message : ${message}`);
+	res.json({ message });
 });
 
 router.post('/products', async (req: Request, res: Response) => {

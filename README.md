@@ -2,6 +2,8 @@
 
 This is the tiny microservices with Kafka and elastic search from scratch.
 
+> This repo is mainly focused on Backend.
+
 ## Tech Stacks
 
 - Nodejs
