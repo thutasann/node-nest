@@ -12,6 +12,7 @@ const config: Config = {
 	verbose: true,
 	coverageDirectory: 'coverage',
 	coveragePathIgnorePatterns: ['/node_modules'],
+	testPathIgnorePatterns: ['/dist'],
 	coverageProvider: 'v8',
 	moduleDirectories: ['node_modules', 'src'],
 };

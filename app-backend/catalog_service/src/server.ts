@@ -17,5 +17,5 @@ const BootStrap = async () => {
 };
 
 BootStrap().then(() => {
-	logger.info('Catalog Server is up!!');
+	logger.info('🚀 Catalog Service is running!!');
 });

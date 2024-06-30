@@ -48,6 +48,10 @@ npx prisma generate
 yarn jest --init
 ```
 
+```bash
+yarn test
+```
+
 ## Tips & Tricks
 
 ### Express Router Global Snippet in VS Code

@@ -1,3 +1,4 @@
+import { PrismaClient } from '@prisma/client';
 import { ICatalogRepository } from '../interfaces/catalog.interface';
 import { Product } from '../models/product.model';
 
@@ -7,7 +8,7 @@ import { Product } from '../models/product.model';
 export class MockCatalogRepository implements ICatalogRepository {
 	create(data: Product): Promise<Product> {
 		const mockProduct = {
-			id: 123,
+			id: '123',
 			...data,
 		} as Product;
 		return Promise.resolve(mockProduct);
