@@ -8,34 +8,40 @@ import {
 	TableHeader,
 	TableRow,
 } from '@/components/ui/table';
-import { fetchTest } from '@/lib/actions/test-actions';
+import { fetchTest, getProducts } from '@/lib/actions/test-actions';
 
 export default async function Home() {
 	const data = await fetchTest();
+	const products = await getProducts();
+
 	return (
 		<main className="min-h-screen">
-			<div className="flex justify-center items-center py-2 bg-primary-foreground mb-6 gap-2">
-				<span className="text-lg font-bold">Node Kafka</span> <ModeToggle />
-			</div>
+			<h1 className="text-xl font-bold text-center">{data.message}</h1>
 
-			<h1 className="text-xl font-bold">{data.message}</h1>
-
-			<Table>
+			<Table className="mt-4 border">
 				<TableHeader>
 					<TableRow>
-						<TableHead className="w-[100px]">Invoice</TableHead>
-						<TableHead>Status</TableHead>
-						<TableHead>Method</TableHead>
-						<TableHead className="text-right">Amount</TableHead>
+						<TableHead className="w-[100px]">Name</TableHead>
+						<TableHead>Description</TableHead>
+						<TableHead>Price</TableHead>
+						<TableHead className="text-right">Stock</TableHead>
 					</TableRow>
 				</TableHeader>
 				<TableBody>
-					<TableRow>
-						<TableCell className="font-medium">INV001</TableCell>
-						<TableCell>Paid</TableCell>
-						<TableCell>Credit Card</TableCell>
-						<TableCell className="text-right">$250.00</TableCell>
-					</TableRow>
+					{products &&
+						products.map((prod) => (
+							<TableRow key={prod.id}>
+								<TableCell
+									width={300}
+									className="font-medium"
+								>
+									{prod.name}
+								</TableCell>
+								<TableCell>{prod.description.slice(0, 60)}...</TableCell>
+								<TableCell>$ {prod.price}</TableCell>
+								<TableCell className="text-right">{prod.stock}</TableCell>
+							</TableRow>
+						))}
 				</TableBody>
 			</Table>
 		</main>
