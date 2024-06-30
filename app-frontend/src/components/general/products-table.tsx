@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
 	Table,
 	TableBody,
@@ -14,9 +14,23 @@ import { Button } from '../ui/button';
 import { revalidateAction } from '@/lib/actions/catalog-actions';
 
 function ProductsTable({ products }: { products: IProduct[] }) {
+	const [loading, setLoading] = useState(false);
+
+	const handleRevalidate = () => {
+		setLoading(true);
+		revalidateAction('products').then(() => {
+			setLoading(false);
+		});
+	};
+
 	return (
 		<>
-			<Button onClick={() => revalidateAction('products')}>Refresh</Button>
+			<Button
+				onClick={handleRevalidate}
+				className="ml-2"
+			>
+				{loading ? 'Refreshing..' : 'Refresh'}
+			</Button>
 			<Table className="mt-4 border">
 				<TableHeader>
 					<TableRow>
