@@ -1,14 +1,12 @@
-# Nodejs Kafka Microservices with Elastic Search
+# Nodejs Microservices with Elastic Search
 
-This is the tiny microservices with Kafka and elastic search from scratch.
+This is the tiny two microservices with Nodejs from scratch
 
 > This repo is mainly focused on Backend.
 
 ## Tech Stacks
 
 - Nodejs
-- Kafka
-- Elastic Search
 - Prisma
 - MongoDB
 - Jest
@@ -49,6 +47,10 @@ yarn jest --init
 
 ```bash
 yarn test
+```
+
+```bash
+yarn test catalog_service/src/routes/__test__/catalog.route.test.ts
 ```
 
 ## Tips & Tricks
