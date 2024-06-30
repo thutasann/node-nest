@@ -7,7 +7,7 @@ const PORT = process.env.CATALOG_PORT || 8000;
 const cpuCount = os.cpus().length;
 
 const BootStrap = async () => {
-	logger.info('cluster isPrimary -> ', cluster.isPrimary);
+	logger.info(`cluster isPrimary ->  ${cluster.isPrimary}`);
 	if (cluster.isPrimary) {
 		for (let i = 0; i < cpuCount; i++) {
 			cluster.fork();
