@@ -5,7 +5,7 @@ import welcomeRouter from './routes/welcome.route';
 import { httpLogger } from './utils/logger';
 import { HandleErrorWithLogger } from './utils/error/handler';
 
-const PREFIX = '/api/v1/catalog';
+export const CATALOG_PREFIX = '/api/v1/catalog';
 
 const app = express();
 
@@ -18,7 +18,7 @@ app.use(httpLogger);
 app.use(HandleErrorWithLogger);
 
 // routes
-app.use(PREFIX, welcomeRouter);
-app.use(PREFIX, catalogRouter);
+app.use(CATALOG_PREFIX, welcomeRouter);
+app.use(CATALOG_PREFIX, catalogRouter);
 
 export default app;

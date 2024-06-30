@@ -17,9 +17,11 @@ export class CatalogRepository implements ICatalogRepository {
 	}
 
 	async update(data: Product): Promise<Product> {
+		console.log('patch data', data);
+		const { id, ...payload } = data;
 		return await this._prisma!.product.update({
 			where: { id: data.id },
-			data,
+			data: payload,
 		});
 	}
 

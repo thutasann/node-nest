@@ -21,8 +21,11 @@ export class UpdateProductRequest {
 
 	description?: string;
 
+	@IsNumber()
+	@Min(1)
 	price?: number;
 
 	@IsNumber()
+	@Min(1)
 	stock?: number;
 }

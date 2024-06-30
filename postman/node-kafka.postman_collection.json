@@ -41,6 +41,38 @@
 					"response": []
 				},
 				{
+					"name": "products patch",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Product 1 updated\",\n    \"description\": \"Product 1 description\",\n    \"price\": 1000,\n    \"stock\": 1000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/catalog/products/6681051e685acb3b412b7780",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"catalog",
+								"products",
+								"6681051e685acb3b412b7780"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "products get",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true

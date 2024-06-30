@@ -2,9 +2,7 @@ import { faker } from '@faker-js/faker';
 import { ICatalogRepository } from '../../interfaces/catalog.interface';
 import { MockCatalogRepository } from '../../repository/mockCatalog.repository';
 import { CatalogService } from '../catalog.service';
-import { CatalogRepository } from '../../repository/catalog.repository';
 import { Product } from '../../models/product.model';
-import { catalogService } from '../../routes/catalog.route';
 import { ProductFactory } from '../../utils/fixtures';
 
 const mockProduct = <T>(

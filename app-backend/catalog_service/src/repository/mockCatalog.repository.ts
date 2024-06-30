@@ -1,4 +1,3 @@
-import { PrismaClient } from '@prisma/client';
 import { ICatalogRepository } from '../interfaces/catalog.interface';
 import { Product } from '../models/product.model';
 

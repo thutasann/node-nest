@@ -42,7 +42,7 @@ router.patch(
 	'/products/:id',
 	async (req: Request<IGetSingleProductParams>, res: Response) => {
 		try {
-			const id = parseInt(req.params.id);
+			const id = req.params.id;
 			const { errors, input } = await RequestValidator(
 				UpdateProductRequest,
 				req.body,
@@ -53,6 +53,7 @@ router.patch(
 			return res.status(200).json(data);
 		} catch (error) {
 			const err = error as Error;
+			console.log('err.message', err.message);
 			return res.status(500).json(err.message);
 		}
 	},
