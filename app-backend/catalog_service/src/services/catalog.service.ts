@@ -31,11 +31,11 @@ export class CatalogService {
 		return await this._catalogRepo.find(limit, offset);
 	}
 
-	async getProduct(id: number) {
+	async getProduct(id: string) {
 		return await this._catalogRepo.findOne(id);
 	}
 
-	async deleteProduct(id: number) {
+	async deleteProduct(id: string) {
 		const response = await this._catalogRepo.delete(id);
 		return response;
 	}

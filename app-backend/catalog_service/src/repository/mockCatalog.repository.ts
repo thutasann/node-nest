@@ -25,7 +25,7 @@ export class MockCatalogRepository implements ICatalogRepository {
 		return Promise.resolve([]);
 	}
 
-	findOne(id: number): Promise<Product> {
+	findOne(id: string): Promise<Product> {
 		return Promise.resolve({ id } as unknown as Product);
 	}
 }

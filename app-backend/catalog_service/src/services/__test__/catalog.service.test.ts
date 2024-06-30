@@ -27,4 +27,6 @@ describe('catalogService', () => {
 	afterEach(() => {
 		repository = {} as MockCatalogRepository;
 	});
+
+	describe('createProduct', () => {});
 });

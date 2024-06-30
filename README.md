@@ -11,12 +11,13 @@ This is the tiny microservices with Kafka and elastic search from scratch.
 - Elastic Search
 - Prisma
 - Graphql
-- Mysql
+- MongoDB
 - Jest
 - Nextjs
 
 ## Deployed URLs
 
+- [Frontend](https://node-kafka-ms.vercel.app/)
 - [Catalog Service](https://node-kafka-catalog.onrender.com/api/v1/catalog)
 
 ## Folder Structure
