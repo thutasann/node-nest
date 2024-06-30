@@ -10,6 +10,8 @@ export async function fetchTest(): Promise<{ message: string }> {
 }
 
 export async function getProducts(): Promise<IProduct[]> {
-	const response = await fetch(CATALOG_SERVICE + '/products');
+	const response = await fetch(CATALOG_SERVICE + '/products', {
+		cache: 'no-cache',
+	});
 	return await response.json();
 }

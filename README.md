@@ -10,7 +10,6 @@ This is the tiny microservices with Kafka and elastic search from scratch.
 - Kafka
 - Elastic Search
 - Prisma
-- Graphql
 - MongoDB
 - Jest
 - Nextjs
