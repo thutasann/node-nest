@@ -12,7 +12,6 @@ import { fetchTest } from '@/lib/actions/test-actions';
 
 export default async function Home() {
 	const data = await fetchTest();
-	console.log('data', data);
 	return (
 		<main className="flex min-h-screen flex-col items-center space-y-2 p-24">
 			<div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">

@@ -1,8 +1,11 @@
 import express from 'express';
 import setupSwagger from './swagger';
 import catalogRouter from './routes/catalog.route';
+import welcomeRouter from './routes/welcome.route';
 import { httpLogger } from './utils/logger';
 import { HandleErrorWithLogger } from './utils/error/handler';
+
+const PREFIX = '/api/v1/catalog';
 
 const app = express();
 
@@ -15,6 +18,7 @@ app.use(httpLogger);
 app.use(HandleErrorWithLogger);
 
 // routes
-app.use('/api', catalogRouter);
+app.use(PREFIX, welcomeRouter);
+app.use(PREFIX, catalogRouter);
 
 export default app;
