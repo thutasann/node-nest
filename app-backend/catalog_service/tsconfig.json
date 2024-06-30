@@ -11,5 +11,6 @@
 		"experimentalDecorators": true,
 		"rootDir": "./src",
 		"outDir": "./dist"
-	}
+	},
+	"exclude": ["jest.config.ts"]
 }
