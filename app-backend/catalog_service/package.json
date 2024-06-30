@@ -6,7 +6,7 @@
 	"scripts": {
 		"build": "tsc",
 		"dev": "nodemon src/server.ts",
-		"start": "rm -rf dist && tsc && nodemon dist/server.js",
+		"start": "rm -rf dist && tsc && node dist/src/server.js",
 		"test": "jest"
 	},
 	"keywords": [],

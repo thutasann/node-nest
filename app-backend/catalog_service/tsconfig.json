@@ -9,8 +9,6 @@
 		"noImplicitAny": false,
 		"strictPropertyInitialization": false,
 		"experimentalDecorators": true,
-		"rootDir": "./src",
 		"outDir": "./dist"
-	},
-	"exclude": ["jest.config.ts"]
+	}
 }
