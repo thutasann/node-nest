@@ -1,6 +1,9 @@
 import { ICatalogRepository } from '../interfaces/catalog.interface';
 import { Product } from '../models/product.model';
 
+/**
+ * Mock Catalog Repository for Testing
+ */
 export class MockCatalogRepository implements ICatalogRepository {
 	create(data: Product): Promise<Product> {
 		const mockProduct = {

@@ -13,11 +13,9 @@ import { fetchTest } from '@/lib/actions/test-actions';
 export default async function Home() {
 	const data = await fetchTest();
 	return (
-		<main className="flex min-h-screen flex-col items-center space-y-2 p-24">
-			<div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-				<p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 py-1.5 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
-					<ModeToggle />
-				</p>
+		<main className="min-h-screen">
+			<div className="flex justify-center items-center py-2 bg-primary-foreground mb-6 gap-2">
+				<span className="text-lg font-bold">Node Kafka</span> <ModeToggle />
 			</div>
 
 			<h1 className="text-xl font-bold">{data.message}</h1>
