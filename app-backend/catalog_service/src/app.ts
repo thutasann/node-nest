@@ -26,13 +26,12 @@ const shouldCompress = (req: Request, res: Response): boolean => {
 
 const app = express();
 
-app.use(requestTimeMiddleware);
-
 // swagger setup
 setupSwagger(app);
 
 // middlewares
 app.use(express.json());
+app.use(requestTimeMiddleware);
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(limiter);
