@@ -1,6 +1,7 @@
 'use server';
 
 import { IProduct } from '@/dto/IProduct';
+import { revalidateTag } from 'next/cache';
 import { CATALOG_SERVICE } from '../api';
 
 export async function fetchTest(): Promise<{ message: string }> {
@@ -11,7 +12,14 @@ export async function fetchTest(): Promise<{ message: string }> {
 
 export async function getProducts(): Promise<IProduct[]> {
 	const response = await fetch(CATALOG_SERVICE + '/products', {
-		cache: 'no-cache',
+		cache: 'force-cache',
+		next: {
+			tags: ['products'],
+		},
 	});
 	return await response.json();
+}
+
+export async function revalidateAction(tag: 'products') {
+	revalidateTag(tag);
 }
