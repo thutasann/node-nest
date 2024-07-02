@@ -6,7 +6,6 @@ These are the microservices and backend developments with Nestjs and Nodejs
 
 - Nodejs
 - Nestjs
-- NX Workspace
 - Prisma
 - MongoDB
 - Jest
@@ -24,6 +23,7 @@ These are the microservices and backend developments with Nestjs and Nodejs
   |    ├───app-backend
   |    |   ├───catalog_service
   |    ├───app-frontend
+  |    ├───nest-advanced
 ```
 
 ## Scripts
@@ -50,12 +50,6 @@ yarn test
 
 ```bash
 yarn test catalog_service/src/routes/__test__/catalog.route.test.ts
-```
-
-### NX
-
-```bash
-npx create-nx-workspace
 ```
 
 ## Tips & Tricks
