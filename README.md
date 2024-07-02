@@ -1,8 +1,6 @@
-# Nodejs Microservices with Elastic Search
+# Nodejs/Nestjs Microservices
 
-This is the tiny two microservices with Nodejs from scratch
-
-> This repo is mainly focused on Backend.
+These are the microservices and backend developments with Nestjs and Nodejs
 
 ## Tech Stacks
 
@@ -14,13 +12,13 @@ This is the tiny two microservices with Nodejs from scratch
 
 ## Deployed URLs
 
-- [Frontend](https://node-kafka-ms.vercel.app/)
+- [Frontend](https://node-ms.vercel.app/)
 - [Catalog Service](https://node-kafka-catalog.onrender.com/api/v1/catalog)
 
 ## Folder Structure
 
 ```bash
-└───node-kafka
+└───root
   |    ├───app-backend
   |    |   ├───catalog_service
   |    |   ├───order_service

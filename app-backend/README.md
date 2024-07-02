@@ -1,0 +1,1 @@
+# Sample Standalone Catalog Service

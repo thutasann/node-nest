@@ -1,1 +1,1 @@
-# Nextjs Frontend
+# Nextjs Frontend for Standalone Catalog Service
