@@ -5,6 +5,7 @@ These are the microservices and backend developments with Nestjs and Nodejs
 ## Tech Stacks
 
 - Nodejs
+- Nestjs
 - Prisma
 - MongoDB
 - Jest
@@ -12,8 +13,8 @@ These are the microservices and backend developments with Nestjs and Nodejs
 
 ## Deployed URLs
 
-- [Frontend](https://node-ms.vercel.app/)
-- [Catalog Service](https://node-kafka-catalog.onrender.com/api/v1/catalog)
+- [Standalone Frontend](https://node-ms.vercel.app/)
+- [Standalone Catalog Service](https://node-kafka-catalog.onrender.com/api/v1/catalog)
 
 ## Folder Structure
 
@@ -21,7 +22,6 @@ These are the microservices and backend developments with Nestjs and Nodejs
 └───root
   |    ├───app-backend
   |    |   ├───catalog_service
-  |    |   ├───order_service
   |    ├───app-frontend
 ```
 

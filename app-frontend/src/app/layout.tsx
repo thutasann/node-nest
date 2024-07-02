@@ -39,7 +39,10 @@ export default function RootLayout({
 					disableTransitionOnChange
 				>
 					<div className="flex justify-center items-center py-2 bg-primary-foreground/60 backdrop-blur-md mb-6 gap-2 fixed top-0 left-0 w-full z-[999]">
-						<span className="text-lg font-bold">Node Kafka</span> <ModeToggle />
+						<span className="text-lg font-bold">
+							Nodejs/Nestjs Microservices
+						</span>
+						<ModeToggle />
 					</div>
 					<main className="mt-[90px]">{children}</main>
 				</ThemeProvider>
