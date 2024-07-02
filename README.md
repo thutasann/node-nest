@@ -16,15 +16,13 @@ These are the microservices and backend developments with Nestjs and Nodejs
 - [Standalone Frontend](https://node-ms.vercel.app/)
 - [Standalone Catalog Service](https://node-kafka-catalog.onrender.com/api/v1/catalog)
 
-## Folder Structure
+## Table of Contents
 
-```bash
-└───root
-  |    ├───app-backend
-  |    |   ├───catalog_service
-  |    ├───app-frontend
-  |    ├───nest-advanced
-```
+| Topic         | Source                                                                   | Type            |
+| ------------- | ------------------------------------------------------------------------ | --------------- |
+| app-backend   | [Source](https://github.com/thutasann/node-ms/tree/master/app-backend)   | Standalone      |
+| app-frontend  | [Source](https://github.com/thutasann/node-ms/tree/master/app-frontend)  | Standalone      |
+| nest-advanced | [Source](https://github.com/thutasann/node-ms/tree/master/nest-advanced) | Nestjs Concepts |
 
 ## Scripts
 
