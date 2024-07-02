@@ -9,10 +9,6 @@ import { rateLimit } from 'express-rate-limit';
 import { CATALOG_PREFIX } from './utils/constants';
 import compression from 'compression';
 import helmet from 'helmet';
-import winstonLogger from './utils/logger/winston';
-
-winstonLogger.info('this is info message');
-winstonLogger.error('this is error message');
 
 const limiter = rateLimit({
 	windowMs: 10 * 60 * 1000,

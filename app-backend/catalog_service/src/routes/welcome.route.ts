@@ -10,4 +10,8 @@ router.get('/', (req: Request, res: Response) => {
 	});
 });
 
+router.get('/get-combined-logs', (req, res) => {
+	res.sendFile('combined.log', { root: '.' });
+});
+
 export default router;
