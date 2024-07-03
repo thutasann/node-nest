@@ -1,6 +1,6 @@
 # Custom
-/packages/*/build/**
-/packages/*/coverage/**
+# /packages/*/build/**
+# /packages/*/coverage/**
 /node_modules/**
 package-lock.json
 ./package.json
@@ -12,8 +12,8 @@ dist
 *.yml
 *.json
 *.next
-/packages/**/build
-/packages/**/dist
+# /packages/**/build
+# /packages/**/dist
 /apps/**/build
 /apps/**/dist
 /infra/**/build
