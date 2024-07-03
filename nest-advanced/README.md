@@ -12,6 +12,20 @@ This is the project where nestjs + nx + pnpm workspace was created from scratch.
 - NX Workspace
 - PNPM Workspace
 
+## Scripts
+
+### Change Dir to Root
+
+```bash
+cd nest-advanced
+```
+
+### Build All
+
+```bash
+pnpm run build-all
+```
+
 ## Topics
 
 - Baseline Repository
