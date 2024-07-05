@@ -26,12 +26,8 @@ jobs:
         run: npm install -g pnpm
         working-directory: nest-advanced
 
-      - name: Install dependencies
+      - name: PNPM Install dependencies
         run: pnpm install
-        working-directory: nest-advanced
-
-      - name: Install dependencies
-        run: npm install
         working-directory: nest-advanced
 
       - name: PNPM Build All
