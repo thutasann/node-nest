@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Nestjs. CI
 
 on:
   push:
@@ -30,6 +30,13 @@ jobs:
         run: pnpm install
         working-directory: nest-advanced
 
-      - name: PNPM Build All
-        run: pnpm run nx-build-all
+      - name: Install Nx globally
+        run: pnpm add -g nx
+        working-directory: nest-advanced
+
+      - name: Run Nx affected commands
+        run: |
+            nx affected:lint --all
+            nx affected:test --all
+            nx affected:build --all
         working-directory: nest-advanced
