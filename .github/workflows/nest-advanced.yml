@@ -31,5 +31,5 @@ jobs:
         working-directory: nest-advanced
 
       - name: PNPM Build All
-        run: npm run build-all
+        run: pnpm run nx-build-all
         working-directory: nest-advanced
