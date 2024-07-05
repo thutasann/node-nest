@@ -19,11 +19,16 @@ jobs:
         with:
           node-version: '18.x'
 
-      - name: Install pnpm
-        run: npm install -g pnpm
-
       - name: Change to nest-advanced
         run: cd nest-advanced
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+        working-directory: nest-advanced
+
+      - name: Install dependencies
+        run: pnpm install
+        working-directory: nest-advanced
 
       - name: Install dependencies
         run: npm install
