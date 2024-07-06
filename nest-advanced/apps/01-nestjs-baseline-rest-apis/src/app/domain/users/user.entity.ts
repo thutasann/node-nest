@@ -16,10 +16,10 @@ export class UsersEntity extends BaseEntity {
 	public id!: string;
 
 	@Column({ type: 'varchar', length: 255, select: true, unique: true })
-	public email: string;
+	public email!: string;
 
 	@Column({ type: 'varchar', length: 255, select: true })
-	public username: string;
+	public username!: string;
 
 	@CreateDateColumn({
 		type: 'timestamptz',

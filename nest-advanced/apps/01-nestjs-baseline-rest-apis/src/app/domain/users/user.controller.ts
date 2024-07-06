@@ -1,5 +1,13 @@
 import type { Request } from 'express';
-import { Controller, Get, HttpCode, HttpStatus, Req } from '@nestjs/common';
+import {
+	Controller,
+	Get,
+	HttpCode,
+	HttpStatus,
+	Req,
+	UsePipes,
+	ValidationPipe,
+} from '@nestjs/common';
 import {
 	ApiTags,
 	ApiBearerAuth,
@@ -14,6 +22,12 @@ import { CreateUserResponseDto } from './user.dto';
 @ApiTags('users')
 @Controller('users')
 @ApiBearerAuth('authorization')
+@UsePipes(
+	new ValidationPipe({
+		whitelist: true,
+		transform: true,
+	}),
+)
 export class UserController {
 	constructor(private readonly userService: UserService) {}
 

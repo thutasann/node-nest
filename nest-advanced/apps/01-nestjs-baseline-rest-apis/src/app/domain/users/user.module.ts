@@ -5,8 +5,11 @@ import { UsersEntity } from './user.entity';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 
+/**
+ * User Module
+ */
 @Module({
-	imports: [AppLoggerModule, TypeOrmModule.forFeature([UsersEntity])],
+	imports: [TypeOrmModule.forFeature([UsersEntity])],
 	controllers: [UserController],
 	providers: [UserService],
 	exports: [UserService],
