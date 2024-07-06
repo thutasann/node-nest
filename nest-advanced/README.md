@@ -30,6 +30,10 @@ pnpm run build-all
 docker-compose up
 ```
 
+## Swagger
+
+- http://localhost:3010/docs
+
 ## Topics
 
 - Baseline Repository

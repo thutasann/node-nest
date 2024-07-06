@@ -4,7 +4,7 @@ services:
     environment:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=thutasann2002tts
-      - POSTGRES_USER=test-api
+      - POSTGRES_DB=test-api
     volumes:
       - ./docker-utils:/docker-entrypoint-initdb.d
       - test_api_data:/data/postgres

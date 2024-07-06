@@ -37,7 +37,7 @@ export class DBModule {
 		return {
 			...connectionOptions,
 			entities: dbConfig.entities,
-			synchronize: false,
+			synchronize: true,
 			logging: true,
 		};
 	}
