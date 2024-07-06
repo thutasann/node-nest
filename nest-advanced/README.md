@@ -26,6 +26,10 @@ cd nest-advanced
 pnpm run build-all
 ```
 
+```bash
+docker-compose up
+```
+
 ## Topics
 
 - Baseline Repository

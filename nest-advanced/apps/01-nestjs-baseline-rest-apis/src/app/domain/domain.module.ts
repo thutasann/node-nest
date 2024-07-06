@@ -3,6 +3,9 @@ import { Module } from '@nestjs/common';
 import { UsersEntity } from './users/user.entity';
 import { UserModule } from './users/user.module';
 
+/**
+ * Domain Module 🚀
+ */
 @Module({
 	imports: [
 		UserModule,

@@ -1,10 +1,10 @@
-import type { Request } from 'express';
 import {
+	Body,
 	Controller,
 	Get,
 	HttpCode,
 	HttpStatus,
-	Req,
+	Post,
 	UsePipes,
 	ValidationPipe,
 } from '@nestjs/common';
@@ -14,10 +14,11 @@ import {
 	ApiOkResponse,
 	ApiOperation,
 	ApiConsumes,
+	ApiCreatedResponse,
 } from '@nestjs/swagger';
 import { UserService } from './user.service';
 import { UsersEntity } from './user.entity';
-import { CreateUserResponseDto } from './user.dto';
+import { CreateUserDto, CreateUserResponseDto } from './user.dto';
 
 @ApiTags('users')
 @Controller('users')
@@ -41,5 +42,17 @@ export class UserController {
 	@Get()
 	async findAll(): Promise<UsersEntity[]> {
 		return await this.userService.fetchUsers();
+	}
+
+	@HttpCode(HttpStatus.CREATED)
+	@ApiCreatedResponse({
+		type: CreateUserResponseDto,
+		description: 'user created successfully',
+	})
+	@ApiOperation({ description: 'user create api' })
+	@ApiConsumes('application/json')
+	@Post()
+	async create(@Body() body: CreateUserDto): Promise<UsersEntity> {
+		return await this.userService.createUser(body);
 	}
 }

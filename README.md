@@ -6,8 +6,12 @@ These are the microservices and backend developments with Nestjs and Nodejs
 
 - Nodejs
 - Nestjs
+- Nx Workspace
+- TypeORM
 - Prisma
 - MongoDB
+- Postgres
+- Docker
 - Jest
 - Nextjs
 
