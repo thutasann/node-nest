@@ -7,6 +7,9 @@ import {
 	UpdateDateColumn,
 } from 'typeorm';
 
+/**
+ * Users Entity
+ */
 @Entity('users')
 export class UsersEntity extends BaseEntity {
 	@PrimaryGeneratedColumn('uuid')

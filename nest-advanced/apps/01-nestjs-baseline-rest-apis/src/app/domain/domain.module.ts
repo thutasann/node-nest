@@ -1,10 +1,13 @@
 import { DBModule } from '@dev/database';
 import { Module } from '@nestjs/common';
+import { UsersEntity } from './users/user.entity';
+import { UserModule } from './users/user.module';
 
 @Module({
 	imports: [
+		UserModule,
 		// DBModule.forRoot({
-		// 	entities: [],
+		// 	entities: [UsersEntity],
 		// }),
 	],
 	providers: [],
