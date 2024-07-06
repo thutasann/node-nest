@@ -1,8 +1,31 @@
 import type { Request } from 'express';
-import { Controller, Get, Req } from '@nestjs/common';
-import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
+import { Controller, Get, HttpCode, HttpStatus, Req } from '@nestjs/common';
+import {
+	ApiTags,
+	ApiBearerAuth,
+	ApiOkResponse,
+	ApiOperation,
+	ApiConsumes,
+} from '@nestjs/swagger';
+import { UserService } from './user.service';
+import { UsersEntity } from './user.entity';
+import { CreateUserResponseDto } from './user.dto';
 
 @ApiTags('users')
 @Controller('users')
 @ApiBearerAuth('authorization')
-export class UserController {}
+export class UserController {
+	constructor(private readonly userService: UserService) {}
+
+	@HttpCode(HttpStatus.OK)
+	@ApiOkResponse({
+		type: [CreateUserResponseDto],
+		description: 'user fetched successfully',
+	})
+	@ApiOperation({ description: 'user fetch api' })
+	@ApiConsumes('application/json')
+	@Get()
+	async findAll(): Promise<UsersEntity[]> {
+		return await this.userService.fetchUsers();
+	}
+}

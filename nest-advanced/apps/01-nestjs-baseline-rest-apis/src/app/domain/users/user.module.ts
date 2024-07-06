@@ -6,10 +6,7 @@ import { UserController } from './user.controller';
 import { UserService } from './user.service';
 
 @Module({
-	imports: [
-		AppLoggerModule,
-		// TypeOrmModule.forFeature([UsersEntity])
-	],
+	imports: [AppLoggerModule, TypeOrmModule.forFeature([UsersEntity])],
 	controllers: [UserController],
 	providers: [UserService],
 	exports: [UserService],

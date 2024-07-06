@@ -6,9 +6,9 @@ import { UserModule } from './users/user.module';
 @Module({
 	imports: [
 		UserModule,
-		// DBModule.forRoot({
-		// 	entities: [UsersEntity],
-		// }),
+		DBModule.forRoot({
+			entities: [UsersEntity],
+		}),
 	],
 	providers: [],
 	controllers: [],
