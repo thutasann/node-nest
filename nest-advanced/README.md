@@ -26,6 +26,8 @@ cd nest-advanced
 pnpm run build-all
 ```
 
+### Docker Compose
+
 ```bash
 docker-compose up
 ```
@@ -40,3 +42,4 @@ docker-compose up
 - Core Building Blocks with Modules and PNPM Packages
 - [Providers](https://docs.nestjs.com/fundamentals/custom-providers#value-providers-usevalue)
 - Middleware, Guards, Interceptors
+- Cyclic Depedencies

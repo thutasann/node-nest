@@ -7,11 +7,11 @@ import {
 } from '@nestjs/common';
 import { UsersEntity } from './users/user.entity';
 import { UserModule } from './users/user.module';
-import { LoggerMiddleware } from '../core/middleware/log.middleware';
 import { AppLoggerMiddleware } from '../core/middleware/app-log.middleware';
 import { UserController } from './users/user.controller';
 import { RouteInfo } from '@nestjs/common/interfaces';
 import { AuthMiddleware } from '../core/middleware/auth.middleware';
+import { AuthModule } from './auth/auth.module';
 
 /** Global Prefix */
 export const GLOBAL_PREFIX = '/api/v1';
@@ -21,6 +21,7 @@ export const GLOBAL_PREFIX = '/api/v1';
  */
 @Module({
 	imports: [
+		AuthModule,
 		UserModule,
 		DBModule.forRoot({
 			entities: [UsersEntity],
@@ -50,6 +51,6 @@ export class DomainModoule implements NestModule {
 			.exclude(...this.publicRoutes)
 			.forRoutes(...this.authRoutes);
 
-		consumer.apply(AppLoggerMiddleware).forRoutes(UserController);
+		consumer.apply(AppLoggerMiddleware).forRoutes('*');
 	}
 }

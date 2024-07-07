@@ -1,10 +1,11 @@
 import { AppLoggerModule } from '@dev/logger';
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersEntity } from './user.entity';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { UserDaoService } from './user.dao.service';
+import { AuthModule } from '../auth/auth.module';
 
 //? -------- testing purpose start
 export interface ApiMockType {
@@ -19,7 +20,11 @@ export const apiMock: ApiMockType = {
  * User Module
  */
 @Module({
-	imports: [AppLoggerModule, TypeOrmModule.forFeature([UsersEntity])],
+	imports: [
+		AppLoggerModule,
+		forwardRef(() => AuthModule),
+		TypeOrmModule.forFeature([UsersEntity]),
+	],
 	controllers: [UserController],
 	providers: [
 		UserService,
