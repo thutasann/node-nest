@@ -5,6 +5,7 @@ import {
 	HttpCode,
 	HttpStatus,
 	Post,
+	UseGuards,
 	UsePipes,
 	ValidationPipe,
 } from '@nestjs/common';
@@ -19,6 +20,7 @@ import {
 import { UserService } from './user.service';
 import { UsersEntity } from './user.entity';
 import { CreateUserDto, CreateUserResponseDto } from './user.dto';
+import { AuthGuard } from 'src/app/core/guard/api-guard';
 
 @ApiTags('users')
 @Controller('users')
@@ -32,6 +34,7 @@ import { CreateUserDto, CreateUserResponseDto } from './user.dto';
 export class UserController {
 	constructor(private readonly userService: UserService) {}
 
+	@UseGuards(AuthGuard)
 	@HttpCode(HttpStatus.OK)
 	@ApiOkResponse({
 		type: [CreateUserResponseDto],
