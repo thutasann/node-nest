@@ -8,10 +8,11 @@ import {
 import { UsersEntity } from './users/user.entity';
 import { UserModule } from './users/user.module';
 import { AppLoggerMiddleware } from '../core/middleware/app-log.middleware';
-import { UserController } from './users/user.controller';
 import { RouteInfo } from '@nestjs/common/interfaces';
 import { AuthMiddleware } from '../core/middleware/auth.middleware';
 import { AuthModule } from './auth/auth.module';
+import { EmailModule } from '@dev/email';
+import { ConfigModule, ConfigService } from '@dev/config';
 
 /** Global Prefix */
 export const GLOBAL_PREFIX = '/api/v1';
@@ -23,6 +24,17 @@ export const GLOBAL_PREFIX = '/api/v1';
 	imports: [
 		AuthModule,
 		UserModule,
+		EmailModule.registerAsync({
+			imports: [ConfigModule],
+			inject: [ConfigService],
+			useFactory: (config: ConfigService) => {
+				return {
+					service: config.get().email.service_name,
+					user: config.get().email.username,
+					pass: config.get().email.password,
+				};
+			},
+		}),
 		DBModule.forRoot({
 			entities: [UsersEntity],
 		}),

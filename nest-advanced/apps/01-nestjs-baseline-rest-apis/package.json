@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@dev/config": "*",
+    "@dev/email":"*",
     "@dev/logger":"*",
     "@dev/database": "*",
     "@nestjs/common": "^9.0.0",
