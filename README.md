@@ -22,11 +22,11 @@ These are the microservices and backend developments with Nestjs and Nodejs
 
 ## Table of Contents
 
-| Topic         | Source                                                                   | Type            |
-| ------------- | ------------------------------------------------------------------------ | --------------- |
-| app-backend   | [Source](https://github.com/thutasann/node-ms/tree/master/app-backend)   | Standalone      |
-| app-frontend  | [Source](https://github.com/thutasann/node-ms/tree/master/app-frontend)  | Standalone      |
-| nest-advanced | [Source](https://github.com/thutasann/node-ms/tree/master/nest-advanced) | Nestjs Concepts |
+| Topic         | Source                    | Type                       |
+| ------------- | ------------------------- | -------------------------- |
+| app-backend   | [Source](./app-backend/)  | Standalone Nodejs Server   |
+| app-frontend  | [Source](./app-frontend)  | Standalone Nextjs Frontned |
+| nest-advanced | [Source](./nest-advanced) | Nestjs + Nx Concepts       |
 
 ## Scripts
 
