@@ -18,7 +18,7 @@ export interface HttpClientModuleFactory {
 }
 
 /**
- * Http client Module Async options
+ * Http client Module Async options that includes [inject, useClass, useExisting, useFactory]
  */
 export interface HttpClientModuleAsyncOptions
 	extends Pick<ModuleMetadata, 'imports'> {
