@@ -21,6 +21,8 @@ import { UserService } from './user.service';
 import { UsersEntity } from './user.entity';
 import { CreateUserDto, CreateUserResponseDto } from './user.dto';
 import { AuthGuard } from 'src/app/core/guard/api-guard';
+import { RoleAllowed } from 'src/app/core/decorators/role-allowed';
+import { User } from 'src/app/core/decorators/user';
 
 @ApiTags('users')
 @Controller('users')
@@ -35,6 +37,7 @@ export class UserController {
 	constructor(private readonly userService: UserService) {}
 
 	@UseGuards(AuthGuard)
+	@RoleAllowed('admin', 'user')
 	@HttpCode(HttpStatus.OK)
 	@ApiOkResponse({
 		type: [CreateUserResponseDto],
@@ -43,7 +46,7 @@ export class UserController {
 	@ApiOperation({ description: 'user fetch api' })
 	@ApiConsumes('application/json')
 	@Get()
-	async findAll(): Promise<UsersEntity[]> {
+	async findAll(@User() user: any): Promise<UsersEntity[]> {
 		return await this.userService.fetchUsers();
 	}
 
