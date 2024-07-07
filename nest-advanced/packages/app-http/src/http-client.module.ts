@@ -15,7 +15,6 @@ import {
 
 @Global()
 @Module({})
-// TODO: to add methods
 export class HttpClientModule {
 	/** for root method */
 	public static forRoot(options: HttpClientModuleOptions): DynamicModule {
