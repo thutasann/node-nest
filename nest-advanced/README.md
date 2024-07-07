@@ -43,3 +43,4 @@ docker-compose up
 - [Providers](https://docs.nestjs.com/fundamentals/custom-providers#value-providers-usevalue)
 - Middleware, Guards, Interceptors
 - Cyclic Depedencies
+- Dynamic Modules
