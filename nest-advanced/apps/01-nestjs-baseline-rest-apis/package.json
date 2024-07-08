@@ -1,5 +1,5 @@
 {
-  "name": "01-nestjs-baseline-rest-apis",
+  "name": "@thuta/01-nestjs-baseline-rest-apis",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -21,7 +21,8 @@
   },
   "dependencies": {
     "@dev/config": "*",
-    "@dev/email":"*",
+    "@dev/http": "*",
+    "@dev/email": "*",
     "@dev/logger":"*",
     "@dev/database": "*",
     "@nestjs/common": "^9.0.0",

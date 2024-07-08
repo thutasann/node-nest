@@ -40,7 +40,8 @@ docker-compose up
 
 - Baseline Repository
 - Core Building Blocks with Modules and PNPM Packages
-- [Providers](https://docs.nestjs.com/fundamentals/custom-providers#value-providers-usevalue)
+- Providers
 - Middleware, Guards, Interceptors
 - Cyclic Depedencies
 - Dynamic Modules
+- Global Dynamic Modules

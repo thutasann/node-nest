@@ -13,6 +13,8 @@ import { AuthMiddleware } from '../core/middleware/auth.middleware';
 import { AuthModule } from './auth/auth.module';
 import { EmailModule } from '@dev/email';
 import { ConfigModule, ConfigService } from '@dev/config';
+import { HttpClientModule } from '@dev/http';
+import { AppLoggerModule } from '@dev/logger';
 
 /** Global Prefix */
 export const GLOBAL_PREFIX = '/api/v1';
@@ -22,8 +24,14 @@ export const GLOBAL_PREFIX = '/api/v1';
  */
 @Module({
 	imports: [
-		AuthModule,
-		UserModule,
+		HttpClientModule.forRootAsync({
+			imports: [ConfigModule],
+			inject: [ConfigService],
+			useFactory: (config: ConfigService) => ({
+				apiUrl: config.get().externalApi.apiUrl,
+				apiKey: config.get().externalApi.apiKey,
+			}),
+		}),
 		EmailModule.registerAsync({
 			imports: [ConfigModule],
 			inject: [ConfigService],
@@ -38,6 +46,9 @@ export const GLOBAL_PREFIX = '/api/v1';
 		DBModule.forRoot({
 			entities: [UsersEntity],
 		}),
+		AppLoggerModule,
+		AuthModule,
+		UserModule,
 	],
 	providers: [],
 	controllers: [],

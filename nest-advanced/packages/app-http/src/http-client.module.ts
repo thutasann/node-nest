@@ -40,7 +40,7 @@ export class HttpClientModule {
 		return {
 			module: HttpClientModule,
 			imports: options.imports,
-			providers: [...this.createAsyncProviders(options)],
+			providers: [...this.createAsyncProviders(options), provider],
 			exports: [provider],
 		};
 	}

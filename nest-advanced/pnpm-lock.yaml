@@ -71,6 +71,9 @@ importers:
       '@dev/email':
         specifier: '*'
         version: link:../../packages/app-email
+      '@dev/http':
+        specifier: "*"
+        version: link:../../packages/app-http
       '@dev/logger':
         specifier: '*'
         version: link:../../packages/app-logger

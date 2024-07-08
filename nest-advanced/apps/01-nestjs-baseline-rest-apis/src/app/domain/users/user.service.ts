@@ -5,10 +5,14 @@ import { Repository } from 'typeorm/repository/Repository';
 import { CreateUserDto } from './user.dto';
 import { ApiMockType } from './user.module';
 import { AuthService } from '../auth/auth.service';
+import { HTTP_CLIENT_TOKEN, HttpClientService } from '@dev/http';
+import { privateDecrypt } from 'crypto';
 
 @Injectable()
 export class UserService {
 	constructor(
+		@Inject(HTTP_CLIENT_TOKEN)
+		private readonly apiService: HttpClientService,
 		/** testing purpose */
 		@Inject('TEST_API_TOKEN') private token: ApiMockType,
 		@InjectRepository(UsersEntity) private usersRepo: Repository<UsersEntity>,
