@@ -27,6 +27,7 @@ export class HttpClientService {
 				'Content-Type': 'application/json',
 				Authorization: `Bearer ${this.apiKey}`,
 			},
+			proxy: false,
 		});
 	}
 }

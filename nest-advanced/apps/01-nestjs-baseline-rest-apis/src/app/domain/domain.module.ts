@@ -21,6 +21,10 @@ export const GLOBAL_PREFIX = '/api/v1';
 
 /**
  * Domain Module 🚀
+ * @description
+ * - useClass - to get a private instance of the options provider
+ * - useFactory - to use a function as the options provider
+ * - useExisting - to re-use an existing (shared, SINGLETON) service as the options provider
  */
 @Module({
 	imports: [
