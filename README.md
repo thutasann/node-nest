@@ -1,6 +1,6 @@
 # Nodejs/Nestjs Microservices
 
-These are the microservices and backend developments with Nestjs and Nodejs
+These are the microservices and server side developments with Nestjs and Nodejs
 
 ## Tech Stacks
 

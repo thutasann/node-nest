@@ -1,0 +1,21 @@
+version: "3"
+services:
+  node:
+    container_name: nestjs_dockerize
+    build: .
+    command: npm run start:prod
+    ports:
+      - 3010:3000
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=thutasann2002tts
+      - POSTGRES_DB=nestjs-dockerize
+    volumes:
+      - ./docker-utils:/docker-entrypoint-initdb.d
+      - rating_api_data:/data/postgres
+    ports:
+      - 5432:5432
+volumes:
+  rating_api_data: {}
