@@ -22,12 +22,13 @@ These are the microservices and server side developments with Nestjs and Nodejs
 
 ## Table of Contents
 
-| Topic             | Source                        | Type                       |
-| ----------------- | ----------------------------- | -------------------------- |
-| app-backend       | [Source](./app-backend/)      | Standalone Nodejs Server   |
-| app-frontend      | [Source](./app-frontend)      | Standalone Nextjs Frontned |
-| nest-advanced     | [Source](./nest-advanced)     | Nestjs + Nx Concepts       |
-| nestjs-websockets | [Source](./nestjs-websockets) | Nestjs + Websockets        |
+| Topic             | Source                         | Type                       |
+| ----------------- | ------------------------------ | -------------------------- |
+| app-backend       | [Source](./app-backend/)       | Standalone Nodejs Server   |
+| app-frontend      | [Source](./app-frontend)       | Standalone Nextjs Frontned |
+| nest-advanced     | [Source](./nest-advanced)      | Nestjs + Nx Concepts       |
+| nestjs-websockets | [Source](./nestjs-websockets)  | Nestjs + Websockets        |
+| nestjs-ai-chatbot | [Source](./nestjs-ai-chatbot/) | Nestjs + OpenAI + Nextjs   |
 
 ## Scripts
 
