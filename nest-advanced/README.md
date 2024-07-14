@@ -32,17 +32,14 @@ pnpm run build-all
 docker-compose up
 ```
 
+### TypeOrm migrations
+
+```bash
+cd 01-nestjs-baseline-rest-apis
+npm run migration:create --name users
+npm run migration:run
+```
+
 ## Swagger
 
 - http://localhost:3010/docs
-
-## Topics
-
-- Baseline Repository
-- Core Building Blocks with Modules and PNPM Packages
-- Providers
-- Middleware, Guards, Interceptors
-- Cyclic Depedencies
-- Dynamic Modules
-- Global Dynamic Modules
-- DTO Validations
