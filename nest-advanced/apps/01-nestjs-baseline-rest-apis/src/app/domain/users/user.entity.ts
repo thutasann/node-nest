@@ -1,3 +1,4 @@
+import { AddressInfo } from 'net';
 import {
 	PrimaryGeneratedColumn,
 	BaseEntity,
@@ -6,6 +7,7 @@ import {
 	CreateDateColumn,
 	UpdateDateColumn,
 } from 'typeorm';
+import { AddressInfoDto } from './user.dto';
 
 /**
  * Users Entity
@@ -20,6 +22,9 @@ export class UsersEntity extends BaseEntity {
 
 	@Column({ type: 'varchar', length: 255, select: true })
 	public username!: string;
+
+	@Column({ type: 'jsonb', default: null, select: true })
+	public address!: AddressInfoDto[];
 
 	@CreateDateColumn({
 		type: 'timestamptz',

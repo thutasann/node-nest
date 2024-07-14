@@ -45,3 +45,4 @@ docker-compose up
 - Cyclic Depedencies
 - Dynamic Modules
 - Global Dynamic Modules
+- DTO Validations

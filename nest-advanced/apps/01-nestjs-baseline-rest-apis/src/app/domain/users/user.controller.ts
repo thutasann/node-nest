@@ -4,7 +4,9 @@ import {
 	Get,
 	HttpCode,
 	HttpStatus,
+	Logger,
 	Post,
+	Query,
 	UseGuards,
 	UsePipes,
 	ValidationPipe,
@@ -19,7 +21,7 @@ import {
 } from '@nestjs/swagger';
 import { UserService } from './user.service';
 import { UsersEntity } from './user.entity';
-import { CreateUserDto, CreateUserResponseDto } from './user.dto';
+import { CreateUserDto, CreateUserResponseDto, UserQueryDto } from './user.dto';
 import { AuthGuard } from 'src/app/core/guard/api-guard';
 import { RoleAllowed } from 'src/app/core/decorators/role-allowed';
 import { User } from 'src/app/core/decorators/user';
@@ -34,6 +36,8 @@ import { User } from 'src/app/core/decorators/user';
 	}),
 )
 export class UserController {
+	private readonly logger = new Logger(UserController.name);
+
 	constructor(private readonly userService: UserService) {}
 
 	@UseGuards(AuthGuard)
@@ -46,7 +50,11 @@ export class UserController {
 	@ApiOperation({ description: 'user fetch api' })
 	@ApiConsumes('application/json')
 	@Get()
-	async findAll(@User() user: any): Promise<UsersEntity[]> {
+	async findAll(
+		@User() user: any,
+		@Query() query: UserQueryDto,
+	): Promise<UsersEntity[]> {
+		this.logger.log(`query : ${query.email}`);
 		return await this.userService.fetchUsers();
 	}
 
