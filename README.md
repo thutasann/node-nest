@@ -1,4 +1,4 @@
-# Nodejs/Nestjs Microservices
+# Nodejs/Nestjs Server side Developments
 
 These are the microservices and server side developments with Nestjs and Nodejs
 
@@ -23,12 +23,13 @@ These are the microservices and server side developments with Nestjs and Nodejs
 
 ## Table of Contents
 
-| Topic             | Source                                         | Type                     |
-| ----------------- | ---------------------------------------------- | ------------------------ |
-| tiny nest + next  | [Source](./tiny-nest-next/)                    | Tiny Nestjs + Nextjs     |
-| nest-advanced     | [Source](./nest-advanced)                      | Nestjs + Nx Concepts     |
-| nestjs-websockets | [Source](./standalone-apis/nestjs-websockets/) | Nestjs + Websockets      |
-| nestjs-ai-chatbot | [Source](./standalone-apis/nestjs-ai-chatbot/) | Nestjs + OpenAI + Nextjs |
+| Topic             | Source                                         | Type                           |
+| ----------------- | ---------------------------------------------- | ------------------------------ |
+| tiny nest + next  | [Source](./tiny-nest-next/)                    | Tiny Nestjs + Nextjs           |
+| nest-advanced     | [Source](./nest-advanced)                      | Nestjs + Nx Concepts           |
+| nestjs-websockets | [Source](./standalone-apis/nestjs-websockets/) | Nestjs + Websockets            |
+| nestjs-ai-chatbot | [Source](./standalone-apis/nestjs-ai-chatbot/) | Nestjs + OpenAI + Nextjs       |
+| nestjs-graphql-ms | [Source](./nest-graphql-ms/)                   | Nestjs + Graphql Microservices |
 
 ## Scripts
 
