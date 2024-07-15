@@ -20,16 +20,16 @@ jobs:
           node-version: '18.x'
 
       - name: Change to catalog_service directory
-        run: cd app-backend/catalog_service
+        run: cd tiny-nest-next/app-backend/catalog_service
 
       - name: Install dependencies
         run: npm install
-        working-directory: app-backend/catalog_service
+        working-directory: tiny-nest-next/app-backend/catalog_service
 
       - name: Generate Prisma client
         run: npx prisma generate
-        working-directory: app-backend/catalog_service
+        working-directory: tiny-nest-next/app-backend/catalog_service
 
       - name: Build project
         run: npm run build
-        working-directory: app-backend/catalog_service
+        working-directory: tiny-nest-next/app-backend/catalog_service
