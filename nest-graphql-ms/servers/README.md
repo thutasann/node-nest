@@ -4,6 +4,7 @@
 
 - Graphql
 - Apollo Client
+- Prisma
 
 ## Scripts
 
