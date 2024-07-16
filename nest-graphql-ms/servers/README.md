@@ -39,6 +39,46 @@ npx prisma db push
 npx prisma db studio
 ```
 
+### Graphql
+
+- http://localhost:4001/graphql
+
+```graphql
+query UserQuery {
+	getUsers {
+		name
+	}
+}
+```
+
+```
+mutation {
+  register(
+    registerInput: {
+      name: "thuta sann"
+      email: "test@gmail.com"
+      password: "test123test"
+    }
+  ) {
+    user {
+      id
+      name
+      email
+      password
+      avatar {
+        id
+        public_id
+        url
+      }
+      role
+      createdAt
+      updatedAt
+    }
+  }
+}
+
+```
+
 ## Resources
 
 - https://www.apollographql.com/docs/federation/

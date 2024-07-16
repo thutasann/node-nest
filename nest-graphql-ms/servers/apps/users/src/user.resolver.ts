@@ -13,12 +13,13 @@ export class UserResolver {
 	@Mutation(() => RegisterResponse)
 	async register(
 		@Args('registerInput') registerDto: RegisterDto,
+		@Context() context: { res: Response },
 	): Promise<RegisterResponse> {
 		if (!registerDto.name || !registerDto.email || !registerDto.password) {
 			throw new BadRequestException('Invalid Request');
 		}
 
-		const user = await this.userService.register(registerDto);
+		const user = await this.userService.register(registerDto, context.res);
 		return { user };
 	}
 

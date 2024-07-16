@@ -1,20 +1,41 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { LoginDto, RegisterDto } from './dto/user.dto';
-import type { Response } from 'express';
+import { type Response } from 'express';
+import { PrismaService } from '../../../prisma/prisma.service';
+import { User } from '@prisma/client';
 
 @Injectable()
 export class UsersService {
 	constructor(
 		private readonly jwtService: JwtService,
+		private readonly prisma: PrismaService,
 		private readonly confgiService: ConfigService,
 	) {}
 
-	async register(registerDto: RegisterDto, reponse?: Response) {
+	async register(registerDto: RegisterDto, response: Response) {
 		const { name, email, password } = registerDto;
-		const user = { name, email, password };
-		return user;
+
+		const isEmailExists = await this.prisma.user.findFirst({
+			where: {
+				email,
+			},
+		});
+
+		if (isEmailExists) {
+			throw new BadRequestException('Users already exist with this email!');
+		}
+
+		const user = await this.prisma.user.create({
+			data: {
+				name,
+				email,
+				password,
+			},
+		});
+
+		return { user, response };
 	}
 
 	async login(loginDto: LoginDto) {
@@ -23,15 +44,7 @@ export class UsersService {
 		return user;
 	}
 
-	async getUsers() {
-		const users = [
-			{
-				id: '123',
-				name: 'test',
-				email: 'test@gmail.com',
-				password: '****',
-			},
-		];
-		return users;
+	async getUsers(): Promise<User[]> {
+		return this.prisma.user.findMany();
 	}
 }
