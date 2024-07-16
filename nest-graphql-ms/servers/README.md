@@ -5,6 +5,7 @@
 - Graphql
 - Apollo Client
 - Prisma
+- MongoDb
 
 ## Scripts
 
@@ -18,6 +19,24 @@ yarn start:dev <service-name>
 
 ```bash
 yarn build <service-name>
+```
+
+### Prisma
+
+```bash
+npx prisma format
+```
+
+```bash
+npx prisma generate
+```
+
+```bash
+npx prisma db push
+```
+
+```bash
+npx prisma db studio
 ```
 
 ## Resources
