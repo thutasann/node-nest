@@ -21,6 +21,9 @@ import { PrismaService } from '../../../prisma/prisma.service';
 			context: ({ req }) => ({
 				headers: req.headers,
 			}),
+			playground: true,
+			debug: true,
+			introspection: true,
 		}),
 	],
 	controllers: [],
