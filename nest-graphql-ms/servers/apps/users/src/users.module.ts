@@ -17,6 +17,10 @@ import { PrismaService } from '../../../prisma/prisma.service';
 			autoSchemaFile: {
 				federation: 2,
 			},
+			csrfPrevention: false,
+			context: ({ req }) => ({
+				headers: req.headers,
+			}),
 		}),
 	],
 	controllers: [],
