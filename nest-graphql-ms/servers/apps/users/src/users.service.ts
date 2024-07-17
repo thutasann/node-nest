@@ -6,7 +6,8 @@ import { type Response } from 'express';
 import { PrismaService } from '../../../prisma/prisma.service';
 import { User } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
-import { IUserData } from './dto/user.interface';
+import { UserData } from './types/global.types';
+import { EmailService } from './email/email.service';
 
 @Injectable()
 export class UsersService {
@@ -15,6 +16,7 @@ export class UsersService {
 	constructor(
 		private readonly jwtService: JwtService,
 		private readonly prisma: PrismaService,
+		private readonly emailService: EmailService,
 		private readonly confgiService: ConfigService,
 	) {}
 
@@ -53,9 +55,16 @@ export class UsersService {
 		};
 
 		const activationToken = await this.createActivationToken(user);
-		const activationCOde = activationToken.activationCode;
+		const activationCode = activationToken.activationCode;
+		this.logger.log('activationCOde', activationCode);
 
-		this.logger.log('activationCOde', activationCOde);
+		await this.emailService.sendEmail({
+			email,
+			subject: 'Activate your account!',
+			template: './activation-mail',
+			name,
+			activationCode,
+		});
 
 		// await this.prisma.user.create({
 		// 	data: {
@@ -80,7 +89,7 @@ export class UsersService {
 	}
 
 	/** create activation token */
-	private async createActivationToken(user: IUserData) {
+	private async createActivationToken(user: UserData) {
 		const activationCode = Math.floor(1000 + Math.random() * 9000).toString();
 
 		const token = this.jwtService.sign(

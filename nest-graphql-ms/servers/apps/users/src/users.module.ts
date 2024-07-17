@@ -5,7 +5,7 @@ import {
 	ApolloFederationDriverConfig,
 } from '@nestjs/apollo';
 import { GraphQLModule } from '@nestjs/graphql';
-import { ConfigService } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { UserResolver } from './user.resolver';
 import { PrismaService } from '../../../prisma/prisma.service';
@@ -27,6 +27,9 @@ import { EmailModule } from './email/email.module';
 			introspection: true,
 		}),
 		EmailModule,
+		ConfigModule.forRoot({
+			isGlobal: true,
+		}),
 	],
 	controllers: [],
 	providers: [

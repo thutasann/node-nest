@@ -76,8 +76,11 @@ mutation {
     }
   }
 }
-
 ```
+
+## SMTP
+
+- In order to create `SMTP_PASSWORD`, go to https://myaccount.google.com/ > app passwords
 
 ## Resources
 
