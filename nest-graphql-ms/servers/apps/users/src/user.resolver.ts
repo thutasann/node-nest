@@ -3,11 +3,13 @@ import { UsersService } from './users.service';
 import { RegisterResponse } from './types/user.type';
 import { RegisterDto } from './dto/user.dto';
 import type { Response } from 'express';
-import { BadRequestException } from '@nestjs/common';
+import { BadRequestException, Logger } from '@nestjs/common';
 import { User } from './entities/user.entity';
 
 @Resolver('User')
 export class UserResolver {
+	private readonly logger = new Logger(UserResolver.name);
+
 	constructor(private readonly userService: UsersService) {}
 
 	@Mutation(() => RegisterResponse)
@@ -19,8 +21,9 @@ export class UserResolver {
 			throw new BadRequestException('Invalid Request');
 		}
 
-		const user = await this.userService.register(registerDto, context.res);
-		return { user };
+		const res = await this.userService.register(registerDto, context.res);
+		this.logger.debug(`register user : ${res.user}`);
+		return { user: res.user };
 	}
 
 	@Query(() => [User])
