@@ -7,6 +7,7 @@ These are the microservices and server side developments with Nestjs and Nodejs
 - Nodejs
 - Nestjs
 - Nx Workspace
+- Mongoose
 - TypeORM
 - Prisma
 - MongoDB
