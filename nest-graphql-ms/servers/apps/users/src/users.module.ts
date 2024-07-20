@@ -10,6 +10,7 @@ import { JwtService } from '@nestjs/jwt';
 import { UserResolver } from './user.resolver';
 import { PrismaService } from '../../../prisma/prisma.service';
 import { EmailModule } from './email/email.module';
+import { UsersController } from './users.controller';
 
 @Module({
 	imports: [
@@ -31,7 +32,7 @@ import { EmailModule } from './email/email.module';
 			isGlobal: true,
 		}),
 	],
-	controllers: [],
+	controllers: [UsersController],
 	providers: [
 		UserResolver,
 		PrismaService,
