@@ -8,6 +8,7 @@ import { User } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 import { UserData } from './types/global.types';
 import { EmailService } from './email/email.service';
+import { TokenSender } from './core/utils/send-token';
 
 @Injectable()
 export class UsersService {
@@ -20,6 +21,7 @@ export class UsersService {
 		private readonly confgiService: ConfigService,
 	) {}
 
+	/** user register */
 	async register(registerDto: RegisterDto, response: Response) {
 		const { name, email, password, phone_number } = registerDto;
 
@@ -69,12 +71,32 @@ export class UsersService {
 		return { activation_token, response };
 	}
 
+	/** user login */
 	async login(loginDto: LoginDto) {
 		const { email, password } = loginDto;
-		const user = { email, password };
-		return user;
+
+		const user = await this.prisma.user.findUnique({
+			where: {
+				email,
+			},
+		});
+
+		if (user && (await this.comparePassword(password, user.password))) {
+			const tokenSender = new TokenSender(this.confgiService, this.jwtService);
+			return tokenSender.sendToken(user);
+		} else {
+			return {
+				user: null,
+				accessToken: null,
+				refreshToken: null,
+				error: {
+					message: 'Invalid email or password',
+				},
+			};
+		}
 	}
 
+	/** get users */
 	async getUsers(): Promise<User[]> {
 		return this.prisma.user.findMany();
 	}
@@ -135,5 +157,13 @@ export class UsersService {
 		);
 
 		return { token, activationCode };
+	}
+
+	/** compare with hash password */
+	private async comparePassword(
+		password: string,
+		hashedPassword: string,
+	): Promise<boolean> {
+		return await bcrypt.compare(password, hashedPassword);
 	}
 }

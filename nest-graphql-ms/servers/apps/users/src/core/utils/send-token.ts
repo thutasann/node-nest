@@ -1,0 +1,42 @@
+import { ConfigService } from '@nestjs/config';
+import { JwtService } from '@nestjs/jwt';
+import { User } from '@prisma/client';
+
+/**
+ * Token Util
+ */
+export class TokenSender {
+	constructor(
+		private readonly config: ConfigService,
+		private readonly jwt: JwtService,
+	) {}
+
+	/** send token */
+	public sendToken(user: User) {
+		const accessToken = this.jwt.sign(
+			{
+				id: user.id,
+			},
+			{
+				secret: this.config.get<string>('ACCESS_TOKEN_SECRET'),
+				expiresIn: '1m',
+			},
+		);
+
+		const refereshToken = this.jwt.sign(
+			{
+				id: user.id,
+			},
+			{
+				secret: this.config.get<string>('REFRESH_TOKEN_SECRET'),
+				expiresIn: '3d',
+			},
+		);
+
+		return {
+			user,
+			accessToken,
+			refereshToken,
+		};
+	}
+}
