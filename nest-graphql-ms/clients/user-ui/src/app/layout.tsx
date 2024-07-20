@@ -2,16 +2,17 @@ import type { Metadata } from 'next';
 import { Inter, Poppins } from 'next/font/google';
 import './globals.css';
 import { RootProviders } from '@/providers/RootProviders';
+import { Toaster } from 'react-hot-toast';
 
-const poppins = Poppins({
-	subsets: ['latin'],
-	weight: ['400', '500', '600', '700'],
-	variable: '--font-Poppins',
-});
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
 	title: 'Nest Graphql Microservices',
+	description:
+		'This is the Nestjs + Graphql + Nextjs Full stack food delivery app',
+	icons: {
+		icon: './logo.png',
+	},
 };
 
 export default function RootLayout({
@@ -21,8 +22,12 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`${poppins.variable} ${inter.variable}`}>
+			<body className={` ${inter.variable}`}>
 				<RootProviders>{children}</RootProviders>
+				<Toaster
+					position="top-center"
+					reverseOrder={false}
+				/>
 			</body>
 		</html>
 	);
