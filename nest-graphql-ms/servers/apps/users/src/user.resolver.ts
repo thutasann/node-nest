@@ -4,11 +4,12 @@ import {
 	ActivationResponse,
 	LoginResponse,
 	RegisterResponse,
-} from './types/user.type';
-import { ActivationDto, RegisterDto } from './dto/user.dto';
+} from './core/types/user.type';
+import { ActivationDto, RegisterDto } from './core/dto/user.dto';
 import type { Response } from 'express';
-import { BadRequestException, Logger } from '@nestjs/common';
-import { User } from './entities/user.entity';
+import { BadRequestException, Logger, UseGuards } from '@nestjs/common';
+import { User } from './core/entities/user.entity';
+import { AuthGuard } from './core/guards/auth.guard';
 
 @Resolver('User')
 export class UserResolver {
@@ -39,6 +40,14 @@ export class UserResolver {
 		@Context() context: { res: Response },
 	): Promise<ActivationResponse> {
 		return await this.userService.activateUser(activationDto, context.res);
+	}
+
+	@Query(() => LoginResponse)
+	@UseGuards(AuthGuard)
+	async getLoggedInUser(
+		@Context() context: { req: Request },
+	): Promise<LoginResponse> {
+		return await this.userService.getLoggedInUser(context.req);
 	}
 
 	@Mutation(() => LoginResponse)

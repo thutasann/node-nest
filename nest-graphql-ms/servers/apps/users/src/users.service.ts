@@ -1,12 +1,12 @@
 import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService, JwtVerifyOptions } from '@nestjs/jwt';
-import { ActivationDto, LoginDto, RegisterDto } from './dto/user.dto';
+import { ActivationDto, LoginDto, RegisterDto } from './core/dto/user.dto';
 import { type Response } from 'express';
 import { PrismaService } from '../../../prisma/prisma.service';
 import { User } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
-import { UserData } from './types/global.types';
+import { UserData } from './core/types/global.types';
 import { EmailService } from './email/email.service';
 import { TokenSender } from './core/utils/send-token';
 
@@ -139,6 +139,15 @@ export class UsersService {
 			user,
 			response,
 		};
+	}
+
+	/** get loggedin user */
+	async getLoggedInUser(req: any) {
+		const user = req.user as User;
+		const refreshToken = req.refreshToken as string;
+		const accessToken = req.accessToken as string;
+		this.logger.log({ user, refreshToken, accessToken });
+		return { user, refreshToken, accessToken };
 	}
 
 	/** create activation token */

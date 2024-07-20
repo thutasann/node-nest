@@ -23,7 +23,7 @@ export class TokenSender {
 			},
 		);
 
-		const refereshToken = this.jwt.sign(
+		const refreshtoken = this.jwt.sign(
 			{
 				id: user.id,
 			},
@@ -36,7 +36,7 @@ export class TokenSender {
 		return {
 			user,
 			accessToken,
-			refereshToken,
+			refreshtoken,
 		};
 	}
 }

@@ -1,6 +1,6 @@
 import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable } from '@nestjs/common';
-import { EmailOptions } from '../types/global.types';
+import { EmailOptions } from '../core/types/global.types';
 
 @Injectable()
 export class EmailService {

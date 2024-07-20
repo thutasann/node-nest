@@ -37,7 +37,7 @@ export class LoginResponse {
 	accessToken?: string;
 
 	@Field({ nullable: true })
-	refereshToken?: string;
+	refreshtoken?: string;
 
 	@Field(() => ErrorType, { nullable: true })
 	error?: ErrorType;
