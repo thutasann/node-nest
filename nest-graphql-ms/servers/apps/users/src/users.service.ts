@@ -150,6 +150,14 @@ export class UsersService {
 		return { user, refreshToken, accessToken };
 	}
 
+	/** logout user */
+	async logout(req: any) {
+		req.user = null;
+		req.refreshtoken = null;
+		req.accesstoken = null;
+		return { message: 'Logged out succesfully!' };
+	}
+
 	/** create activation token */
 	private async createActivationToken(user: UserData) {
 		const activationCode = Math.floor(1000 + Math.random() * 9000).toString();

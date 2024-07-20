@@ -43,6 +43,12 @@ export class LoginResponse {
 	error?: ErrorType;
 }
 
+@ObjectType()
+export class LogoutResponse {
+	@Field()
+	message: string;
+}
+
 /**
  * User Activation Response
  */

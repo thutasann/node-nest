@@ -3,6 +3,7 @@ import { UsersService } from './users.service';
 import {
 	ActivationResponse,
 	LoginResponse,
+	LogoutResponse,
 	RegisterResponse,
 } from './core/types/user.type';
 import { ActivationDto, RegisterDto } from './core/dto/user.dto';
@@ -54,6 +55,11 @@ export class UserResolver {
 		@Args('password') password: string,
 	): Promise<LoginResponse> {
 		return await this.userService.login({ email, password });
+	}
+
+	@Mutation(() => LogoutResponse)
+	async logoutUser(@Context() context: { req: Request }) {
+		return await this.userService.logout(context.req);
 	}
 
 	@Query(() => [User])
