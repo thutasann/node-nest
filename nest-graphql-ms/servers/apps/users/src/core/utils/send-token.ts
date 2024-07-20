@@ -23,7 +23,7 @@ export class TokenSender {
 			},
 		);
 
-		const refreshtoken = this.jwt.sign(
+		const refreshToken = this.jwt.sign(
 			{
 				id: user.id,
 			},
@@ -36,7 +36,7 @@ export class TokenSender {
 		return {
 			user,
 			accessToken,
-			refreshtoken,
+			refreshToken,
 		};
 	}
 }

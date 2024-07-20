@@ -44,9 +44,7 @@ export class UserResolver {
 
 	@Query(() => LoginResponse)
 	@UseGuards(AuthGuard)
-	async getLoggedInUser(
-		@Context() context: { req: Request },
-	): Promise<LoginResponse> {
+	async getLoggedInUser(@Context() context: { req: Request }) {
 		return await this.userService.getLoggedInUser(context.req);
 	}
 

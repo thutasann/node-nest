@@ -144,8 +144,8 @@ export class UsersService {
 	/** get loggedin user */
 	async getLoggedInUser(req: any) {
 		const user = req.user as User;
-		const refreshToken = req.refreshToken as string;
-		const accessToken = req.accessToken as string;
+		const refreshToken = req.refreshtoken as string;
+		const accessToken = req.accesstoken as string;
 		this.logger.log({ user, refreshToken, accessToken });
 		return { user, refreshToken, accessToken };
 	}

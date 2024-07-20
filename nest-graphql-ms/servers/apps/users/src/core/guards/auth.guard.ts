@@ -77,7 +77,7 @@ export class AuthGuard implements CanActivate {
 			);
 
 			/** refresh token */
-			const refreshtoken = this.jwtService.sign(
+			const refreshToken = this.jwtService.sign(
 				{ id: user.id },
 				{
 					secret: this.config.get<string>('REFRESH_TOKEN_SECRET'),
@@ -85,8 +85,8 @@ export class AuthGuard implements CanActivate {
 				},
 			);
 
-			req.accessToken = accessToken;
-			req.refreshtoken = refreshtoken;
+			req.accesstoken = accessToken;
+			req.refreshtoken = refreshToken;
 			req.user = user;
 		} catch (error) {
 			throw new UnauthorizedException(error.message);
