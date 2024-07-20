@@ -41,3 +41,17 @@ export class LoginDto {
 	@MinLength(8, { message: 'Password must be at least 8 characters' })
 	password: string;
 }
+
+/**
+ * User Activation Dto
+ */
+@InputType()
+export class ActivationDto {
+	@Field()
+	@IsNotEmpty({ message: 'Activation Token is required' })
+	activationToken: string;
+
+	@Field()
+	@IsNotEmpty({ message: 'Activation Code is required' })
+	activationCode: string;
+}
