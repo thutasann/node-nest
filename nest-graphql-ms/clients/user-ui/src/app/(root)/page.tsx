@@ -1,5 +1,5 @@
 import HomeScreen from '@/screens/HomeScreen';
 
-export default function Home() {
+export default async function Home() {
 	return <HomeScreen />;
 }

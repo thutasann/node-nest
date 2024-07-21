@@ -14,12 +14,12 @@ import { CgProfile } from 'react-icons/cg';
 import { signOut, useSession } from 'next-auth/react';
 import toast from 'react-hot-toast';
 import AuthScreen from '@/screens/AuthScreen';
+import { registerUser } from '@/server-actions/register-user';
 
 function ProfileDropdown() {
 	const [signedIn, setSignedIn] = useState(false);
 	const [open, setOpen] = useState(false);
 	const { user, loading } = useUser();
-	console.log('user', user);
 	const { data } = useSession();
 
 	useEffect(() => {
@@ -43,7 +43,9 @@ function ProfileDropdown() {
 		}
 	};
 
-	const addUser = async (user: any) => {};
+	const addUser = async (user: any) => {
+		await registerUser(user);
+	};
 
 	return (
 		<div className="flex items-center gap-4">

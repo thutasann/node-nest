@@ -81,7 +81,6 @@ export class UserResolver {
 	async resetPassword(
 		@Args('resetPasswordDto') resetPasswordDto: ResetPasswordDto,
 	): Promise<ResetPasswordResponse> {
-		console.log('password', resetPasswordDto.password);
 		return await this.userService.resetPassword(resetPasswordDto);
 	}
 

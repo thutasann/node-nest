@@ -198,10 +198,10 @@ export class UsersService {
 	): Promise<ResetPasswordResponse> {
 		const { password, activationToken } = resetPasswordDto;
 
-		const decoded = this.jwtService.decode<{ user: User }>(activationToken);
-		console.log('decoded', decoded);
+		const decoded = this.jwtService.decode(activationToken);
+		console.log('decoded exp ->', decoded.exp);
 
-		if (!decoded) {
+		if (!decoded || decoded?.exp * 1000 < Date.now()) {
 			throw new BadRequestException('Invalid token!');
 		}
 
