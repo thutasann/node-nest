@@ -1,6 +1,8 @@
 'use client';
 
 import Login from '@/views/Auth/Login';
+import Signup from '@/views/Auth/Signup';
+import Verification from '@/views/Auth/Verification';
 import React, { useState } from 'react';
 
 interface IAuthScreen {
@@ -28,6 +30,12 @@ function AuthScreen({ setOpen }: IAuthScreen) {
 						setActiveState={setActivateState}
 						setOpen={setOpen}
 					/>
+				)}
+				{activateState === 'Signup' && (
+					<Signup setActiveState={setActivateState} />
+				)}
+				{activateState === 'Verification' && (
+					<Verification setActivateState={setActivateState} />
 				)}
 			</div>
 		</div>
