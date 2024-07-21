@@ -1,9 +1,10 @@
 'use client';
 
+import ForgotPassword from '@/views/Auth/ForgotPassword';
 import Login from '@/views/Auth/Login';
 import Signup from '@/views/Auth/Signup';
 import Verification from '@/views/Auth/Verification';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface IAuthScreen {
 	setOpen: (e: boolean) => void;
@@ -17,6 +18,17 @@ function AuthScreen({ setOpen }: IAuthScreen) {
 			setOpen(false);
 		}
 	};
+
+	useEffect(() => {
+		window.addEventListener('keydown', (e) => {
+			if (e && e.code === 'Escape') {
+				setOpen(false);
+			}
+		});
+		return () => {
+			window.removeEventListener('keydown', () => {});
+		};
+	}, [setOpen]);
 
 	return (
 		<div
@@ -36,6 +48,9 @@ function AuthScreen({ setOpen }: IAuthScreen) {
 				)}
 				{activateState === 'Verification' && (
 					<Verification setActivateState={setActivateState} />
+				)}
+				{activateState === 'Forgot-Password' && (
+					<ForgotPassword setActiveState={setActivateState} />
 				)}
 			</div>
 		</div>

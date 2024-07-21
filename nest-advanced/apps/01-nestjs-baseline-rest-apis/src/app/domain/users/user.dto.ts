@@ -4,7 +4,6 @@ import {
 	IsEmail,
 	IsDefined,
 	IsOptional,
-	isArray,
 	IsArray,
 	ArrayMinSize,
 	ValidateNested,

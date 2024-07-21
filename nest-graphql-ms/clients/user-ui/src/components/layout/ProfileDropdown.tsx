@@ -19,6 +19,7 @@ function ProfileDropdown() {
 	const [signedIn, setSignedIn] = useState(false);
 	const [open, setOpen] = useState(false);
 	const { user, loading } = useUser();
+	console.log('user', user);
 	const { data } = useSession();
 
 	useEffect(() => {
