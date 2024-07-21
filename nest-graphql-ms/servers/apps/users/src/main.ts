@@ -9,7 +9,9 @@ const port = 4001;
 
 (async function bootstrap() {
 	const logger = new Logger('Main (main.ts)');
-	const app = await NestFactory.create<NestExpressApplication>(UsersModule);
+	const app = await NestFactory.create<NestExpressApplication>(UsersModule, {
+		cors: true,
+	});
 
 	// middlewares
 	app.use(new ResponseTimeMiddleware().use);

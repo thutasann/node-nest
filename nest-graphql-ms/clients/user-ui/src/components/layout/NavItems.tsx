@@ -7,19 +7,19 @@ const navItems = [
 	},
 	{
 		title: 'About us',
-		url: '/about',
+		url: '#',
 	},
 	{
 		title: 'Restaurants',
-		url: '/restaurants',
+		url: '#',
 	},
 	{
 		title: 'Popular Foods',
-		url: '/foods',
+		url: '#',
 	},
 	{
 		title: 'Contact us',
-		url: '/contact',
+		url: '#',
 	},
 ];
 

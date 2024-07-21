@@ -54,6 +54,7 @@ export class UserResolver {
 		@Args('email') email: string,
 		@Args('password') password: string,
 	): Promise<LoginResponse> {
+		console.log('email', email);
 		return await this.userService.login({ email, password });
 	}
 
