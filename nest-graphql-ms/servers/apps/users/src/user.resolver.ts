@@ -65,7 +65,7 @@ export class UserResolver {
 		return await this.userService.login({ email, password });
 	}
 
-	@Query(() => ForgotPasswordResponse)
+	@Mutation(() => ForgotPasswordResponse)
 	async forgotPassword(
 		@Args('forgotPasswordDto') forgotPasswordDto: ForgotPasswordDto,
 	): Promise<ForgotPasswordResponse> {
