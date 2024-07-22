@@ -8,7 +8,7 @@ import { join } from 'path';
 const port = 4001;
 
 (async function bootstrap() {
-	const logger = new Logger('Main (main.ts)');
+	const logger = new Logger('Main (users)');
 	const app = await NestFactory.create<NestExpressApplication>(UsersModule, {
 		cors: true,
 	});
