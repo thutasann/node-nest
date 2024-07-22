@@ -40,6 +40,7 @@ export const registerUser = async (userData: any) => {
 			email: userData.email,
 			password: hashedPassword,
 			phone_number: 123231,
+			role: 'User',
 		},
 	});
 

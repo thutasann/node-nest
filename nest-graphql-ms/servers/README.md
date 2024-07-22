@@ -14,6 +14,12 @@
 
 ## Scripts
 
+### Generate new Services
+
+```bash
+nest g app <app-name>
+```
+
 ### Run Services
 
 ```bash
