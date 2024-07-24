@@ -45,7 +45,7 @@ export class UsersService {
 			throw new BadRequestException('Users already exist with this email!');
 		}
 
-		const isPhoneNumberExist = await this.prisma.user.findUnique({
+		const isPhoneNumberExist = await this.prisma.user.findFirst({
 			where: {
 				phone_number,
 			},
