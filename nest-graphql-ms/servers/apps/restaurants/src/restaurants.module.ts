@@ -10,6 +10,8 @@ import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from '../../../prisma/prisma.service';
 import { RestaurantResolver } from './restaurants.resolver';
 import { EmailModule } from './email/email.module';
+import { CloudinaryModule } from './domain/cloudinary/cloudinary.module';
+import { CloudinaryService } from './domain/cloudinary/cloudinary.service';
 
 @Module({
 	imports: [
@@ -23,6 +25,7 @@ import { EmailModule } from './email/email.module';
 			},
 		}),
 		EmailModule,
+		CloudinaryModule,
 	],
 	controllers: [],
 	providers: [
@@ -31,6 +34,7 @@ import { EmailModule } from './email/email.module';
 		JwtService,
 		PrismaService,
 		RestaurantResolver,
+		CloudinaryService,
 	],
 })
 export class RestaurantsModule {}
