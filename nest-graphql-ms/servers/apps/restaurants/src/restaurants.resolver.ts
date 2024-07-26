@@ -1,11 +1,15 @@
-import { Args, Context, Mutation, Resolver } from '@nestjs/graphql';
+import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { RestaurantsService } from './restaurants.service';
 import {
 	ActivationResponse,
+	LoginResponse,
+	LogoutResposne,
 	RegisterResponse,
 } from './core/types/restaurant.type';
 import { ActivationDto, RegisterDto } from './core/dto/restaurant.dto';
 import type { Response, Request } from 'express';
+import { UseGuards } from '@nestjs/common';
+import { AuthGuard } from './core/guards/auth.guard';
 
 @Resolver('Restaurant')
 export class RestaurantResolver {
@@ -32,5 +36,19 @@ export class RestaurantResolver {
 			activationDto,
 			context.res,
 		);
+	}
+
+	@Mutation(() => LoginResponse)
+	async loginRestaurant(
+		@Args('email') email: string,
+		@Args('password') password: string,
+	): Promise<LoginResponse> {
+		return await this.restaurantService.loginRestaurant({ email, password });
+	}
+
+	@Query(() => LogoutResposne)
+	@UseGuards(AuthGuard)
+	async logoutRestaurant(@Context() context: { req: Request }) {
+		return await this.restaurantService.logout(context.req);
 	}
 }

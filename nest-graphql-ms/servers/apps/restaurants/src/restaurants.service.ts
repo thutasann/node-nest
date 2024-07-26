@@ -6,10 +6,12 @@ import { EmailService } from './email/email.service';
 import {
 	ActivationDto,
 	IRestaurant,
+	LoginDto,
 	RegisterDto,
 } from './core/dto/restaurant.dto';
 import * as bcrypt from 'bcrypt';
 import type { Response } from 'express';
+import { TokenSender } from './core/utils/send-token';
 
 @Injectable()
 export class RestaurantsService {
@@ -131,6 +133,42 @@ export class RestaurantsService {
 		};
 	}
 
+	/** login restaurant */
+	async loginRestaurant(loginDto: LoginDto) {
+		const { email, password } = loginDto;
+
+		const restaurant = await this.prisma.restaurant.findUnique({
+			where: {
+				email,
+			},
+		});
+
+		if (
+			restaurant &&
+			(await this.comparePassword(password, restaurant.password))
+		) {
+			const tokenSender = new TokenSender(this.configService, this.jwtService);
+			return tokenSender.sendToken(restaurant);
+		} else {
+			return {
+				user: null,
+				accessToken: null,
+				refreshToken: null,
+				error: {
+					message: 'Invalid email or password',
+				},
+			};
+		}
+	}
+
+	/** logout restaurant */
+	async logout(req: any) {
+		req.restaurant = null;
+		req.refreshtoken = null;
+		req.accesstoken = null;
+		return { message: 'Logged out successfully!' };
+	}
+
 	/** create activation token */
 	private async createActivationToken(restaurant: IRestaurant) {
 		const activationToken = this.jwtService.sign(
@@ -143,5 +181,13 @@ export class RestaurantsService {
 			},
 		);
 		return activationToken;
+	}
+
+	/** compare password */
+	private async comparePassword(
+		password: string,
+		hashedPassword: string,
+	): Promise<boolean> {
+		return await bcrypt.compare(password, hashedPassword);
 	}
 }

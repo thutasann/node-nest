@@ -1,6 +1,5 @@
 import { ObjectType, Field } from '@nestjs/graphql';
 import { Restaurant } from '../entities/restaurant.entities';
-import { IRestaurant } from '../dto/restaurant.dto';
 
 @ObjectType()
 export class ErrorType {
@@ -27,4 +26,25 @@ export class ActivationResponse {
 
 	@Field(() => ErrorType, { nullable: true })
 	error?: ErrorType;
+}
+
+@ObjectType()
+export class LoginResponse {
+	@Field(() => Restaurant, { nullable: true })
+	restaurant?: Restaurant | any;
+
+	@Field({ nullable: true })
+	accessToken?: string;
+
+	@Field({ nullable: true })
+	refreshToken?: string;
+
+	@Field(() => ErrorType, { nullable: true })
+	error?: ErrorType;
+}
+
+@ObjectType()
+export class LogoutResposne {
+	@Field()
+	message?: string;
 }
