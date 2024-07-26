@@ -1,7 +1,10 @@
 import { Args, Context, Mutation, Resolver } from '@nestjs/graphql';
 import { RestaurantsService } from './restaurants.service';
-import { RegisterResponse } from './core/types/restaurant.type';
-import { RegisterDto } from './core/dto/restaurant.dto';
+import {
+	ActivationResponse,
+	RegisterResponse,
+} from './core/types/restaurant.type';
+import { ActivationDto, RegisterDto } from './core/dto/restaurant.dto';
 import type { Response, Request } from 'express';
 
 @Resolver('Restaurant')
@@ -18,5 +21,16 @@ export class RestaurantResolver {
 			context.res,
 		);
 		return { message };
+	}
+
+	@Mutation(() => ActivationResponse)
+	async activateRestaurant(
+		@Args('activationDto') activationDto: ActivationDto,
+		@Context() context: { res: Response },
+	): Promise<ActivationResponse> {
+		return this.restaurantService.activateRestaurant(
+			activationDto,
+			context.res,
+		);
 	}
 }

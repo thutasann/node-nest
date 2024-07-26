@@ -1,14 +1,20 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
+import { BadRequestException, Injectable, Logger } from '@nestjs/common';
+import { JwtService, JwtVerifyOptions } from '@nestjs/jwt';
 import { PrismaService } from '../../../prisma/prisma.service';
 import { ConfigService } from '@nestjs/config';
 import { EmailService } from './email/email.service';
-import { IRestaurant, RegisterDto } from './core/dto/restaurant.dto';
+import {
+	ActivationDto,
+	IRestaurant,
+	RegisterDto,
+} from './core/dto/restaurant.dto';
 import * as bcrypt from 'bcrypt';
 import type { Response } from 'express';
 
 @Injectable()
 export class RestaurantsService {
+	private readonly logger = new Logger(RestaurantsService.name);
+
 	constructor(
 		private readonly jwtService: JwtService,
 		private readonly prisma: PrismaService,
@@ -60,6 +66,7 @@ export class RestaurantsService {
 		const activationToken = await this.createActivationToken(restaurant);
 		const client_side_uri = this.configService.get<string>('CLIENT_SIDE_URI');
 		const activation_token = `${client_side_uri}/activate-account/${activationToken}`;
+		this.logger.log(`activationToken : ${activationToken}`);
 
 		await this.emailService.sendMail({
 			email,
@@ -72,6 +79,55 @@ export class RestaurantsService {
 		return {
 			message: 'Please check your email to activate your account',
 			response,
+		};
+	}
+
+	/** activate restaurant */
+	async activateRestaurant(activateDto: ActivationDto, resposne: Response) {
+		const { activationToken } = activateDto;
+
+		const newRestaurant: {
+			exp: number;
+			restaurant: IRestaurant;
+			activationToken: string;
+		} = this.jwtService.verify(activationToken, {
+			secret: this.configService.get<string>('ACTIVATION_SECRET'),
+		} as JwtVerifyOptions);
+
+		if (newRestaurant?.exp * 1000 < Date.now()) {
+			throw new BadRequestException('Invalid activation code');
+		}
+
+		const { name, country, city, phone_number, password, email, address } =
+			newRestaurant.restaurant;
+
+		const exitRestaurant = await this.prisma.restaurant.findUnique({
+			where: {
+				email,
+			},
+		});
+
+		if (exitRestaurant) {
+			throw new BadRequestException(
+				'Restaurant already exist with this email!',
+			);
+		}
+
+		const restaurant = await this.prisma.restaurant.create({
+			data: {
+				name,
+				email,
+				address,
+				country,
+				city,
+				phone_number,
+				password,
+			},
+		});
+
+		return {
+			restaurant,
+			resposne,
 		};
 	}
 
