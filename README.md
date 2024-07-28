@@ -36,32 +36,6 @@ These are the microservices and server side developments with Nestjs and Nodejs
 | nestjs-websockets | [Source](./standalone-apis/nestjs-websockets/) | Nestjs + Websockets                |
 | nestjs-ai-chatbot | [Source](./standalone-apis/nestjs-ai-chatbot/) | Nestjs + OpenAI + Nextjs           |
 
-## Scripts
-
-### Prisma
-
-```bash
-npx prisma init
-```
-
-```bash
-npx prisma generate
-```
-
-### Jest
-
-```bash
-yarn jest --init
-```
-
-```bash
-yarn test
-```
-
-```bash
-yarn test catalog_service/src/routes/__test__/catalog.route.test.ts
-```
-
 ## Tips & Tricks
 
 ### Express Router Global Snippet in VS Code
