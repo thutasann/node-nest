@@ -1,10 +1,11 @@
 # NODE CONCEPTS
 
-In this section, nodejs concepts will be included. Here is the Deployed URL - [Nodejs Concepts](https://nodejs-concepts.onrender.com)
+In this section, nodejs, nestjs concepts will be included. Here is the Deployed URL - [Nodejs Concepts](https://nodejs-concepts.onrender.com)
 
 ## Concepts
 
 - Blocking vs Non-Blocking
+- MultiThreading
 - Concurrency
 - Horizontal Scaling (with K8S multiple instances)
 - Async LocalStorage
@@ -106,4 +107,8 @@ npm i autocannon -g
 
 ```bash
 top
+```
+
+```bash
+sysctl -n hw.ncpu
 ```

@@ -51,7 +51,7 @@ export class EventTasksService {
 	}
 
 	/** delete expired users (cron) */
-	@Cron(CronExpression.EVERY_10_SECONDS, { name: 'delete_expired_users' })
+	@Cron(CronExpression.EVERY_11_HOURS, { name: 'delete_expired_users' })
 	deleteExpiredUsers() {
 		this.logger.debug(`Deleting Expired Users...`);
 	}

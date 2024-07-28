@@ -20,8 +20,7 @@ export class AlsMiddleware implements NestMiddleware {
 
 	use(req: Request, res: Response, next: NextFunction) {
 		this.logger.log(
-			'req.headers',
-			req.headers['x-correlation-key'] || 'correlationKey not found',
+			`req.headers - ${req.headers['x-correlation-key'] || 'correlationKey not found'}`,
 		);
 		const store: StoreProps = {
 			correlationKey: req.headers['x-correlation-key'],
