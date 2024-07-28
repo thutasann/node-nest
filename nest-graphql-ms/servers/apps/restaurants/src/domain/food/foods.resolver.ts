@@ -1,8 +1,12 @@
-import { Args, Context, Mutation, Resolver } from '@nestjs/graphql';
+import { Args, Context, Mutation, Resolver, Query } from '@nestjs/graphql';
 import { FoodsService } from './foods.service';
 import type { Request, Response } from 'express';
-import { CreateFoodResponse } from '../../core/types/foods.type';
-import { CreateFoodDto } from '../../core/dto/foods.dto';
+import {
+	CreateFoodResponse,
+	DeleteFoodResponse,
+	LoggedInRestaurantFoodResponse,
+} from '../../core/types/foods.type';
+import { CreateFoodDto, DeleteFoodDto } from '../../core/dto/foods.dto';
 import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from '../../core/guards/auth.guard';
 
@@ -21,5 +25,25 @@ export class FoodsResolver {
 			context.req,
 			context.res,
 		);
+	}
+
+	@Query(() => LoggedInRestaurantFoodResponse)
+	@UseGuards(AuthGuard)
+	async getLoggedInRestaurantFoods(
+		@Context() context: { req: any; res: Response },
+	) {
+		return await this.foodsService.getFoodsByRestaurant(
+			context.req,
+			context.res,
+		);
+	}
+
+	@Mutation(() => DeleteFoodResponse)
+	@UseGuards(AuthGuard)
+	async deleteFood(
+		@Context() context: { req: any },
+		@Args('deleteFoodDto') deleteFoodDto: DeleteFoodDto,
+	) {
+		return this.foodsService.deleteFood(deleteFoodDto, context.req);
 	}
 }
