@@ -6,6 +6,15 @@ export interface ISwaggerConfig {
 	description: string;
 	version: string;
 	tags: string[];
+	contact: {
+		name: string;
+		url: string;
+		email: string;
+	};
+	external: {
+		desc: string;
+		externalUrl: string;
+	};
 }
 
 /**
@@ -16,6 +25,16 @@ export const SWAGGER_CONFIG: ISwaggerConfig = {
 	description: 'Swagger for Nodejs Concepts Examples',
 	version: '1.0',
 	tags: [],
+	contact: {
+		name: 'Thuta Sann',
+		url: 'https://thutadev.vercel.app/',
+		email: 'thutasann2002@gmail.com',
+	},
+	external: {
+		desc: 'Github Repo',
+		externalUrl:
+			'https://github.com/thutasann/node-nest/tree/master/node-concepts',
+	},
 };
 
 /**

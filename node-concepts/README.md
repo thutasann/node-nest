@@ -4,7 +4,8 @@ In this section, nodejs concepts will be included.
 
 ## Concepts
 
-- Blocking vs Non-Blocking Code
+- Blocking vs Non-Blocking
+- Concurrency
 
 ## Sources
 
@@ -13,6 +14,12 @@ In this section, nodejs concepts will be included.
 - https://nodejs.org/en/learn/asynchronous-work/javascript-asynchronous-programming-and-callbacks
 
 ## Scipts
+
+### Watch Run
+
+```
+yarn start:dev
+```
 
 ### Check CPU in mac
 

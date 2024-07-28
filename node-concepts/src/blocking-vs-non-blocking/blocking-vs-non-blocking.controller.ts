@@ -21,4 +21,14 @@ export class BlockingVsNonBlockingController {
 	async nonBlocking() {
 		return this.service.nonBlocking();
 	}
+
+	@Get('/promises')
+	async promises() {
+		return this.service.promises();
+	}
+
+	@Get('/promises-parallel')
+	async promisesParallel() {
+		return this.service.promiseParallel();
+	}
 }

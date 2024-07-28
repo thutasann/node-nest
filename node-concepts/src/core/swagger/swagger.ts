@@ -8,6 +8,9 @@ import { INestApplication } from '@nestjs/common';
  * @returns the openAPI document
  */
 export function createDocument(app: INestApplication | any) {
+	const { name, email, url } = SWAGGER_CONFIG.contact;
+	const { desc, externalUrl } = SWAGGER_CONFIG.external;
+
 	const builder = new DocumentBuilder()
 		.setTitle(SWAGGER_CONFIG.title)
 		.addBearerAuth(
@@ -19,7 +22,9 @@ export function createDocument(app: INestApplication | any) {
 			'authoirzation',
 		)
 		.setDescription(SWAGGER_CONFIG.description)
-		.setVersion(SWAGGER_CONFIG.version);
+		.setVersion(SWAGGER_CONFIG.version)
+		.setContact(name, url, email)
+		.setExternalDoc(desc, externalUrl);
 
 	for (const tag of SWAGGER_CONFIG.tags) {
 		builder.addTag(tag);
