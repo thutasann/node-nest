@@ -21,6 +21,18 @@ In this section, nodejs concepts will be included.
 yarn start:dev
 ```
 
+### AutoCannon
+
+[Source](https://www.npmjs.com/package/autocannon)
+
+```bash
+npm i autocannon -g
+```
+
+```bash
+autocannon localhost:3000/promises -c 10000 -t 30 -d 60
+```
+
 ### Check CPU in mac
 
 ```bash
