@@ -14,7 +14,7 @@ In this section, nodejs concepts will be included.
 
 ## Scipts
 
-### Chekc CPU in mac
+### Check CPU in mac
 
 ```bash
 top

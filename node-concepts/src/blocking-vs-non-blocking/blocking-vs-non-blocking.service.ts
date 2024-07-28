@@ -17,4 +17,6 @@ export class BlockingVsNonBlockingService {
 			}, 10000);
 		});
 	}
+
+	async promises() {}
 }
