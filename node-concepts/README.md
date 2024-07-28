@@ -1,12 +1,14 @@
 # NODE CONCEPTS
 
-In this section, nodejs concepts will be included.
+In this section, nodejs concepts will be included. Here is the Deployed URL - [Nodejs Concepts](https://nodejs-concepts.onrender.com)
 
 ## Concepts
 
 - Blocking vs Non-Blocking
 - Concurrency
 - Horizontal Scaling (with K8S multiple instances)
+- Async LocalStorage
+- Event and Task Scheduling
 
 ## Sources
 

@@ -1,4 +1,4 @@
-import { Injectable, NestMiddleware } from '@nestjs/common';
+import { Injectable, Logger, NestMiddleware } from '@nestjs/common';
 import { AsyncLocalStorage } from 'async_hooks';
 import type { Request, Response, NextFunction } from 'express';
 
@@ -14,10 +14,15 @@ export type StoreProps = {
  */
 @Injectable()
 export class AlsMiddleware implements NestMiddleware {
+	private readonly logger = new Logger(AlsMiddleware.name);
+
 	constructor(private readonly als: AsyncLocalStorage<StoreProps>) {}
 
 	use(req: Request, res: Response, next: NextFunction) {
-		console.log('req.headers', req.headers['x-correlation-key']);
+		this.logger.log(
+			'req.headers',
+			req.headers['x-correlation-key'] || 'correlationKey not found',
+		);
 		const store: StoreProps = {
 			correlationKey: req.headers['x-correlation-key'],
 			authentication: req.headers['Authentication'],

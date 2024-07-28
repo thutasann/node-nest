@@ -1,6 +1,7 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AsyncLocalStorage } from 'async_hooks';
 import { ALSController } from './als.controller';
+import { AlsMiddleware } from 'src/core/middleware/als.middleware';
 
 /**
  * Async Local Storage Module
@@ -15,4 +16,8 @@ import { ALSController } from './als.controller';
 	controllers: [ALSController],
 	exports: [AsyncLocalStorage],
 })
-export class ALSModule {}
+export class ALSModule implements NestModule {
+	configure(consumer: MiddlewareConsumer) {
+		consumer.apply(AlsMiddleware).forRoutes('*');
+	}
+}
