@@ -7,6 +7,7 @@ import { ALSModule } from './domain/async-local-storage/als.module';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from '@nestjs/schedule';
 import { EventTaskScheduleModule } from './domain/events-tasks-scheduling/events-tasks.module';
+import { ErrorHandlingModule } from './domain/error-handling/error-handling.module';
 
 @Module({
 	imports: [
@@ -15,6 +16,7 @@ import { EventTaskScheduleModule } from './domain/events-tasks-scheduling/events
 		BlockingVsNonBlockingModule,
 		ALSModule,
 		EventTaskScheduleModule,
+		ErrorHandlingModule,
 	],
 	controllers: [WelcomeController, AppController],
 	providers: [AppService],
