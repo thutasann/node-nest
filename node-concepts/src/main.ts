@@ -3,10 +3,11 @@ import { AppModule } from './app.module';
 import { Logger } from '@nestjs/common';
 import { createDocument } from './core/swagger/swagger';
 import { ResponseTimeMiddleware } from './core/middleware/response-time.middleware';
+import { AppClusterService } from './app-cluster.service';
 
 const port = 3000;
 
-(async function bootstrap() {
+async function bootstrap() {
 	const logger = new Logger('Main (main.ts)');
 	const app = await NestFactory.create(AppModule);
 
@@ -17,4 +18,7 @@ const port = 3000;
 	await app.listen(port);
 	logger.log(`🚀 App is running on: http://localhost:${port}/docs`);
 	logger.log(`🚀 Swagger is running on: http://localhost:${port}/docs`);
-})();
+	logger.log(`🚀 worker pid=${process.pid}`);
+}
+
+AppClusterService.clusterize(bootstrap);

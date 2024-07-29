@@ -10,6 +10,7 @@ In this section, nodejs, nestjs concepts will be included. Here is the Deployed 
 - Horizontal Scaling (with K8S multiple instances)
 - Async LocalStorage
 - Event and Task Scheduling
+- Clustering
 
 ## Sources
 
@@ -111,4 +112,10 @@ top
 
 ```bash
 sysctl -n hw.ncpu
+```
+
+### Loadtest
+
+```bash
+npx loadtest -n 1200 -c 400 -k http://localhost:3000/cluster/heavy
 ```
