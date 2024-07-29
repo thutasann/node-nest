@@ -119,3 +119,13 @@ sysctl -n hw.ncpu
 ```bash
 npx loadtest -n 1200 -c 400 -k http://localhost:3000/cluster/heavy
 ```
+
+### PM2
+
+```bash
+npx pm2 start dist/main.js
+```
+
+```bash
+npx pm2 kill
+```
