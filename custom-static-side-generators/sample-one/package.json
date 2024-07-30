@@ -1,0 +1,23 @@
+{
+  "name": "mini-static-side-generator",
+  "version": "1.0.0",
+  "description": "This is an example for how to create your own custom static site generator with Node.js.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon -e js,md,html --ignore dist/ src/index.js",
+    "start": "node src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "glob": "^11.0.0",
+    "gray-matter": "^4.0.3",
+    "marked": "^13.0.3",
+    "mkdirp": "^3.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
