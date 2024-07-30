@@ -6,7 +6,7 @@ import { Worker } from 'worker_threads';
 const THREAD_COUNT = 4;
 
 @Controller('multithread')
-@ApiTags('multithread')
+@ApiTags('performance')
 export class MultiThreadController {
 	@Get('/non-blocking')
 	async nonBlocking() {

@@ -3,7 +3,7 @@ import { ApiTags } from '@nestjs/swagger';
 import type { Response } from 'express';
 
 @Controller('cluster')
-@ApiTags('cluster')
+@ApiTags('performance')
 export class ClusterController {
 	@Get('/')
 	welcomeCluster() {

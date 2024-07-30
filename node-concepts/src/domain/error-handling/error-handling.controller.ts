@@ -3,7 +3,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { AppError, commonErrorDistinct } from './app-error';
 
 const productToAdd = undefined;
-const topicOne = 'extended_error_object';
+const topicOne = 'extended-error-object';
 
 @Controller('error-handling')
 @ApiTags('error-handling')
