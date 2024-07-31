@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { HTTPExceptionFilter } from './core/filter/http-exception.filter';
+import { UsersModule } from './users/users.module';
 
 @Module({
 	imports: [
@@ -17,6 +18,7 @@ import { HTTPExceptionFilter } from './core/filter/http-exception.filter';
 			}),
 			inject: [ConfigService],
 		}),
+		UsersModule,
 	],
 	controllers: [AppController],
 	providers: [
