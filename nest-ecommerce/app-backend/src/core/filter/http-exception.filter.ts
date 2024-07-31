@@ -1,5 +1,6 @@
 import {
 	ArgumentsHost,
+	Catch,
 	ExceptionFilter,
 	HttpException,
 	HttpStatus,
@@ -16,6 +17,7 @@ export interface IHttpExceptionResponse {
 /**
  * HTTP Exception Filter
  */
+@Catch()
 export class HTTPExceptionFilter implements ExceptionFilter {
 	private readonly _logger = new Logger(HttpException.name);
 

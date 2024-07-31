@@ -4,6 +4,7 @@ import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { createDocument } from './core/swagger/swagger';
 import { ResponseTimeMiddleware } from './core/middleware/response-time.middleware';
+import { TransformationInterceptor } from './core/interceptor/response.interceptor';
 
 (async function bootstrap() {
 	const logger = new Logger('Main');
@@ -13,6 +14,9 @@ import { ResponseTimeMiddleware } from './core/middleware/response-time.middlewa
 
 	// middlewares
 	app.use(new ResponseTimeMiddleware().use);
+
+	// interceptor
+	app.useGlobalInterceptors(new TransformationInterceptor());
 
 	// swagger
 	createDocument(app);
