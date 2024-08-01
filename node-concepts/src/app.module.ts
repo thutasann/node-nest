@@ -8,17 +8,33 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from '@nestjs/schedule';
 import { EventTaskScheduleModule } from './domain/events-tasks-scheduling/events-tasks.module';
 import { ErrorHandlingModule } from './domain/error-handling/error-handling.module';
+import { SecurityPracticesModule } from './domain/security-best-practices/security-practices.module';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
 	imports: [
 		EventEmitterModule.forRoot(),
 		ScheduleModule.forRoot(),
 		BlockingVsNonBlockingModule,
+		SecurityPracticesModule,
 		ErrorHandlingModule,
 		ALSModule,
 		EventTaskScheduleModule,
+		ThrottlerModule.forRoot([
+			{
+				ttl: 60, // Time to live (seconds),
+				limit: 10, // Number of requests withing the TTL
+			},
+		]),
 	],
 	controllers: [WelcomeController, AppController],
-	providers: [AppService],
+	providers: [
+		AppService,
+		{
+			provide: APP_GUARD,
+			useClass: ThrottlerGuard,
+		},
+	],
 })
 export class AppModule {}

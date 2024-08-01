@@ -4,6 +4,7 @@ import { Logger } from '@nestjs/common';
 import { createDocument } from './core/swagger/swagger';
 import { ResponseTimeMiddleware } from './core/middleware/response-time.middleware';
 import { AppClusterService } from './app-cluster.service';
+import { ThrottlerGuard } from '@nestjs/throttler';
 
 const port = 3000;
 
