@@ -5,6 +5,7 @@ import { generateHashPassword } from 'src/shared/utils';
 import { userTypes } from 'src/shared/schema/user.schema';
 import { UserRespository } from 'src/shared/repositories/user.repository';
 import { ConfigService } from '@nestjs/config';
+import { EmailService } from 'src/email/email.service';
 
 @Injectable()
 export class UsersService {
@@ -13,6 +14,7 @@ export class UsersService {
 	constructor(
 		@Inject(UserRespository) private readonly _userRepo: UserRespository,
 		private readonly config: ConfigService,
+		private readonly emailService: EmailService,
 	) {}
 
 	async create(createUserDto: CreateUserDto) {
@@ -52,7 +54,13 @@ export class UsersService {
 			console.log('newUser', newUser);
 
 			if (newUser.type !== userTypes.ADMIN) {
-				// TODO: send email
+				await this.emailService.sendEmail({
+					email: newUser.email,
+					subject: 'Activate your account!',
+					template: './activation-mail',
+					name: newUser.name,
+					activationCode: otp.toString(),
+				});
 			}
 
 			return {

@@ -5,6 +5,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { HTTPExceptionFilter } from './core/filter/http-exception.filter';
 import { UsersModule } from './users/users.module';
+import { EmailModule } from './email/email.module';
 
 @Module({
 	imports: [
@@ -18,6 +19,7 @@ import { UsersModule } from './users/users.module';
 			}),
 			inject: [ConfigService],
 		}),
+		EmailModule,
 		UsersModule,
 	],
 	controllers: [AppController],
