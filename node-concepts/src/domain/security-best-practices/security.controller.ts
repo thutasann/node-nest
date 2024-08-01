@@ -1,6 +1,8 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { SkipThrottle, Throttle } from '@nestjs/throttler';
+import { SanitizeHtmlDto } from './security.dto';
+import * as sanitizeHtml from 'sanitize-html';
 
 @Controller('security-best-practices')
 @ApiTags('security best practices')
@@ -26,5 +28,17 @@ export class SecurityController {
 	@Get('/dont-skip')
 	dontSkip() {
 		return 'List users work with Rate limiting.';
+	}
+
+	/**
+	 * sanitize html test
+	 * @link https://npmjs.com/package/sanitize-html
+	 * @returns
+	 */
+	@Post('/sanitize-html-test')
+	sanitizeHtmlTest(@Body() payload: SanitizeHtmlDto) {
+		const sanitized = sanitizeHtml(payload.htmlString);
+		console.log('sanitized', sanitized);
+		return sanitized;
 	}
 }

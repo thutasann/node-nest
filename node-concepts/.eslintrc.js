@@ -1,3 +1,7 @@
+// const pluginSecurity = require('eslint-plugin-security');
+
+// module.exports = [pluginSecurity.configs.recommended];
+
 module.exports = {
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
