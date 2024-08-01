@@ -1,7 +1,16 @@
-import { Inject, Injectable, Logger } from '@nestjs/common';
+import {
+	Inject,
+	Injectable,
+	Logger,
+	UnauthorizedException,
+} from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { generateHashPassword } from 'src/shared/utils';
+import {
+	comparePassword,
+	generateAuthToken,
+	generateHashPassword,
+} from 'src/shared/utils';
 import { userTypes } from 'src/shared/schema/user.schema';
 import { UserRespository } from 'src/shared/repositories/user.repository';
 import { ConfigService } from '@nestjs/config';
@@ -70,6 +79,47 @@ export class UsersService {
 						? 'Admin created successfully'
 						: 'Please activate your account by verifying your email. We have sent you a wmail with the otp',
 				result: { email: newUser.email },
+			};
+		} catch (error) {
+			throw error;
+		}
+	}
+
+	async login(email: string, password: string) {
+		try {
+			const userExists = await this._userRepo.findOne({
+				email,
+			});
+
+			if (!userExists) {
+				throw new Error('User not found');
+			}
+			if (!userExists.isVerified) {
+				throw new Error('Please verify your email');
+			}
+			const isPasswordMatch = await comparePassword(
+				password,
+				userExists.password,
+			);
+			if (!isPasswordMatch) {
+				throw new UnauthorizedException('Please verify your email');
+			}
+
+			const token = generateAuthToken(userExists._id.toString());
+			console.log('token', token);
+
+			return {
+				success: true,
+				message: 'Login successful',
+				result: {
+					user: {
+						name: userExists.name,
+						email: userExists.email,
+						type: userExists.type,
+						id: userExists._id.toString(),
+					},
+					token,
+				},
 			};
 		} catch (error) {
 			throw error;

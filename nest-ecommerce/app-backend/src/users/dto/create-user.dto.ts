@@ -47,3 +47,23 @@ export class CreateUserDto {
 
 	isVerified?: boolean;
 }
+
+export class LoginUserDto {
+	@IsNotEmpty()
+	@IsString()
+	@ApiProperty({
+		description: 'email',
+		example: 'johndoe@gmail.com',
+		required: true,
+	})
+	email: string;
+
+	@IsNotEmpty()
+	@IsString()
+	@ApiProperty({
+		description: 'email',
+		example: 'test@123',
+		required: true,
+	})
+	password: string;
+}
