@@ -8,6 +8,8 @@ import {
 	Res,
 	Query,
 	Param,
+	Delete,
+	Patch,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import {
@@ -19,6 +21,7 @@ import type { Response } from 'express';
 import { ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/core/decorators/role.decorators';
 import { userTypes } from 'src/shared/schema/user.schema';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Controller('users')
 @ApiTags('users')
@@ -72,6 +75,11 @@ export class UsersController {
 		return await this.usersService.forgotPassword(email);
 	}
 
+	@Patch('/update-name-password/:_id')
+	update(@Param('_id') _id: string, @Body() updateUserDto: UpdateUserDto) {
+		return this.usersService.updatePasswordOrName(_id, updateUserDto);
+	}
+
 	@Post('/logout')
 	async logout(@Res() res: Response) {
 		res.clearCookie('_digi_auth_token');
@@ -79,5 +87,10 @@ export class UsersController {
 			success: true,
 			message: 'Logout Successfully',
 		});
+	}
+
+	@Delete(':_id')
+	remove(@Param('_id') _id: string) {
+		return this.usersService.deleteUser(_id);
 	}
 }

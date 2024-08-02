@@ -32,4 +32,8 @@ export class UserRespository {
 	async findById(id: string) {
 		return this.userModel.findById(id);
 	}
+
+	async deleteUser(_id: string) {
+		return this.userModel.deleteOne({ _id });
+	}
 }

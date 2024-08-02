@@ -238,4 +238,76 @@ export class UsersService {
 			throw error;
 		}
 	}
+
+	/** update password or name */
+	async updatePasswordOrName(
+		id: string,
+		updatePasswordOrNameDto: UpdateUserDto,
+	) {
+		try {
+			const { oldPassword, newPassword, name } = updatePasswordOrNameDto;
+
+			if (!name && !newPassword) {
+				throw new Error('Please provide name or password');
+			}
+
+			const user = await this._userRepo.findOne({
+				_id: id,
+			});
+
+			if (!user) {
+				throw new Error('User not found');
+			}
+
+			if (newPassword) {
+				const isPasswordMatch = await comparePassword(
+					oldPassword,
+					user.password,
+				);
+				if (!isPasswordMatch) {
+					throw new Error('Invalid correct password!');
+				}
+
+				const password = await generateHashPassword(newPassword);
+
+				await this._userRepo.updateOne(
+					{
+						_id: id,
+					},
+					{ password },
+				);
+			}
+
+			if (name) {
+				await this._userRepo.updateOne(
+					{
+						_id: id,
+					},
+					{ name },
+				);
+			}
+
+			return {
+				success: true,
+				message: 'User updated successfully',
+				result: {
+					name: user.name,
+					email: user.email,
+					type: user.type,
+					id: user._id.toString(),
+				},
+			};
+		} catch (error) {
+			throw error;
+		}
+	}
+
+	/** delete user */
+	async deleteUser(_id: string) {
+		await this._userRepo.deleteUser(_id);
+		return {
+			success: true,
+			message: 'Removed user successfully',
+		};
+	}
 }
