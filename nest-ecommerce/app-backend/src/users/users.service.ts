@@ -26,6 +26,7 @@ export class UsersService {
 		private readonly emailService: EmailService,
 	) {}
 
+	/** account create */
 	async create(createUserDto: CreateUserDto) {
 		try {
 			createUserDto.password = await generateHashPassword(
@@ -85,6 +86,7 @@ export class UsersService {
 		}
 	}
 
+	/** account login */
 	async login(email: string, password: string) {
 		try {
 			const userExists = await this._userRepo.findOne({
@@ -125,6 +127,7 @@ export class UsersService {
 		}
 	}
 
+	/** verify email */
 	async verifyEmail(otp: string, email: string) {
 		try {
 			const user = await this._userRepo.findOne({
@@ -153,6 +156,50 @@ export class UsersService {
 		}
 	}
 
+	/** send otp email */
+	async sendOtpEmail(email: string) {
+		try {
+			const user = await this._userRepo.findOne({
+				email,
+			});
+			if (!user) {
+				throw new Error('User not found');
+			}
+			if (user.isVerified) {
+				throw new Error('Email already verified');
+			}
+			const otp = Math.floor(Math.random() * 900000) + 100000;
+
+			const otpExpiryTime = new Date();
+			otpExpiryTime.setMinutes(otpExpiryTime.getMinutes() + 10);
+
+			await this._userRepo.updateOne(
+				{
+					email,
+				},
+				{
+					otp,
+					otpExpiryTime,
+				},
+			);
+
+			await this.emailService.sendEmail({
+				email: user.email,
+				subject: 'Activate your account!',
+				template: './activation-mail',
+				name: user.name,
+				activationCode: otp.toString(),
+			});
+
+			return {
+				success: true,
+				message: 'Otp sent successfully',
+				result: { email: user.email },
+			};
+		} catch (error) {}
+	}
+
+	/** get users */
 	async findAll(type: string) {
 		try {
 			const users = await this._userRepo.find({
@@ -162,6 +209,30 @@ export class UsersService {
 				success: true,
 				result: users,
 				message: 'Users fetched successfully',
+			};
+		} catch (error) {
+			throw error;
+		}
+	}
+
+	/** forgot password */
+	async forgotPassword(email: string) {
+		try {
+			const user = await this._userRepo.findOne({ email });
+			if (!user) {
+				throw new Error('User not found');
+			}
+			let password = Math.random().toString(36).substring(2, 12);
+			const tempPassword = password;
+			password = await generateHashPassword(password);
+			await this._userRepo.updateOne({ _id: user.id }, { password });
+
+			// TODO: send email
+
+			return {
+				success: true,
+				message: 'Password sent to your email',
+				result: { email: user.email, password: tempPassword },
 			};
 		} catch (error) {
 			throw error;
