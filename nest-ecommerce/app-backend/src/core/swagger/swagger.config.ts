@@ -21,8 +21,8 @@ export interface ISwaggerConfig {
  * Configuration for the swagger UI
  */
 export const SWAGGER_CONFIG: ISwaggerConfig = {
-	title: 'Nestjs Ecommerce Microservices',
-	description: 'Swagger forNestjs Ecommerce Microservices',
+	title: 'Nestjs Ecommerce',
+	description: 'Swagger forNestjs Ecommerce Backend Service',
 	version: '1.0',
 	tags: [],
 	contact: {

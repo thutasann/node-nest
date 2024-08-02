@@ -56,11 +56,11 @@ export class UsersService {
 
 			const newUser = await this._userRepo.create({
 				...createUserDto,
-				otp,
+				otp: otp.toString(),
 				otpExpiryTime,
 			});
 
-			console.log('newUser', newUser);
+			this._logger.log(`new user email -> ${newUser.email}`);
 
 			if (newUser.type !== userTypes.ADMIN) {
 				await this.emailService.sendEmail({
@@ -106,7 +106,6 @@ export class UsersService {
 			}
 
 			const token = generateAuthToken(userExists._id.toString());
-			console.log('token', token);
 
 			return {
 				success: true,
@@ -126,19 +125,46 @@ export class UsersService {
 		}
 	}
 
-	findAll() {
-		return `This action returns all users`;
+	async verifyEmail(otp: string, email: string) {
+		try {
+			const user = await this._userRepo.findOne({
+				email,
+			});
+			if (!user) {
+				throw new Error('User not found');
+			}
+			if (user.otp !== otp) {
+				throw new Error('OTP Expired');
+			}
+			await this._userRepo.updateOne(
+				{
+					email,
+				},
+				{
+					isVerified: true,
+				},
+			);
+			return {
+				success: true,
+				message: 'Email verified successfully. you can login now',
+			};
+		} catch (error) {
+			throw error;
+		}
 	}
 
-	findOne(id: number) {
-		return `This action returns a #${id} user`;
-	}
-
-	update(id: number, updateUserDto: UpdateUserDto) {
-		return `This action updates a #${id} user`;
-	}
-
-	remove(id: number) {
-		return `This action removes a #${id} user`;
+	async findAll(type: string) {
+		try {
+			const users = await this._userRepo.find({
+				type,
+			});
+			return {
+				success: true,
+				result: users,
+				message: 'Users fetched successfully',
+			};
+		} catch (error) {
+			throw error;
+		}
 	}
 }

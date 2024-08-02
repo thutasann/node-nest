@@ -67,3 +67,23 @@ export class LoginUserDto {
 	})
 	password: string;
 }
+
+export class VerifyUserDto {
+	@IsNotEmpty()
+	@IsString()
+	@ApiProperty({
+		description: 'otp',
+		example: '420070',
+		required: true,
+	})
+	otp: string;
+
+	@IsNotEmpty()
+	@IsString()
+	@ApiProperty({
+		description: 'email',
+		example: 'johndoe@gmail.com',
+		required: true,
+	})
+	email: string;
+}

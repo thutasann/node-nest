@@ -3,15 +3,17 @@ import {
 	Get,
 	Post,
 	Body,
-	Patch,
-	Param,
-	Delete,
 	HttpCode,
 	HttpStatus,
 	Res,
+	Query,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDto, LoginUserDto } from './dto/create-user.dto';
+import {
+	CreateUserDto,
+	LoginUserDto,
+	VerifyUserDto,
+} from './dto/create-user.dto';
 import type { Response } from 'express';
 import { ApiTags } from '@nestjs/swagger';
 
@@ -23,6 +25,19 @@ export class UsersController {
 	@Post()
 	create(@Body() createUserDto: CreateUserDto) {
 		return this.usersService.create(createUserDto);
+	}
+
+	@Get()
+	// TODO: Roles Guard
+	async getUsers(@Query('type') type: string) {
+		return this.usersService.findAll(type);
+	}
+
+	@Post('/verify-email')
+	@HttpCode(HttpStatus.OK)
+	async verifyEmail(@Body() payload: VerifyUserDto) {
+		const { otp, email } = payload;
+		return this.usersService.verifyEmail(otp, email);
 	}
 
 	@Post('/login')
@@ -42,5 +57,14 @@ export class UsersController {
 		}
 		delete loginRes.result?.token;
 		return loginRes;
+	}
+
+	@Post('/logout')
+	async logout(@Res() res: Response) {
+		res.clearCookie('_digi_auth_token');
+		return res.status(HttpStatus.OK).json({
+			success: true,
+			message: 'Logout Successfully',
+		});
 	}
 }
