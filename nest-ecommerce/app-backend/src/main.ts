@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { createDocument } from './core/swagger/swagger';
+import cookieParser from 'cookie-parser';
 import { ResponseTimeMiddleware } from './core/middleware/response-time.middleware';
 import { TransformationInterceptor } from './core/interceptor/response.interceptor';
 
@@ -11,6 +12,9 @@ import { TransformationInterceptor } from './core/interceptor/response.intercept
 	const app = await NestFactory.create(AppModule);
 	const configService = app.get(ConfigService);
 	const port = configService.get<string>('PORT');
+
+	// cookie parser
+	app.use(cookieParser());
 
 	// middlewares
 	app.use(new ResponseTimeMiddleware().use);
