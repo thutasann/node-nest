@@ -7,11 +7,16 @@ import cookieParser from 'cookie-parser';
 import { ResponseTimeMiddleware } from './core/middleware/response-time.middleware';
 import { TransformationInterceptor } from './core/interceptor/response.interceptor';
 
+export const appPrefix = '/api/v1';
+
 (async function bootstrap() {
 	const logger = new Logger('Main');
 	const app = await NestFactory.create(AppModule);
 	const configService = app.get(ConfigService);
 	const port = configService.get<string>('PORT');
+
+	// prefix
+	app.setGlobalPrefix(appPrefix);
 
 	// cookie parser
 	app.use(cookieParser());

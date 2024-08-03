@@ -1,6 +1,3 @@
-import { Schema } from '@nestjs/mongoose';
-import { Mongoose } from 'mongoose';
-
 export enum CategoryType {
 	operatingSystem = 'Operating System',
 	applicationSoftware = 'Application Software',

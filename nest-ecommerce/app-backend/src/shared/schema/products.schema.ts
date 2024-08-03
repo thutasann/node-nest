@@ -1,7 +1,12 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { BaseType, CategoryType, PlatformType } from './product.schema';
+import {
+	BaseType,
+	CategoryType,
+	PlatformType,
+} from '../data-types/products.type';
 import { Feedbackers, FeedbackSchema } from './feed-backers.schema';
 import { SkuDetails, SkuDetailsSchema } from './sku.schema';
+import { Document } from 'mongoose';
 
 export const PRODUCT_PLACEHOLDER =
 	'https://seetruetechnology.com/wp-content/uploads/2022/02/BG-7.jpg';
@@ -10,7 +15,7 @@ export const PRODUCT_PLACEHOLDER =
  * Products Schema
  */
 @Schema({ timestamps: true })
-export class Products {
+export class Products extends Document {
 	@Prop({ required: true })
 	productName: string;
 

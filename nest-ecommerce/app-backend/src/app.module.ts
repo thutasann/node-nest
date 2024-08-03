@@ -7,6 +7,7 @@ import { HTTPExceptionFilter } from './core/filter/http-exception.filter';
 import { UsersModule } from './users/users.module';
 import { EmailModule } from './email/email.module';
 import { APP_FILTER } from '@nestjs/core';
+import { ProductsModule } from './products/products.module';
 
 @Module({
 	imports: [
@@ -22,6 +23,7 @@ import { APP_FILTER } from '@nestjs/core';
 		}),
 		EmailModule,
 		UsersModule,
+		ProductsModule,
 	],
 	controllers: [AppController],
 	providers: [
