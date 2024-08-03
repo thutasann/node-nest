@@ -19,6 +19,8 @@ In this section, nodejs, nestjs concepts will be included. Here is the Deployed 
 - Async LocalStorage
 - Event and Task Scheduling
 - Clustering
+- Security Practices
+- Design Patterns
 
 ## Sources
 
