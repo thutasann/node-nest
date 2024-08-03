@@ -107,7 +107,7 @@ export class UsersService {
 				throw new UnauthorizedException('Please verify your email');
 			}
 
-			const token = generateAuthToken(userExists._id.toString());
+			const token = await generateAuthToken(userExists._id.toString());
 
 			return {
 				success: true,
