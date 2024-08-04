@@ -13,13 +13,14 @@ import { Users, UserSchema } from 'src/shared/schema/user.schema';
 import { License, LicenseSchema } from 'src/shared/schema/license.schema';
 import { AuthMiddleware } from 'src/core/middleware/auth.middleware';
 import { appPrefix } from 'src/main';
+import { UserRespository } from 'src/shared/repositories/user.repository';
 
 /**
  * Products Module
  */
 @Module({
 	controllers: [ProductsController],
-	providers: [ProductsService, ProductRepository],
+	providers: [ProductsService, ProductRepository, UserRespository],
 	imports: [
 		MongooseModule.forFeature([{ name: Products.name, schema: ProductSchema }]),
 		MongooseModule.forFeature([{ name: Users.name, schema: UserSchema }]),
