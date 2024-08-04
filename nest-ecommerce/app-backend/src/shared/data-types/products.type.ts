@@ -1,3 +1,5 @@
+import { Products } from '../schema/products.schema';
+
 export enum CategoryType {
 	operatingSystem = 'Operating System',
 	applicationSoftware = 'Application Software',
@@ -15,3 +17,8 @@ export enum BaseType {
 	computer = 'Computer',
 	mobile = 'Mobile',
 }
+
+export type GroupedProductsProps = {
+	latestProducts: Products[];
+	topRatedProducts: Products[];
+};
