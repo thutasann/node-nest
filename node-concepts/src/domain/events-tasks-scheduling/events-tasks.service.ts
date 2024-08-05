@@ -5,7 +5,7 @@ import {
 	CreateUserRequest,
 	UserEvents,
 } from 'src/core/dto/events-tasks/create-user.request';
-import { UserCreatedEvent } from 'src/core/events/user-created.event';
+import { UserCreatedEvent } from 'src/core/dto/events-tasks/user-created.event';
 
 @Injectable()
 export class EventTasksService {
