@@ -5,6 +5,7 @@ import { MemoryManagementController } from './memory-management.controller';
 import { MultiThreadController } from '../performance/multithread.controller';
 import { ClusterController } from '../performance/cluster.controller';
 import { StreamController } from '../performance/stream-controller';
+import { EventLoopController } from './event-loop.controller';
 
 /**
  * Module that is related to Performance
@@ -15,6 +16,7 @@ import { StreamController } from '../performance/stream-controller';
 		MultiThreadController,
 		ClusterController,
 		MemoryManagementController,
+		EventLoopController,
 		StreamController,
 	],
 	providers: [BlockingVsNonBlockingService],
