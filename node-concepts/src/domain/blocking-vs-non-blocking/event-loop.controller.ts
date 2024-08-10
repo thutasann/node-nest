@@ -4,6 +4,23 @@ import { ApiTags } from '@nestjs/swagger';
 @Controller('event-loop')
 @ApiTags('event-loop')
 export class EventLoopController {
+	@Get('/settimeout-sample')
+	setTimeoutSample() {
+		setTimeout(() => {
+			console.log('setTimeout 1');
+
+			Promise.resolve('Promise 1').then(console.log);
+			Promise.resolve('Promise 2').catch(console.log);
+
+			queueMicrotask(() => console.log('queueMicrotask 1'));
+
+			process.nextTick(console.log, 'nextTick 1');
+		}, 10);
+
+		setTimeout(console.log, 0, 'setTimeout 2');
+		setTimeout(console.log, 0, 'setTimeout 3');
+	}
+
 	@Get('/sync-solution')
 	syncSolution() {
 		const syncInterval = setInterval(() => {
