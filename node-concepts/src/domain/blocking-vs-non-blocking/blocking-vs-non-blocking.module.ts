@@ -6,6 +6,7 @@ import { MultiThreadController } from '../performance/multithread.controller';
 import { ClusterController } from '../performance/cluster.controller';
 import { StreamController } from '../performance/stream-controller';
 import { EventLoopController } from './event-loop.controller';
+import { Queuecontroller } from './queue.controller';
 
 /**
  * Module that is related to Performance
@@ -13,6 +14,7 @@ import { EventLoopController } from './event-loop.controller';
 @Module({
 	controllers: [
 		EventLoopController,
+		Queuecontroller,
 		BlockingVsNonBlockingController,
 		MultiThreadController,
 		ClusterController,

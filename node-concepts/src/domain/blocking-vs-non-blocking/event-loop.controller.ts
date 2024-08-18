@@ -5,21 +5,46 @@ import { readFile } from 'fs';
 @Controller('event-loop')
 @ApiTags('event-loop')
 export class EventLoopController {
-	@Get('/settimeout-sample')
-	setTimeoutSample() {
-		setTimeout(() => {
-			console.log('setTimeout 1');
+	@Get('sync-callback-sample')
+	syncCallbackSample() {
+		function greet(name: string, callback: () => void) {
+			console.log(`Hello, ${name}`);
+			callback();
+		}
 
-			Promise.resolve('Promise 1').then(console.log);
-			Promise.resolve('Promise 2').catch(console.log);
+		function sayGoodBye() {
+			console.log('Good Bye!');
+		}
 
-			queueMicrotask(() => console.log('queueMicrotask 1'));
+		greet('Thuta Sann', sayGoodBye);
 
-			process.nextTick(console.log, 'nextTick 1');
-		}, 10);
+		return {
+			message: 'Sync call-back finished',
+		};
+	}
 
-		setTimeout(console.log, 0, 'setTimeout 2');
-		setTimeout(console.log, 0, 'setTimeout 3');
+	@Get('async-callback-sample')
+	async asyncCallbackSample() {
+		async function fetchData(
+			callback: (data: { user: string; age: number }) => void,
+		) {
+			setTimeout(() => {
+				const data = { user: 'John Doe', age: 30 };
+				callback(data);
+			}, 2000); // Simulates a 2-second delay (asynchronous operation)
+		}
+
+		async function processData(data: { user: string; age: number }) {
+			console.log('Processing Data: ', data);
+		}
+
+		fetchData(processData).then(() => {
+			console.log('Async call-back finished');
+		});
+
+		return {
+			message: 'Async call-back finished',
+		};
 	}
 
 	@Get('/sync-solution')

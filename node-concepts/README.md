@@ -33,6 +33,7 @@ In this section, nodejs, nestjs concepts will be included. Here is the Deployed 
 - https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick
 - https://nodejs.org/en/learn/asynchronous-work/dont-block-the-event-loop#blocking-the-event-loop-json-dos
 - https://www.bbss.dev/posts/eventloop/
+- https://www.youtube.com/watch?v=M3sbOSJvhxg&list=PLC3y8-rFHvwj1_l8acs_lBi3a0HNb3bAN&index=2
 
 ### Blocking / UnBlocking
 
