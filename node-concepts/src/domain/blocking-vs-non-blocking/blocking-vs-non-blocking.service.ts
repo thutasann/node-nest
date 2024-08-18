@@ -1,4 +1,9 @@
-import { Injectable, Logger } from '@nestjs/common';
+import {
+	Injectable,
+	InternalServerErrorException,
+	Logger,
+} from '@nestjs/common';
+import { readFile, writeFile } from 'fs/promises';
 
 @Injectable()
 export class BlockingVsNonBlockingService {
@@ -53,6 +58,34 @@ export class BlockingVsNonBlockingService {
 			promises.push(this.sleep(i));
 		}
 		return Promise.all(promises);
+	}
+
+	/** read files */
+	async readFiles(filePaths: string[]): Promise<string[]> {
+		try {
+			const fileReadPromises = filePaths.map((filePath) =>
+				readFile(filePath, 'utf-8'),
+			);
+
+			const fileContents = await Promise.all(fileReadPromises);
+
+			return fileContents;
+		} catch (error) {
+			this.logger.error(`Error reading files: ${error}`);
+			throw new InternalServerErrorException('Error reading file');
+		}
+	}
+
+	/** to combine content and write to a new file */
+	async writeCombinedFile(outputPath: string, fileContents: string[]) {
+		try {
+			const combinedContent = fileContents.join('\n');
+			await writeFile(outputPath, combinedContent, 'utf-8');
+			this.logger.debug(`Combined content written to ${outputPath}`);
+		} catch (error) {
+			this.logger.error(`Error writing files: ${error}`);
+			throw new InternalServerErrorException('Error writing combined file');
+		}
 	}
 
 	/** sleep (dummy IO) */

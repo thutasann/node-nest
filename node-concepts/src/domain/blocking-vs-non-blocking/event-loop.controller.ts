@@ -1,5 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { readFile } from 'fs';
 
 @Controller('event-loop')
 @ApiTags('event-loop')
@@ -60,6 +61,15 @@ export class EventLoopController {
 				console.log('------');
 			})
 			.then(() => clearInterval(asyncInterval));
+	}
+
+	@Get('/read-file-sample')
+	findReadSample() {
+		console.log('First');
+		readFile(__filename, () => {
+			console.log('Second');
+		});
+		console.log('Third');
 	}
 
 	/** find prime */

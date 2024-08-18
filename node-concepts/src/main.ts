@@ -14,7 +14,7 @@ async function bootstrap() {
 
 	createDocument(app);
 
-	app.use(new ResponseTimeMiddleware().use);
+	// app.use(new ResponseTimeMiddleware().use);
 
 	await app.listen(port);
 	logger.log(`🚀 App is running on: http://localhost:${port}/docs`);

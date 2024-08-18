@@ -12,11 +12,11 @@ import { EventLoopController } from './event-loop.controller';
  */
 @Module({
 	controllers: [
+		EventLoopController,
 		BlockingVsNonBlockingController,
 		MultiThreadController,
 		ClusterController,
 		MemoryManagementController,
-		EventLoopController,
 		StreamController,
 	],
 	providers: [BlockingVsNonBlockingService],
