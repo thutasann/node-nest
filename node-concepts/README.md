@@ -12,6 +12,7 @@ In this section, nodejs, nestjs concepts will be included. Here is the Deployed 
 
 ## Concepts
 
+- Event Lop
 - Blocking vs Non-Blocking
 - MultiThreading
 - Concurrency
@@ -21,6 +22,7 @@ In this section, nodejs, nestjs concepts will be included. Here is the Deployed 
 - Clustering
 - Security Practices
 - Design Patterns
+- Meme Concepts
 
 ## Sources
 
