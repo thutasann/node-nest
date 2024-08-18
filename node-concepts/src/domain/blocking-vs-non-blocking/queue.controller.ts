@@ -1,5 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { readFile } from 'fs';
 
 @Controller('event-loop')
 @ApiTags('event-loop')
@@ -95,6 +96,37 @@ export class Queuecontroller {
 
 		Promise.resolve().then(() => console.log('Promise resolved 1'));
 		Promise.resolve().then(() => console.log('Promise resolved 2'));
+	}
+
+	/**
+	 * Queue result [process -> promise -> setTimeout -> readFile]
+	 * @description
+	 * - when running setTimeout with delay 0ms and an I/O async method,
+	 * - the order of execution can never be guaranteed
+	 */
+	@Get('/io-queue')
+	IOQueueSample() {
+		setTimeout(() => console.log('this is settimeout 1'), 0);
+
+		readFile(__filename, () => {
+			console.log('This is readFile 1');
+		});
+
+		process.nextTick(() => console.log('this is process.nextTick 1'));
+		Promise.resolve().then(() => console.log('Promise resolved 1'));
+	}
+
+	@Get('/io-queue-sample-two')
+	IOQueueSampleTwo() {
+		readFile(__filename, () => {
+			console.log('This is readFile 1');
+		});
+
+		process.nextTick(() => console.log('this is process.nextTick 1'));
+		Promise.resolve().then(() => console.log('Promise resolved 1'));
+		setTimeout(() => console.log('this is settimeout 1'), 0);
+
+		for (let i = 0; i < 200; i++) {}
 	}
 
 	@Get('/settimeout-sample')
