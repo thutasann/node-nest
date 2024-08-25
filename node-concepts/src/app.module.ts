@@ -11,6 +11,7 @@ import { ErrorHandlingModule } from './domain/error-handling/error-handling.modu
 import { SecurityPracticesModule } from './domain/security-best-practices/security-practices.module';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
+import { NodeMethodsModule } from './domain/node-methods/node-methods.module';
 
 @Module({
 	imports: [
@@ -21,6 +22,7 @@ import { APP_GUARD } from '@nestjs/core';
 		ErrorHandlingModule,
 		ALSModule,
 		EventTaskScheduleModule,
+		NodeMethodsModule,
 		ThrottlerModule.forRoot([
 			{
 				ttl: 60, // Time to live (seconds),
