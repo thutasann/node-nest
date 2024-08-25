@@ -27,7 +27,7 @@ export class NodeMethodsController {
 
 	@Get('/exec-to-check-node-version')
 	execCheckNodeVersion() {
-		exec('npm install', (error, stdout, stderr) => {
+		exec('node -v', (error, stdout, stderr) => {
 			if (error) {
 				console.error(`Error: ${error.message}`);
 				return;
