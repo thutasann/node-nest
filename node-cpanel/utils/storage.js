@@ -9,18 +9,18 @@ if (!fs.existsSync(uploadDir)) {
 	fs.mkdirSync(uploadDir);
 }
 
-/**  Set up storage engine */
-// const storage = multer.diskStorage({
-// 	destination: (req, file, cb) => {
-// 		cb(null, uploadDir); // Specify the directory where the file should be saved
-// 	},
-// 	filename: (req, file, cb) => {
-// 		cb(
-// 			null,
-// 			file.fieldname + '-' + Date.now() + path.extname(file.originalname),
-// 		);
-// 	},
-// });
+/**  Set up disk storage engine */
+const diskStorage = multer.diskStorage({
+	destination: (req, file, cb) => {
+		cb(null, uploadDir); // Specify the directory where the file should be saved
+	},
+	filename: (req, file, cb) => {
+		cb(
+			null,
+			file.fieldname + '-' + Date.now() + path.extname(file.originalname),
+		);
+	},
+});
 
 /** Use memory storage to store the file in RAM */
 const storage = multer.memoryStorage();
@@ -32,6 +32,7 @@ const upload = multer({
 }).single('image'); // 'image' is the key expected in the form-data
 
 module.exports = {
+	diskStorage,
 	storage,
 	upload,
 };

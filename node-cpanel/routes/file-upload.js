@@ -1,12 +1,46 @@
 const express = require('express');
 const { upload } = require('../utils/storage');
 const Client = require('ssh2-sftp-client');
+// const { db } = require('../utils/mysql_db');
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
 	res.send('<h1>Hello From Nodejs cpanel</h1>');
 });
+
+// router.post('/upload-mysql', (req, res) => {
+// 	upload(req, res, (err) => {
+// 		if (err) {
+// 			console.log('Error:', err.message);
+// 			return res.status(500).json({ success: false, message: err.message });
+// 		}
+
+// 		console.log('Uploaded File:', req.file);
+
+// 		const { originalname, mimetype, size, buffer } = req.file;
+
+// 		const sql =
+// 			'INSERT INTO images (name, type, size, data) VALUES (?, ?, ?, ?)';
+// 		const values = [originalname, mimetype, size, buffer];
+
+// 		db.query(sql, values, (err, result) => {
+// 			if (err) {
+// 				console.log('Database Error:', err.message);
+// 				return res
+// 					.status(500)
+// 					.json({ success: false, message: 'Database upload failed' });
+// 			}
+
+// 			console.log('Image uploaded to database with ID:', result.insertId);
+// 			res.status(200).json({
+// 				success: true,
+// 				message: 'Image uploaded to database successfully',
+// 				imageId: result.insertId,
+// 			});
+// 		});
+// 	});
+// });
 
 router.post('/upload', (req, res) => {
 	upload(req, res, async (err) => {
