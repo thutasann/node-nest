@@ -18,14 +18,7 @@ router.post('/upload', (req, res) => {
 		const sftp = new Client();
 
 		try {
-			await sftp.connect({
-				host: 'cpanel.asiareviewer.com',
-				port: '22',
-				username: 'asiarevi',
-				password: 'ftb42+7xOATQ7)',
-				readyTimeout: 20000,
-				debug: console.log,
-			});
+			await sftp.connect({});
 
 			const remotePath = `/public_html/wp-content/uploads/${path.basename(
 				req.file.path,
