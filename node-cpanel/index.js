@@ -2,7 +2,7 @@
 const express = require('express');
 const uploadRoutes = require('./routes/file-upload');
 const mongoUploadRoutes = require('./routes/mongo-file-upload');
-const connectDB = require('./utils/mongo_db');
+const { connectDB } = require('./utils/mongo_db');
 const { initGridFS } = require('./utils/gridfs');
 require('dotenv').config();
 

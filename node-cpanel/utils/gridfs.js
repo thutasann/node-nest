@@ -2,6 +2,9 @@
 const Grid = require('gridfs-stream');
 const mongoose = require('mongoose');
 const multer = require('multer');
+const { GridFsStorage } = require('multer-gridfs-storage');
+const { mongoURI } = require('./mongo_db');
+const path = require('path');
 
 let gfs;
 
@@ -21,7 +24,16 @@ const getGFS = () => {
 	return gfs;
 };
 
-const storage = multer.memoryStorage();
+const storage = new GridFsStorage({
+	url: mongoURI,
+	file: (req, file) => {
+		return {
+			bucketName: 'uploads', // Set the collection name
+			filename: `${Date.now()}${path.extname(file.originalname)}`, // Set the filename
+		};
+	},
+});
+
 const uploadMongo = multer({ storage });
 
 module.exports = {
