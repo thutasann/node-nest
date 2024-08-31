@@ -18,7 +18,13 @@ router.post('/upload', (req, res) => {
 		const sftp = new Client();
 
 		try {
-			await sftp.connect({});
+			await sftp.connect({
+				host: process.env.HOST,
+				port: '22',
+				username: process.env.USER_NAME,
+				password: process.env.PASSWORD,
+				readyTimeout: 20000,
+			});
 
 			const remotePath = `/public_html/wp-content/uploads/${path.basename(
 				req.file.path,

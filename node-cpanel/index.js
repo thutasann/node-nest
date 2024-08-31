@@ -2,6 +2,8 @@
 const express = require('express');
 const uploadRoutes = require('./routes/file-upload');
 
+require('dotenv').config();
+
 const app = express();
 app.use('/api/v1/file', uploadRoutes);
 
