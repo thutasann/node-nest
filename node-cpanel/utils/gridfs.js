@@ -34,10 +34,21 @@ const storage = new GridFsStorage({
 	},
 });
 
+const diskStorage = multer.diskStorage({
+	destination: (req, file, cb) => {
+		cb(null, 'uploads/');
+	},
+	filename: (req, file, cb) => {
+		cb(null, Date.now() + file.originalname);
+	},
+});
+
 const uploadMongo = multer({ storage });
+const diskUpload = multer({ storage: diskStorage });
 
 module.exports = {
 	initGridFS,
 	getGFS,
 	uploadMongo,
+	diskUpload,
 };

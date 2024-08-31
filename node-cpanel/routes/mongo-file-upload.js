@@ -1,9 +1,28 @@
 // @ts-check
 const express = require('express');
 const { Readable } = require('stream');
-const { uploadMongo, getGFS } = require('../utils/gridfs');
+const { uploadMongo, getGFS, diskUpload } = require('../utils/gridfs');
+const Image = require('../schema/image-schem');
 
 const router = express.Router();
+
+router.post('/disk-upload', diskUpload.single('image'), async (req, res) => {
+	try {
+		if (!req.file) {
+			return res.status(500).json({ error: 'No file found' });
+		}
+		const imageFile = Image({
+			filename: req.file.filename,
+			filepath: req.file.path,
+		});
+
+		const savedImage = await imageFile.save();
+
+		res.status(200).json(savedImage);
+	} catch (error) {
+		console.log(error);
+	}
+});
 
 router.post('/upload-mongo', uploadMongo.single('image'), (req, res) => {
 	try {
