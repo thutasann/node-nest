@@ -1,12 +1,33 @@
 const express = require('express');
 const { upload } = require('../utils/storage');
 const Client = require('ssh2-sftp-client');
+const { uploadToCpanel, uploadCpanel } = require('../utils/c-panel');
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
 	res.send('<h1>Hello From Nodejs cpanel</h1>');
 });
+
+router.post(
+	'/cpanel-upload',
+	uploadCpanel.single('image'),
+	async (req, res) => {
+		if (!req.file) {
+			return res.status(400).send('No image was uploaded.');
+		}
+
+		let uploadedImagePath = req.file.path;
+
+		try {
+			await uploadToCpanel(uploadedImagePath, req.file.originalname);
+
+			res.send('Image uploaded and saved to cPanel server successfully!');
+		} catch (uploadErr) {
+			res.status(500).send(uploadErr.message);
+		}
+	},
+);
 
 router.post('/upload', (req, res) => {
 	upload(req, res, async (err) => {
