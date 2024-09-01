@@ -25,7 +25,7 @@ router.post(
 				req.file.path,
 			)}`;
 
-			const baseUrl = 'https://yourdomain.com/uploads';
+			const baseUrl = process.env.UPLOAD_URL;
 			const imageUrl = `${baseUrl}/${req.file.originalname}`;
 
 			await uploadToCpanel(uploadedImagePath, remotePath);
