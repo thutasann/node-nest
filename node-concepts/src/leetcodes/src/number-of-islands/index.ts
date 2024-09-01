@@ -1,30 +1,59 @@
+/* eslint-disable prefer-const */
 export abstract class NumberOfIslands {
-	/** solution one */
-	public static solutionOne(grid: number[][]): number {
-		const visited = grid.map((row) => row.map((cell) => false));
+	/**
+	 * Number of Island
+	 * @param { string[][] } grid - Two Dimensional Array
+	 * @returns { number }
+	 */
+	public static solutionOne(grid: string[][]): number {
+		let countIslands = 0;
 
-		let islandCount = 0;
+		for (let rowIndex in grid) {
+			for (let colIndex in grid[rowIndex]) {
+				console.log('grid[rowIndex][colIndex]', grid[rowIndex][colIndex]);
 
-		for (let i = 0; i < grid.length; i++) {
-			for (let j = 0; j < grid[i].length; j++) {
-				if (this.dFS(i, j, grid, visited)) islandCount++;
+				if (grid[rowIndex][colIndex] === '1') {
+					countIslands++;
+					this.teraform(parseInt(rowIndex), parseInt(colIndex), grid);
+				}
 			}
 		}
 
-		return islandCount;
+		return countIslands;
 	}
 
-	/** depth first search
+	/** Usage */
+	public static usageOne() {
+		const result = this.solutionOne([
+			['1', '1', '0', '0', '0'],
+			['1', '1', '0', '0', '0'],
+			['0', '0', '1', '0', '0'],
+			['0', '0', '0', '1', '1'],
+		]);
+		console.log('Number of Islands : >>', result);
+	}
+
+	/**
+	 * Helper: Convert stuff arround us to Water
 	 * @private
-	 * @example
-	 * - if returns true, means, we have an island
 	 */
-	private static dFS(
-		i: number,
-		j: number,
-		grid: number[][],
-		visited: boolean[][],
-	): boolean {
-		return true;
+	private static teraform(
+		rowIn: number,
+		colIn: number,
+		grid: string[][],
+	): void {
+		if (
+			grid[rowIn] === undefined ||
+			grid[rowIn][colIn] === undefined ||
+			grid[rowIn][colIn] === '0'
+		)
+			return;
+
+		grid[rowIn][colIn] = '0';
+
+		NumberOfIslands.teraform(rowIn + 1, colIn, grid); // top
+		this.teraform(rowIn - 1, colIn, grid); // bottom
+		this.teraform(rowIn, colIn + 1, grid); // right
+		this.teraform(rowIn, colIn - 1, grid); // left
 	}
 }
