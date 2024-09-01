@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>DOM Traversal</title>
+
+		<style>
+			body {
+				font-family: Arial, Helvetica, sans-serif;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>DOM Traversal</h1>
+		<h2>Open in Browser</h2>
+	</body>
+
+	<script type="text/javascript">
+		function traversalDOM(element) {
+			console.log('element', element.tagName.toLowerCase());
+			Array.from(element.children).forEach((child) => traversalDOM(child));
+		}
+
+		document.addEventListener('DOMContentLoaded', () => {
+			traversalDOM(document.body);
+		});
+	</script>
+</html>
