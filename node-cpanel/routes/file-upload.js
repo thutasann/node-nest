@@ -1,6 +1,7 @@
 const express = require('express');
 const { upload } = require('../utils/storage');
 const Client = require('ssh2-sftp-client');
+const path = require('path');
 const { uploadToCpanel, uploadCpanel } = require('../utils/c-panel');
 
 const router = express.Router();
@@ -20,15 +21,27 @@ router.post(
 		let uploadedImagePath = req.file.path;
 
 		try {
-			await uploadToCpanel(uploadedImagePath, req.file.originalname);
+			const remotePath = `/public_html/wp-content/uploads/${path.basename(
+				req.file.path,
+			)}`;
 
-			res.send('Image uploaded and saved to cPanel server successfully!');
+			const baseUrl = 'https://yourdomain.com/uploads';
+			const imageUrl = `${baseUrl}/${req.file.originalname}`;
+
+			await uploadToCpanel(uploadedImagePath, remotePath);
+
+			res.status(200).json({
+				success: true,
+				message: 'File uploaded to cPanel successfully',
+				imageUrl: imageUrl,
+			});
 		} catch (uploadErr) {
 			res.status(500).send(uploadErr.message);
 		}
 	},
 );
 
+/** cpnale no working one */
 router.post('/upload', (req, res) => {
 	upload(req, res, async (err) => {
 		if (err) {

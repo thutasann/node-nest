@@ -3,49 +3,32 @@ const fs = require('fs');
 const ftp = require('basic-ftp');
 const SFTPClient = require('ssh2-sftp-client');
 
-// Function to upload the file to cPanel server (Option 1)
-const uploadToCpanel = async (localFilePath, remoteFileName) => {
+/** Function to upload the file to cPanel server */
+const uploadToCpanel = async (localFilePath, remotePath) => {
 	const client = new ftp.Client();
-	client.ftp.verbose = true;
+	client.ftp.verbose = false;
 
 	try {
+		if (!fs.existsSync(localFilePath)) {
+			throw new Error('Local file does not exist.');
+		}
+
 		await client.access({
 			host: process.env.HOST, // cPanel server address
 			user: process.env.USER_NAME, // cPanel username
 			password: process.env.PASSWORD, // cPanel password
 			secure: true, // Enable FTPS
+			secureOptions: {
+				rejectUnauthorized: false, // Optional: bypass certificate validation
+			},
 		});
 
-		await client.uploadFrom(
-			localFilePath,
-			`public_html/uploads/${remoteFileName}`,
-		);
+		await client.uploadFrom(localFilePath, remotePath);
 	} catch (err) {
 		throw new Error(`Failed to upload file: ${err.message}`);
 	} finally {
 		client.close();
 		// Optionally, remove the temporary file after upload
-		fs.unlinkSync(localFilePath);
-	}
-};
-
-// (Option 2)
-const uploadToCpanelTwo = async (localFilePath, remoteFileName) => {
-	const sftp = new SFTPClient();
-
-	try {
-		await sftp.connect({
-			port: 22, // Default SFTP port
-			host: process.env.HOST, // cPanel server address
-			user: process.env.USER_NAME, // cPanel username
-			password: process.env.PASSWORD, // cPanel password
-		});
-
-		await sftp.put(localFilePath, `/public_html/uploads/${remoteFileName}`);
-	} catch (err) {
-		throw new Error(`Failed to upload file: ${err.message}`);
-	} finally {
-		sftp.end();
 		fs.unlinkSync(localFilePath);
 	}
 };
@@ -64,6 +47,5 @@ const uploadCpanel = multer({ storage: storage });
 
 module.exports = {
 	uploadToCpanel,
-	uploadToCpanelTwo,
 	uploadCpanel,
 };
