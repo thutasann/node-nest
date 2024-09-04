@@ -10,8 +10,6 @@ export abstract class NumberOfIslands {
 
 		for (let rowIndex in grid) {
 			for (let colIndex in grid[rowIndex]) {
-				console.log('grid[rowIndex][colIndex]', grid[rowIndex][colIndex]);
-
 				if (grid[rowIndex][colIndex] === '1') {
 					countIslands++;
 					this.teraform(parseInt(rowIndex), parseInt(colIndex), grid);

@@ -1,5 +1,6 @@
 import { NumberOfIslands } from './src/number-of-islands';
 import { Numbers } from './src/numbers';
+import { ValidParentheses } from './src/valid-parentheses';
 
 Numbers.swapNumber(2, 4);
 Numbers.swapNumberWithIndex(['a', 'b', 'c', 'd', 'e'], 1, 3);
@@ -8,3 +9,4 @@ Numbers.reverseNumber(12345);
 Numbers.sumOfNumber();
 
 NumberOfIslands.usageOne();
+ValidParentheses.usageOne();
