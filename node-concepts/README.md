@@ -4,11 +4,12 @@ In this section, nodejs, nestjs concepts will be included. Here is the Deployed 
 
 ## Table of Contents
 
-| Content  | Source                                |
-| -------- | ------------------------------------- |
-| Concepts | [Source](#concepts)                   |
-| Scripts  | [Source](./documentations/scripts.md) |
-| Sources  | [Source](#sources)                    |
+| Content         | Source                                |
+| --------------- | ------------------------------------- |
+| Concepts        | [Source](#concepts)                   |
+| DSA & LeetCodes | [Source](./src/leetcodes/)            |
+| Scripts         | [Source](./documentations/scripts.md) |
+| Sources         | [Source](#sources)                    |
 
 ## Concepts
 

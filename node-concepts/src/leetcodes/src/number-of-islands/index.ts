@@ -26,7 +26,7 @@ export abstract class NumberOfIslands {
 
 	/** Usage */
 	public static usageOne() {
-		this.logger.debug('Number of IsLands ');
+		this.logger.debug(' ------>> Number of IsLands ');
 		const result = this.solutionOne([
 			['1', '1', '0', '0', '0'],
 			['1', '1', '0', '0', '0'],

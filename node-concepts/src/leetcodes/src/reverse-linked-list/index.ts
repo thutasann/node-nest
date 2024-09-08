@@ -41,7 +41,7 @@ export abstract class ReverseLinkedList {
 
 	/** Reverse Linked List Usage Sample */
 	public static usageOne() {
-		this.logger.debug('Reverse Linked List Usage One ');
+		this.logger.debug(' ------>> Reverse Linked List ');
 		const node3 = new ListNode(3);
 		const node2 = new ListNode(2, node3);
 		const head = new ListNode(1, node2);

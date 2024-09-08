@@ -28,6 +28,6 @@ export abstract class ValidParentheses {
 	public static usageOne() {
 		const word = '()';
 		const result = this.SolutionOne(word);
-		this.logger.debug(`ValidParentheses : >> ${result}`);
+		this.logger.debug(` ------>> ValidParentheses : >> ${result}`);
 	}
 }
