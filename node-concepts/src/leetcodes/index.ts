@@ -1,3 +1,4 @@
+import { BestTimeToBuyAndSellStockWithCoolDown } from './src/best-time-to-buy-sell-stock';
 import { NumberOfIslands } from './src/number-of-islands';
 import { Numbers } from './src/numbers';
 import { ReverseLinkedList } from './src/reverse-linked-list';
@@ -14,3 +15,6 @@ NumberOfIslands.usageOne();
 ValidParentheses.usageOne();
 ReverseLinkedList.usageOne();
 RotateImage.usageOne();
+
+BestTimeToBuyAndSellStockWithCoolDown.usageOne();
+BestTimeToBuyAndSellStockWithCoolDown.usageTwo();
