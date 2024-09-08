@@ -1,5 +1,6 @@
 import { NumberOfIslands } from './src/number-of-islands';
 import { Numbers } from './src/numbers';
+import { ReverseLinkedList } from './src/reverse-linked-list';
 import { ValidParentheses } from './src/valid-parentheses';
 
 Numbers.swapNumber(2, 4);
@@ -10,3 +11,4 @@ Numbers.sumOfNumber();
 
 NumberOfIslands.usageOne();
 ValidParentheses.usageOne();
+ReverseLinkedList.usageOne();

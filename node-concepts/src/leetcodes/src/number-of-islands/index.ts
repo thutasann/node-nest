@@ -1,5 +1,9 @@
+import { Logger } from '@nestjs/common';
+
 /* eslint-disable prefer-const */
 export abstract class NumberOfIslands {
+	static logger = new Logger(NumberOfIslands.name);
+
 	/**
 	 * Number of Island
 	 * @param { string[][] } grid - Two Dimensional Array
@@ -22,6 +26,7 @@ export abstract class NumberOfIslands {
 
 	/** Usage */
 	public static usageOne() {
+		this.logger.debug('Number of IsLands ');
 		const result = this.solutionOne([
 			['1', '1', '0', '0', '0'],
 			['1', '1', '0', '0', '0'],

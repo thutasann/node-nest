@@ -1,4 +1,8 @@
+import { Logger } from '@nestjs/common';
+
 export abstract class ValidParentheses {
+	static logger = new Logger(ValidParentheses.name);
+
 	public static SolutionOne(word: string): boolean {
 		const stack: string[] = [];
 		const parens = '() [] {}';
@@ -24,6 +28,6 @@ export abstract class ValidParentheses {
 	public static usageOne() {
 		const word = '()';
 		const result = this.SolutionOne(word);
-		console.log('ValidParentheses : >>', result);
+		this.logger.debug(`ValidParentheses : >> ${result}`);
 	}
 }
