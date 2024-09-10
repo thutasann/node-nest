@@ -17,13 +17,6 @@ export abstract class PrefixSumPattern {
 		return prefixSum;
 	}
 
-	/** Running Sum Usage */
-	public static runningSumUsage() {
-		const nums = [1, 2, 3, 4];
-		const result = this.runningSum(nums);
-		this.logger.debug(result.toString());
-	}
-
 	/** SubArray Sum ✅ */
 	public static subArraySum(nums: number[], k: number) {
 		let prefixSumCount = new Map<number, number>(); // To store prefix sums and their counts
@@ -46,10 +39,32 @@ export abstract class PrefixSumPattern {
 		return count;
 	}
 
-	/** SubArray Sum Usage */
-	public static subArraySumUsage() {
-		let nums = [1, 1, 1];
-		let k = 2;
-		this.logger.debug(this.subArraySum(nums, k)); // Output: 2
+	/** Calculate Revenues ✅ */
+	public static calPrefixRevenueSum(revenues: number[]): number[] {
+		let prefixSum: number[] = [];
+		let currentSum = 0;
+
+		for (let i = 0; i < revenues.length; i++) {
+			currentSum += revenues[i];
+			prefixSum[i] = currentSum;
+		}
+
+		return prefixSum;
+	}
+
+	/** Get Revenue From Period ✅ */
+	public static getRevenueFromPeriod(
+		prefixSum: number[],
+		startDay: number,
+		endDay: number,
+	): number {
+		const startIndex = startDay - 1;
+		const endIndex = endDay - 1;
+
+		if (startIndex === 0) {
+			return prefixSum[startIndex];
+		} else {
+			return prefixSum[endIndex] - prefixSum[startIndex - 1];
+		}
 	}
 }

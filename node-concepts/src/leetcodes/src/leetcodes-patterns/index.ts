@@ -1,6 +1,7 @@
-import { PrefixSumPattern } from './prefix-sum-pattern';
+import { PrefixSumPatternUsage } from './prefix-sum-pattern/usages';
 
-console.log('LEETCODES PATTERNS ===> \n');
+console.log('LEETCODES PATTERNS ===>');
 
-PrefixSumPattern.runningSumUsage();
-PrefixSumPattern.subArraySumUsage();
+PrefixSumPatternUsage.runningSumUsage();
+PrefixSumPatternUsage.subArraySumUsage();
+PrefixSumPatternUsage.calRevenueUsage();
