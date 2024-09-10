@@ -73,4 +73,11 @@ export abstract class PrefixSumPattern {
 			return prefixSum[endIndex] - prefixSum[startIndex - 1];
 		}
 	}
+
+	/** SubArray Sample ✅ */
+	public static subArraySample() {
+		const array = [1, 2, 3, 4, 5];
+		const subArray = array.slice(0, 2);
+		console.log('subArray', subArray);
+	}
 }
