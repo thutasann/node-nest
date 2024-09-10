@@ -1,6 +1,12 @@
 import { Logger } from '@nestjs/common';
 
-/** Prefix Sum Pattern */
+/**
+ * ### Prefix Sum Pattern
+ * - Prefix Sum is used because it allows for efficient calculations of sums over a range of elements in an array.
+ * - Instead of recalculating the sum every time a query is made,
+ * - you can precompute a prefix sum array, which stores cumulative sums up to each index.
+ * - this enables range queries to be answered in constant time (O(1)), improving performance significantly for multiple queries.
+ */
 export abstract class PrefixSumPattern {
 	static logger = new Logger(PrefixSumPattern.name);
 

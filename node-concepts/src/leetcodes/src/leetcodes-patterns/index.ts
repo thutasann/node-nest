@@ -5,3 +5,5 @@ console.log('LEETCODES PATTERNS ===>');
 PrefixSumPatternUsage.runningSumUsage();
 PrefixSumPatternUsage.subArraySumUsage();
 PrefixSumPatternUsage.calRevenueUsage();
+PrefixSumPatternUsage.ecommerceUsage();
+PrefixSumPatternUsage.gameUsage();
