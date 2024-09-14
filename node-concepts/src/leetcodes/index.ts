@@ -5,6 +5,7 @@ import { Numbers } from './src/numbers';
 import { ReverseLinkedList } from './src/reverse-linked-list';
 import { RotateImage } from './src/rotate-image';
 import { SubArraySumEqualsK } from './src/subarray-sums-equals-k';
+import { TwoSumInputArrayIsSorted } from './src/two-sum-input-array-is-sorted';
 import { ValidParentheses } from './src/valid-parentheses';
 
 // ----- Numbers Related Concepts
@@ -20,12 +21,22 @@ ValidParentheses.usageOne();
 ReverseLinkedList.usageOne();
 RotateImage.usageOne();
 
+console.log('----------------------------\n');
+
 BestTimeToBuyAndSellStockWithCoolDown.usageOne();
 BestTimeToBuyAndSellStockWithCoolDown.usageTwo();
+
+console.log('----------------------------\n');
 
 ContiguousArray.findMaxLengthUsage();
 ContiguousArray.findMaxBalanceMoodUsage();
 ContiguousArray.ecommerceEngagementUsage();
 
+console.log('----------------------------\n');
+
 SubArraySumEqualsK.subArraySumUsage();
 SubArraySumEqualsK.trackCustomerTransactionsUsage();
+
+console.log('----------------------------\n');
+
+TwoSumInputArrayIsSorted.solutionOneUsage();

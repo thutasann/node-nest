@@ -43,6 +43,29 @@ export abstract class TwoPointersPattern {
 		return true;
 	}
 
+	/**
+	 * Removing Duplicates from a Sorted Array
+	 * - Pointer 1 (slow): Keeps track of the last unique element.
+	 * - Pointer 2 (fast): Moves through the array to find the next unique element.
+	 */
+	public static removeDuplicates(numbers: number[]): number {
+		if (numbers.length === 0) return 0;
+
+		let slow = 0;
+
+		// Second pointer (fast)
+		for (let fast = 1; fast < numbers.length; fast++) {
+			if (numbers[slow] !== numbers[fast]) {
+				// When a new unique element is found,
+				// move it to the next position in the array
+				slow++;
+				numbers[slow] = numbers[fast];
+			}
+		}
+
+		return slow + 1; // The length of the array with unique elements
+	}
+
 	/** Helper : to check character isAlphaNumeric or not */
 	private static isAlphaNumeric(char: string): boolean {
 		return /^[a-zA-Z0-9]$/.test(char);

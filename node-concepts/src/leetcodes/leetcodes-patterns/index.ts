@@ -12,3 +12,5 @@ PrefixSumPatternUsage.gameUsage();
 console.log('----------------------------\n');
 
 TwoPointersPatternUsage.isPalidromeUsage();
+TwoPointersPatternUsage.removeDuplicatesUasge();
+TwoPointersPatternUsage.mergeSalesDataUsage();
