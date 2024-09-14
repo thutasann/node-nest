@@ -4,6 +4,7 @@ import { NumberOfIslands } from './src/number-of-islands';
 import { Numbers } from './src/numbers';
 import { ReverseLinkedList } from './src/reverse-linked-list';
 import { RotateImage } from './src/rotate-image';
+import { SubArraySumEqualsK } from './src/subarray-sums-equals-k';
 import { ValidParentheses } from './src/valid-parentheses';
 
 // ----- Numbers Related Concepts
@@ -25,3 +26,6 @@ BestTimeToBuyAndSellStockWithCoolDown.usageTwo();
 ContiguousArray.findMaxLengthUsage();
 ContiguousArray.findMaxBalanceMoodUsage();
 ContiguousArray.ecommerceEngagementUsage();
+
+SubArraySumEqualsK.subArraySumUsage();
+SubArraySumEqualsK.trackCustomerTransactionsUsage();
