@@ -1,5 +1,7 @@
 import {
+	actions,
 	cart,
+	CartItemTwo,
 	fruits,
 	items,
 	nestedArray,
@@ -107,6 +109,46 @@ class ReduceSamples {
 			.reduce((acc, curr) => acc + curr, 0);
 		console.log('sumOfEvenNumbers', sumOfEvenNumbers);
 	}
+
+	public flatternDeeplyNestedArray() {
+		const deeplyNestedArray = [[[1, 2]], [[3, 4]]];
+
+		const flatternArray = (arr: any[]) => {
+			return arr.reduce((acc, val) => {
+				return acc.concat(Array.isArray(val) ? flatternArray(val) : val);
+			}, []);
+		};
+
+		const deepFlat = flatternArray(deeplyNestedArray);
+		console.log('deepFlat', deepFlat);
+	}
+
+	public stateManagementSample() {
+		const cartAction = actions.reduce((state: CartItemTwo[], action) => {
+			switch (action.type) {
+				case 'ADD_ITEM':
+					return [
+						...state,
+						{
+							id: action.payload.id,
+							name: action.payload.name,
+							price: action.payload.price,
+						},
+					];
+				case 'REMOVE_ITEM':
+					return state.filter((item) => item.id !== action.payload.id);
+				case 'UPDATE_ITEM':
+					return state.map((item) =>
+						item.id === action.payload.id
+							? { ...item, price: action.payload.price }
+							: item,
+					);
+				default:
+					return state;
+			}
+		}, []);
+		console.log('cartAction', cartAction);
+	}
 }
 
 const reduceSamples = new ReduceSamples();
@@ -119,3 +161,5 @@ reduceSamples.aggregateData();
 reduceSamples.mergeData();
 reduceSamples.summingNestedObject();
 reduceSamples.chainingReduceWithOtherMethods();
+reduceSamples.flatternDeeplyNestedArray();
+reduceSamples.stateManagementSample();

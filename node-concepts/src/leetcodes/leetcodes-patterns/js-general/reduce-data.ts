@@ -24,6 +24,19 @@ export interface Product {
 	items: Array<{ name: string; price: number }>;
 }
 
+export interface Action {
+	type: 'ADD_ITEM' | 'REMOVE_ITEM' | 'UPDATE_ITEM';
+	payload: { id: number; name?: string; price?: number };
+}
+
+export interface CartItemTwo {
+	id: number;
+	name: string;
+	price: number;
+}
+
+// --------------------------- DATA  ---------------------------
+
 export const students: Student[] = [
 	{ name: 'Alice', grade: 'A' },
 	{ name: 'Bob', grade: 'B' },
@@ -84,4 +97,11 @@ export const products: Product[] = [
 			{ name: 'Shoes', price: 100 },
 		],
 	},
+];
+
+export const actions: Action[] = [
+	{ type: 'ADD_ITEM', payload: { id: 1, name: 'Laptop', price: 1000 } },
+	{ type: 'ADD_ITEM', payload: { id: 2, name: 'Mouse', price: 50 } },
+	{ type: 'UPDATE_ITEM', payload: { id: 1, price: 900 } },
+	{ type: 'REMOVE_ITEM', payload: { id: 2 } },
 ];
