@@ -1,50 +1,17 @@
-interface Student {
-	name: string;
-	grade: string;
-}
+import {
+	cart,
+	fruits,
+	items,
+	nestedArray,
+	products,
+	profiles,
+	Student,
+	students,
+	users,
+} from './reduce-data';
 
-interface CartItem {
-	name: string;
-	price: number;
-	quantity: number;
-}
-
-interface User {
-	id: number;
-	name: string;
-}
-
-interface UserProfile {
-	id: number;
-	age: number;
-}
-
-const students: Student[] = [
-	{ name: 'Alice', grade: 'A' },
-	{ name: 'Bob', grade: 'B' },
-	{ name: 'Charlie', grade: 'A' },
-	{ name: 'David', grade: 'C' },
-];
-
-const cart: CartItem[] = [
-	{ name: 'Laptop', price: 1000, quantity: 1 },
-	{ name: 'Mouse', price: 20, quantity: 2 },
-	{ name: 'Keyboard', price: 50, quantity: 1 },
-];
-
-const users: User[] = [
-	{ id: 1, name: 'John' },
-	{ id: 2, name: 'Jane' },
-	{ id: 3, name: 'Bob' },
-];
-
-const profiles: UserProfile[] = [
-	{ id: 1, age: 30 },
-	{ id: 2, age: 25 },
-];
-
-/** Slice Samples */
-class SliceSamples {
+/** Reduce Samples */
+class ReduceSamples {
 	public basicSample() {
 		const numbers: number[] = [1, 2, 3, 4, 5];
 		const sum = numbers.reduce((acc, curr) => {
@@ -54,12 +21,6 @@ class SliceSamples {
 	}
 
 	public arrObjectSample() {
-		const items = [
-			{ name: 'Book', price: 20 },
-			{ name: 'Pen', price: 2 },
-			{ name: 'Laptop', price: 1500 },
-		];
-
 		const total = items.reduce((acc, curr) => {
 			return acc + curr.price;
 		}, 0);
@@ -68,15 +29,6 @@ class SliceSamples {
 	}
 
 	public occurancesInAnArray() {
-		const fruits: string[] = [
-			'apple',
-			'banana',
-			'orange',
-			'apple',
-			'banana',
-			'apple',
-		];
-
 		const fruitCount = fruits.reduce(
 			(acc, fruit) => {
 				acc[fruit] = (acc[fruit] || 0) + 1;
@@ -103,11 +55,6 @@ class SliceSamples {
 	}
 
 	public flatternNestedArray() {
-		const nestedArray: number[][] = [
-			[1, 2],
-			[3, 4],
-			[5, 6],
-		];
 		const flatternedArray = nestedArray.reduce((acc, curr) => {
 			return acc.concat(curr);
 		}, []);
@@ -137,13 +84,38 @@ class SliceSamples {
 		);
 		console.log('mergedData', mergedData);
 	}
+
+	public summingNestedObject() {
+		const totalPriceByCategory = products.reduce(
+			(acc, product) => {
+				acc[product.category] = product.items.reduce(
+					(sum, item) => sum + item.price,
+					0,
+				);
+				return acc;
+			},
+			{} as Record<string, number>,
+		);
+		console.log('totalPriceByCategory', totalPriceByCategory);
+	}
+
+	public chainingReduceWithOtherMethods() {
+		const numbers: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+		const sumOfEvenNumbers = numbers
+			.filter((num) => num % 2 === 0)
+			.reduce((acc, curr) => acc + curr, 0);
+		console.log('sumOfEvenNumbers', sumOfEvenNumbers);
+	}
 }
 
-const sliceSamples = new SliceSamples();
-sliceSamples.basicSample();
-sliceSamples.arrObjectSample();
-sliceSamples.occurancesInAnArray();
-sliceSamples.groupByGrade();
-sliceSamples.flatternNestedArray();
-sliceSamples.aggregateData();
-sliceSamples.mergeData();
+const reduceSamples = new ReduceSamples();
+reduceSamples.basicSample();
+reduceSamples.arrObjectSample();
+reduceSamples.occurancesInAnArray();
+reduceSamples.groupByGrade();
+reduceSamples.flatternNestedArray();
+reduceSamples.aggregateData();
+reduceSamples.mergeData();
+reduceSamples.summingNestedObject();
+reduceSamples.chainingReduceWithOtherMethods();
