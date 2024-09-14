@@ -83,11 +83,11 @@ export abstract class BestTimeToBuyAndSellStockWithCoolDown {
 
 	public static usageOne() {
 		const prices1 = [1, 2, 3, 0, 2];
-		this.logger.debug(this.solutionOne(prices1));
+		this.logger.debug('------>> ' + this.solutionOne(prices1));
 	}
 
 	public static usageTwo() {
 		const prices1 = [1, 2, 3, 0, 2];
-		this.logger.debug(this.solutionTwo(prices1));
+		this.logger.debug('------>> ' + this.solutionTwo(prices1));
 	}
 }
