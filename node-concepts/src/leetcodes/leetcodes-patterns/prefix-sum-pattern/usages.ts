@@ -1,5 +1,5 @@
 import { Logger } from '@nestjs/common';
-import { PrefixSumPattern } from './';
+import { PrefixSumPattern } from '.';
 import { EcommercePrefixSum, Purchase } from './ecommerce-prefix-sum';
 import { GamePrefixSumSample } from './game-prefix-sum';
 
