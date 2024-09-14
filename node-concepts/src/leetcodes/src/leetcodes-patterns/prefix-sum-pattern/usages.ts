@@ -4,7 +4,7 @@ import { EcommercePrefixSum, Purchase } from './ecommerce-prefix-sum';
 import { GamePrefixSumSample } from './game-prefix-sum';
 
 export abstract class PrefixSumPatternUsage {
-	static logger = new Logger(PrefixSumPattern.name);
+	private static logger = new Logger(PrefixSumPatternUsage.name);
 
 	/** Running Sum Usage */
 	public static runningSumUsage() {
