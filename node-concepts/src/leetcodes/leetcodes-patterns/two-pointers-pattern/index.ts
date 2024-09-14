@@ -44,9 +44,13 @@ export abstract class TwoPointersPattern {
 	}
 
 	/**
-	 * Removing Duplicates from a Sorted Array
-	 * - Pointer 1 (slow): Keeps track of the last unique element.
-	 * - Pointer 2 (fast): Moves through the array to find the next unique element.
+	 * Remove duplicates from a sorted array in-place.
+	 * - one pointer (i) to track the position of the last unique element
+	 * - another pointer (j) to iterate through the array, comparing each element with the one at the i pointer.
+	 * - Initialize two pointers, i (slow pointer) and j (fast pointer).
+	 * - Traverse the array with the fast pointer j.
+	 * - Whenever nums[j] is different from nums[i],
+	 * - means we have found a new unique element, so we move i forward and copy nums[j] to nums[i].
 	 */
 	public static removeDuplicates(numbers: number[]): number {
 		if (numbers.length === 0) return 0;

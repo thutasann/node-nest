@@ -14,3 +14,8 @@ console.log('----------------------------\n');
 TwoPointersPatternUsage.isPalidromeUsage();
 TwoPointersPatternUsage.removeDuplicatesUasge();
 TwoPointersPatternUsage.mergeSalesDataUsage();
+TwoPointersPatternUsage.travelBudgetUsage();
+TwoPointersPatternUsage.stockMarketAnalysisUsage();
+TwoPointersPatternUsage.matchCustomersWithProductsUsage();
+TwoPointersPatternUsage.compressLogUsage();
+TwoPointersPatternUsage.genomeSequenceUsage();

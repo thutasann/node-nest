@@ -9,36 +9,37 @@ export abstract class SalesData {
 	 *  Merging Two Sorted Arrays of Sales Data
 	 */
 	public static mergingSalesData(
-		slaesPlatformA: number[],
-		slaesPlatformB: number[],
+		salesPlatformA: number[],
+		salesPlatformB: number[],
 	) {
 		/** pointer for salesPlatformA */
 		let i = 0;
 		/** pointer for salesPlatformB */
 		let j = 0;
 
+		/** marged sales */
 		let mergedSales: number[] = [];
 
 		// compare elements from both arrays and merge them
-		while (i < slaesPlatformB.length && j < slaesPlatformB.length) {
-			if (slaesPlatformA[i] < slaesPlatformB[j]) {
-				mergedSales.push(slaesPlatformA[i]);
+		while (i < salesPlatformA.length && j < salesPlatformB.length) {
+			if (salesPlatformA[i] < salesPlatformB[j]) {
+				mergedSales.push(salesPlatformA[i]);
 				i++; // move pointer i forward
 			} else {
-				mergedSales.push(slaesPlatformB[j]);
+				mergedSales.push(salesPlatformB[j]);
 				j++; // move pointer j forward
 			}
 		}
 
 		// remaining from salesPlatformA
-		while (i < slaesPlatformA.length) {
-			mergedSales.push(slaesPlatformA[i]);
+		while (i < salesPlatformA.length) {
+			mergedSales.push(salesPlatformA[i]);
 			i++;
 		}
 
 		// remaining from salesPlatformB
-		while (j < slaesPlatformB.length) {
-			mergedSales.push(slaesPlatformB[i]);
+		while (j < salesPlatformB.length) {
+			mergedSales.push(salesPlatformB[j]);
 			j++;
 		}
 
