@@ -5,6 +5,7 @@ import { Numbers } from './src/numbers';
 import { ReverseLinkedList } from './src/reverse-linked-list';
 import { RotateImage } from './src/rotate-image';
 import { SubArraySumEqualsK } from './src/subarray-sums-equals-k';
+import { ThreeSum } from './src/three-sum';
 import { TwoSumInputArrayIsSorted } from './src/two-sum-input-array-is-sorted';
 import { ValidParentheses } from './src/valid-parentheses';
 
@@ -40,3 +41,8 @@ SubArraySumEqualsK.trackCustomerTransactionsUsage();
 console.log('----------------------------\n');
 
 TwoSumInputArrayIsSorted.solutionOneUsage();
+
+console.log('----------------------------\n');
+
+ThreeSum.solutionOneUsage();
+ThreeSum.tripletArraySample();
