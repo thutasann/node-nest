@@ -35,6 +35,23 @@ export interface CartItemTwo {
 	price: number;
 }
 
+export interface DataBatch {
+	data: number[];
+	processed: number[];
+}
+
+export interface Category {
+	id: number;
+	name: string;
+	subCategories?: SubCategory[];
+}
+
+export interface SubCategory {
+	id: number;
+	name: string;
+	categoryId: number;
+}
+
 // --------------------------- DATA  ---------------------------
 
 export const students: Student[] = [
@@ -104,4 +121,24 @@ export const actions: Action[] = [
 	{ type: 'ADD_ITEM', payload: { id: 2, name: 'Mouse', price: 50 } },
 	{ type: 'UPDATE_ITEM', payload: { id: 1, price: 900 } },
 	{ type: 'REMOVE_ITEM', payload: { id: 2 } },
+];
+
+export const dataBatches: DataBatch[] = [
+	{ data: [1, 2, 3], processed: [] },
+	{ data: [4, 5, 6], processed: [] },
+];
+
+export const categories: Category[] = [
+	{ id: 1, name: 'Electronics' },
+	{ id: 2, name: 'Clothing' },
+	{ id: 3, name: 'Books' },
+];
+
+export const subCategories: SubCategory[] = [
+	{ id: 101, name: 'Laptops', categoryId: 1 },
+	{ id: 102, name: 'Cameras', categoryId: 1 },
+	{ id: 201, name: 'Shirts', categoryId: 2 },
+	{ id: 202, name: 'Shoes', categoryId: 2 },
+	{ id: 301, name: 'Fiction', categoryId: 3 },
+	{ id: 302, name: 'Non-fiction', categoryId: 3 },
 ];

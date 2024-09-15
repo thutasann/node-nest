@@ -2,6 +2,10 @@ import {
 	actions,
 	cart,
 	CartItemTwo,
+	categories,
+	Category,
+	DataBatch,
+	dataBatches,
 	fruits,
 	items,
 	nestedArray,
@@ -9,6 +13,8 @@ import {
 	profiles,
 	Student,
 	students,
+	subCategories,
+	SubCategory,
 	users,
 } from './reduce-data';
 
@@ -149,6 +155,66 @@ class ReduceSamples {
 		}, []);
 		console.log('cartAction', cartAction);
 	}
+
+	public memorize<T extends (...args: any[]) => any>(fn: T) {
+		const cache = {} as Record<string, ReturnType<T>>;
+		return (...args: Parameters<T>) => {
+			const key = JSON.stringify(args);
+			if (cache[key]) {
+				return cache[key];
+			}
+			const result = fn(...args);
+			cache[key] = result;
+			return result;
+		};
+	}
+
+	public memorizeUsage() {
+		const factorial = (n: number): number =>
+			n <= 1 ? 1 : n * factorial(n - 1);
+
+		const memorizedFactorial = this.memorize(factorial);
+		console.log('memorizedFactorial(5)', memorizedFactorial(5));
+		console.log('memorizedFactorial(5)', memorizedFactorial(5));
+	}
+
+	public processBatchData() {
+		const processBatch = (data: DataBatch) => {
+			return {
+				...data,
+				processed: data.data.map((num) => num * 2),
+			};
+		};
+
+		const processedBatchData = dataBatches.reduce((acc, batch) => {
+			acc.push(processBatch(batch));
+			return acc;
+		}, [] as DataBatch[]);
+
+		console.log('processedBatchData', processedBatchData);
+	}
+
+	public assignSubCategoriesToCategories(
+		categories: Category[],
+		subCategories: SubCategory[],
+	) {
+		const categoriesWithSubCategories = categories.reduce(
+			(acc: Category[], category) => {
+				const relatedSubCategories = subCategories.filter(
+					(sub) => sub.categoryId === category.id,
+				);
+
+				acc.push({
+					...category,
+					subCategories: relatedSubCategories,
+				});
+
+				return acc;
+			},
+			[],
+		);
+		console.log('categoriesWithSubCategories', categoriesWithSubCategories);
+	}
 }
 
 const reduceSamples = new ReduceSamples();
@@ -163,3 +229,6 @@ reduceSamples.summingNestedObject();
 reduceSamples.chainingReduceWithOtherMethods();
 reduceSamples.flatternDeeplyNestedArray();
 reduceSamples.stateManagementSample();
+reduceSamples.memorizeUsage();
+reduceSamples.processBatchData();
+reduceSamples.assignSubCategoriesToCategories(categories, subCategories);
