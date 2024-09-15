@@ -16,9 +16,9 @@ import {
 	subCategories,
 	SubCategory,
 	users,
-} from './reduce-data';
+} from './utils/reduce-data';
 
-/** Reduce Samples */
+/** Reduce Method Samples */
 class ReduceSamples {
 	public basicSample() {
 		const numbers: number[] = [1, 2, 3, 4, 5];

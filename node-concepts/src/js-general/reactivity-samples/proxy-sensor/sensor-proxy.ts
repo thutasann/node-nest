@@ -3,15 +3,14 @@ import { ReactiveProxy } from './reactive-proxy';
 type TemperatureData = { temperature: number; humidity: number };
 
 export class SensorProxy {
-	public data: TemperatureData;
+	public data: TemperatureData = { temperature: 0, humidity: 0 };
 
 	constructor(initialTemperature: number, initialHumidity: number) {
 		// Use Proxy to monitor changes on the data object
-		// @ts-ignore
 		this.data = new ReactiveProxy<{ temperature: number; humidity: number }>({
 			temperature: initialTemperature,
 			humidity: initialHumidity,
-		});
+		}) as unknown as TemperatureData;
 	}
 
 	/** Simulate sensor data updates */
