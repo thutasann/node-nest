@@ -6,3 +6,4 @@ Here are 15 leetcodes patterns from this [video](https://www.youtube.com/watch?v
 
 - Prefix Sum Pattern
 - Two Pointers Pattern
+- Sliding Window Pattern

@@ -1,4 +1,5 @@
 import { PrefixSumPatternUsage } from './prefix-sum-pattern/usages';
+import { SlidingWindowPatternUsage } from './sliding-window-pattern/usage';
 import { TwoPointersPatternUsage } from './two-pointers-pattern/usage';
 
 console.log('LEETCODES PATTERNS ===>');
@@ -19,3 +20,8 @@ TwoPointersPatternUsage.stockMarketAnalysisUsage();
 TwoPointersPatternUsage.matchCustomersWithProductsUsage();
 TwoPointersPatternUsage.compressLogUsage();
 TwoPointersPatternUsage.genomeSequenceUsage();
+
+console.log('----------------------------\n');
+
+SlidingWindowPatternUsage.maxSumSubarrayUsage();
+SlidingWindowPatternUsage.longestSubstringWithKDistinctUsage();
