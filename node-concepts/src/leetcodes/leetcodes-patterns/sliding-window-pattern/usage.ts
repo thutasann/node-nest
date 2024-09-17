@@ -1,5 +1,6 @@
 import { Logger } from '@nestjs/common';
 import { SlidingWindowPattern } from '.';
+import { NetworkTrafficMonitoring } from './network-traffic-monitoring';
 
 export abstract class SlidingWindowPatternUsage {
 	private static logger = new Logger(SlidingWindowPatternUsage.name);
@@ -24,5 +25,15 @@ export abstract class SlidingWindowPatternUsage {
 				result +
 				' // Output: 4 (substring "araa")',
 		);
+	}
+
+	public static maxTrafficInWindowUsage() {
+		const trafficData = [5, 1, 3, 7, 2, 6, 4, 8, 9, 3];
+		const windowSize = 5;
+		const result = NetworkTrafficMonitoring.maxTrafficInWindow(
+			trafficData,
+			windowSize,
+		);
+		this.logger.debug('maxTrafficInWindow usage -> ' + result);
 	}
 }

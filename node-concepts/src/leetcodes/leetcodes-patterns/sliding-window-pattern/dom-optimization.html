@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>DOM Optimization using Sliding Window Technique</title>
+		<style>
+			#container {
+				height: 300px;
+				overflow-y: scroll;
+				border: 1px solid black;
+				position: relative;
+			}
+			.item {
+				height: 50px;
+				border-bottom: 1px solid #ccc;
+				position: absolute;
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Open in Browser</h1>
+		<div id="container"></div>
+
+		<script>
+			const totalItems = 10000; // Total items in our data
+			const itemHeight = 50; // Height of each item in pixels
+			const container = document.getElementById('container');
+			let startIndex = 0; // Start index for the visible items
+			let endIndex = Math.min(
+				totalItems,
+				Math.ceil(container.clientHeight / itemHeight) + startIndex,
+			);
+
+			// Generate an array of dummy data (e.g., "Item 1", "Item 2", etc.)
+			const generateItems = (count) =>
+				Array.from({ length: count }, (_, index) => `Item ${index + 1}`);
+
+			const items = generateItems(totalItems); // Generate the full list of items
+
+			// Function to render a range of items
+			function renderItems(start, end) {
+				container.innerHTML = '';
+
+				// Render only the items in the visible range
+				for (let i = start; i < end; i++) {
+					const itemDiv = document.createElement('div');
+					itemDiv.classList.add('item');
+					itemDiv.style.top = `${i * itemHeight}px`;
+					itemDiv.id = `item-${i + 1}`;
+					itemDiv.textContent = items[i];
+					container.appendChild(itemDiv);
+				}
+			}
+
+			// Initialize the container with items
+			renderItems(startIndex, endIndex);
+
+			// Scroll event handler
+			container.addEventListener('scroll', () => {
+				const scrollTop = container.scrollTop;
+				startIndex = Math.floor(scrollTop / itemHeight);
+				endIndex = Math.min(
+					totalItems,
+					Math.ceil((scrollTop + container.clientHeight) / itemHeight),
+				);
+
+				// Only update the DOM if the visible range has changed
+				renderItems(startIndex, endIndex);
+			});
+		</script>
+	</body>
+</html>

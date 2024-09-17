@@ -25,3 +25,4 @@ console.log('----------------------------\n');
 
 SlidingWindowPatternUsage.maxSumSubarrayUsage();
 SlidingWindowPatternUsage.longestSubstringWithKDistinctUsage();
+SlidingWindowPatternUsage.maxTrafficInWindowUsage();
