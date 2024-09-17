@@ -1,4 +1,5 @@
 import { BestTimeToBuyAndSellStockWithCoolDown } from './src/best-time-to-buy-sell-stock';
+import { ContainerWithMostWater } from './src/contaienr-with-most-water';
 import { ContiguousArray } from './src/contiguous-array';
 import { NumberOfIslands } from './src/number-of-islands';
 import { Numbers } from './src/numbers';
@@ -46,3 +47,7 @@ console.log('----------------------------\n');
 
 ThreeSum.solutionOneUsage();
 ThreeSum.tripletArraySample();
+
+console.log('----------------------------\n');
+
+ContainerWithMostWater.maxAreaUsage();
