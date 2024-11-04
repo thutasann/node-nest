@@ -1,28 +1,27 @@
+import axios from 'axios';
 import pLimit from './p-limit';
 
-const limit = pLimit(3);
+const limit = pLimit(5);
 
-/**
- * Mock function to simulate an API request for user data
- * @internal
- */
-const fetchUserData = async (userId: number): Promise<string> => {
-	console.log(`Fetching data for user ${userId}...`);
-	return new Promise((resolve) =>
-		setTimeout(() => {
-			resolve(`Data for user ${userId}`);
-			console.log(`Fetched data for user ${userId}`);
-		}, 1000),
+/** @internal */
+async function fetchTodo(id: number) {
+	const { data } = await axios.get(
+		`https://jsonplaceholder.typicode.com/todos/${id}`,
 	);
-};
+	console.log(`Fetched todo with ID: ${id}`, data);
+	return data;
+}
 
-const userIds = Array.from({ length: 10 }, (_, i) => i + 1);
+// Fetch multiple todos with controlled concurrency
+async function fetchTodosWithLimit() {
+	const todoIds = Array.from({ length: 200 }, (_, i) => i + 1);
 
-const run = async () => {
+	// Run the fetch operation for each todo ID with concurrency control
 	const results = await Promise.all(
-		userIds.map((userId) => limit(() => fetchUserData(userId))),
+		todoIds.map((id) => limit(() => fetchTodo(id))),
 	);
-	console.log('All user data fetched:', results);
-};
 
-run().catch(console.error);
+	console.log('All todos fetched with concurrency limit:', results);
+}
+
+fetchTodosWithLimit().catch(console.error);

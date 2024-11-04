@@ -12,9 +12,19 @@ type AnyFunction = (...args: any[]) => any;
  *
  * @example
  * ```ts
- * const limit = pLimit(2);
- *
- * const result = await limit(() => Promise.resolve('result'));
+ * // define concurrency limit
+ * const limit = pLimit(5);
+ * // mock user ids
+ * const userIds = Array.from({ length: 10 }, (_, i) => i + 1);
+ * // fetch user data
+ * const run = async () => {
+ * 	const results = await Promise.all(
+ * 		userIds.map((userId) => limit(() => fetchUserData(userId))),
+ * 	);
+ * 	console.log('All user data fetched:', results);
+ * };
+ * // run
+ * run().catch(console.error);
  * ```
  */
 export default function pLimit<T extends AnyFunction>(concurrency: number) {
