@@ -6,26 +6,34 @@ import Queue from './queue';
 type AnyFunction = (...args: any[]) => any;
 
 /**
- * Limits the concurrency of the input function
- * @param concurrency - The concurrency
- * @returns A function that limits the concurrency of the input function
- *
- * @example
+ * ## Limits the concurrency of the input function
+ * @param concurrency - The concurrency number
+ * @description
+ * ### This utility function helps control concurrent operations by:
+ * - Preventing system overload by limiting parallel executions
+ * - Managing resource consumption for API calls, DB operations, etc.
+ * - Providing queue management for pending operations
+ * - Offering dynamic concurrency adjustment
+ * ### Common use cases include:
+ * 1. Rate limiting API requests to avoid hitting service limits
+ * 2. Controlling database connection pools
+ * 3. Managing parallel file operations
+ * 4. Limiting concurrent network requests
+ * 5. Batch processing with controlled parallelism
+ * * @example
  * ```ts
- * // define concurrency limit
  * const limit = pLimit(5);
- * // mock user ids
- * const userIds = Array.from({ length: 10 }, (_, i) => i + 1);
- * // fetch user data
+ *
  * const run = async () => {
  * 	const results = await Promise.all(
  * 		userIds.map((userId) => limit(() => fetchUserData(userId))),
  * 	);
  * 	console.log('All user data fetched:', results);
  * };
- * // run
- * run().catch(console.error);
+
+* run().catch(console.error);
  * ```
+ * @returns A function that limits the concurrency of the input function
  */
 export default function pLimit<T extends AnyFunction>(concurrency: number) {
 	validateConcurrency(concurrency);
