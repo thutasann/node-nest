@@ -52,3 +52,9 @@ These are the microservices and server side developments with Nestjs and Nodejs
 	}
 }
 ```
+
+| Dev                                             | ✅              | 🤷‍♂️                                 |
+| ----------------------------------------------- | --------------- | ---------------------------------- |
+| Kaung San [https://github.com/kaungsann]        | - Documentation | Pushed node_modules to github      |
+| Tint Zaw Htun [https://github.com/Tint-d]       |                 | ⭐️ Nestjs + Graphql Microservices |
+| Thandar Lin [https://github.com/Thandar-Lin11/] |                 | ⭐️ Nestjs Ecommerce FullStack     |
