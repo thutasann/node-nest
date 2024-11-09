@@ -1,0 +1,19 @@
+{
+  "name": "scaling-web-sockets-using-redis",
+  "version": "1.0.0",
+  "description": "Scaling Web Sockets involves distributing real-time messages efficiently across multiple servers or instances. Pub/Sub (Publish/Subscribe) is a pattern used to achieve this.",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "dev": "node --watch index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "socket.io": "^4.8.1"
+  }
+}
