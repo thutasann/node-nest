@@ -2,7 +2,10 @@
 const express = require('express');
 const { createServer } = require('http');
 const { Server } = require('socket.io');
+const { createClient } = require('redis');
+const { createAdapter } = require('@socket.io/redis-adapter');
 
+/** server port */
 const PORT = 4000;
 
 /** express app */
@@ -32,6 +35,15 @@ app.get('/', (req, res) => {
 	res.send('<h1>Scaling Web Sockets using Redis Pub/Sub</h1>');
 });
 
-server.listen(PORT, () => {
-	console.log(`Server is listening on port : http://localhost:${PORT}`);
-});
+(async () => {
+	const pubClient = createClient({ url: 'redis://localhost:6379' });
+	const subClient = pubClient.duplicate();
+
+	await Promise.all([pubClient.connect(), subClient.connect()]);
+
+	io.adapter(createAdapter(pubClient, subClient));
+
+	server.listen(PORT, () => {
+		console.log(`Server is listening on port : http://localhost:${PORT}`);
+	});
+})();
