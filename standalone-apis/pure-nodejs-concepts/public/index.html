@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Pure Nodejs Concepts</title>
+		<style>
+			.active {
+				color: red;
+				font-weight: bold;
+			}
+		</style>
+	</head>
+	<body>
+		<h1 id="hello">Hello from pure nodejs concepts!</h1>
+		<nav>
+			<a
+				href="#"
+				class="nav-link"
+				data-path="/"
+				>Home</a
+			>
+			|
+			<a
+				href="#about"
+				class="nav-link"
+				data-path="/about"
+				>About</a
+			>
+		</nav>
+
+		<main id="content"></main>
+
+		<script>
+			const contentDiv = document.getElementById('content');
+			const links = document.querySelectorAll('.nav-link');
+			const hello = document.getElementById('hello');
+
+			async function loadContent(path, init) {
+				try {
+					if (path == '/about' || init) hello.style.display = 'none';
+					const response = await fetch(path);
+					const html = await response.text();
+					const temp = document.createElement('div');
+					temp.innerHTML = html;
+
+					// Extract just the h1 content
+					const h1Content = temp.querySelector('h1');
+					contentDiv.innerHTML = h1Content ? h1Content.outerHTML : html;
+
+					// Update active link
+					links.forEach((link) => {
+						link.classList.toggle('active', link.dataset.path === path);
+					});
+				} catch (error) {
+					console.error('Error loading content:', error);
+				}
+			}
+
+			// Rest of the JavaScript remains the same
+			links.forEach((link) => {
+				link.addEventListener('click', (e) => {
+					e.preventDefault();
+					const path = e.target.dataset.path;
+					history.pushState(null, '', path);
+					loadContent(path);
+				});
+			});
+
+			window.addEventListener('popstate', () => {
+				loadContent(location.pathname);
+			});
+
+			loadContent(location.pathname, true);
+		</script>
+	</body>
+</html>
