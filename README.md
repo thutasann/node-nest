@@ -36,6 +36,7 @@ These are the microservices and server side developments with Nestjs and Nodejs
 | custom mini ssg                       | [Source](./custom-static-side-generators/sample-one/)          | Static Side Generator              |
 | nodejs cpanel file upload             | [Source](./node-cpanel/)                                       | Cpanel File upload                 |
 | nodejs socketio realtime device track | [Source](./standalone-apis/node-socket-realtime-device-track/) | Socket.io Realtime Device Track    |
+| nestjs PM2                            | [Source](./standalone-apis/nest-pm2)                           | Nodejs Worker Threads & PM2        |
 
 ## Tips & Tricks
 
