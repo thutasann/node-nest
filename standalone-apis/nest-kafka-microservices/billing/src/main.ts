@@ -27,7 +27,7 @@ async function bootstrap() {
 	);
 	try {
 		await app.listen();
-		console.log('Microservice is listening');
+		console.log('Billing Microservice is listening');
 	} catch (error) {
 		console.error('Failed to connect to Kafka:', error);
 		process.exit(1);
