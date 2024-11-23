@@ -33,6 +33,10 @@ export class ConsumerService implements OnApplicationShutdown {
 		this.consumers.push(consumer);
 	}
 
+	getConsumers() {
+		return this.consumers;
+	}
+
 	async onApplicationShutdown() {
 		for (const consumer of this.consumers) {
 			await consumer.disconnect();
