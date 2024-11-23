@@ -37,6 +37,7 @@ These are the microservices and server side developments with Nestjs and Nodejs
 | nodejs cpanel file upload      | [Source](./standalone-apis/node-cpanel/)                       | Cpanel File upload                 |
 | socketio realtime device track | [Source](./standalone-apis/node-socket-realtime-device-track/) | Socket.io Realtime Device Track    |
 | nestjs PM2                     | [Source](./standalone-apis/nest-pm2)                           | Nodejs Worker Threads & PM2        |
+| nestjs kafka sample            | [Source](./standalone-apis/nest-kafka-sample)                  | Nestjs Kakfa sample                |
 
 ## Tips & Tricks
 
