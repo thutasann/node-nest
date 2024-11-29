@@ -27,7 +27,7 @@ These are the microservices and server side developments with Nestjs and Nodejs
 | nodejs concepts                   | [Source](./node-concepts/)                                     | ⭐️ Nodejs concepts                   |
 | nestjs-graphql-ms                 | [Source](./nest-graphql-ms/)                                   | ⭐️ Nestjs + Graphql Microservices    |
 | nestjs-ecommerce                  | [Source](./nest-ecommerce/)                                    | ⭐️ Nestjs Ecommerce FullStack        |
-| node kafka docker                 | [Source](./node-kafka-docker/)                                 | ⭐️ Nodejs Kafka Docker Microservices |
+| node kafka docker                 | [Source](./standalone-apis/node-kafka-docker/)                 | ⭐️ Nodejs Kafka Docker Microservices |
 | nest-advanced                     | [Source](./nest-advanced)                                      | ⭐️ Nestjs + Nx Concepts              |
 | tiny nest + next                  | [Source](./tiny-nest-next/)                                    | Tiny Nestjs + Nextjs                  |
 | nestjs-websockets                 | [Source](./standalone-apis/nestjs-websockets/)                 | Nestjs + Websockets                   |
