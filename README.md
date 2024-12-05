@@ -77,3 +77,9 @@ sudo lsof -nP -iTCP:2181 | grep LISTEN
 ps aux | grep kafka
 ps aux | grep zookeeper
 ```
+
+### Check background services
+
+```bash
+brew services list
+```
