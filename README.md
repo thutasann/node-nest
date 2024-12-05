@@ -60,3 +60,20 @@ These are the microservices and server side developments with Nestjs and Nodejs
 	}
 }
 ```
+
+### Check which process is using the port:
+
+```bash
+lsof -i :2181
+```
+
+```bash
+sudo lsof -nP -iTCP:2181 | grep LISTEN
+```
+
+### Check for Running Kafka or Zookeeper Processes:
+
+```bash
+ps aux | grep kafka
+ps aux | grep zookeeper
+```
