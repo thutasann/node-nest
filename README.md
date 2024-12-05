@@ -40,6 +40,7 @@ These are the microservices and server side developments with Nestjs and Nodejs
 | nestjs PM2                        | [Source](./standalone-apis/nest-pm2)                           | Nodejs Worker Threads & PM2           |
 | nestjs kafka sample               | [Source](./standalone-apis/nest-kafka-sample)                  | Nestjs Kakfa sample                   |
 | nestjs kafka microservices sample | [Source](./standalone-apis/nest-kafka-microservices)           | Nestjs Kakfa Microservices            |
+| node kafka producer & consumer    | [Source](./standalone-apis/node-kafka-producer-consumer/)      | Nodejs kafka producer consumer        |
 
 ## Tips & Tricks
 
