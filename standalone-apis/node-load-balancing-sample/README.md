@@ -25,3 +25,25 @@ The round-robin distribution will be:
 - R4 → S1 (cycle restarts)
 - R5 → S2
 - R6 → S3
+
+---
+
+## Least Connections
+
+The Least Connections algorithm is a load-balancing strategy that directs incoming requests to the server with the fewest active connections at the time. This ensures that the server handling the lightest load receives the next request, helping to distribute traffic more evenly, especially when server workloads are not uniform.
+
+- Each server tracks the number of active connections it is currently handling.
+- When a new request arrives:
+  - The load balancer checks the number of active connections on all servers.
+  - The request is forwarded to the server with the fewest active connections.
+- The server processes the request, and once completed, the connection count for that server decreases.
+
+**Example**
+
+If you have three servers with the following connection states:
+
+- Server 1: 5 active connections
+- Server 2: 2 active connections
+- Server 3: 3 active connections
+
+The next incoming request will be routed to Server 2 because it has the fewest active connections.

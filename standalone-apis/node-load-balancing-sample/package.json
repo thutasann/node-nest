@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"servers": "node backend-servers",
-		"load-balancer": "node server"
+		"load-balancer": "node load-balancer"
 	},
 	"keywords": [],
 	"author": "",
