@@ -9,3 +9,7 @@ chmod +x run.sh
 ```bash
 ./run.sh
 ```
+
+```bash
+sudo lsof -i :443
+```

@@ -35,7 +35,7 @@ services:
       - UPSTASH_REDIS_REST_URL=${UPSTASH_REDIS_REST_URL}
 
   caddy:
-    image: caddy/caddy:latest
+    image: caddy:latest
     container_name: caddy-server
     restart: unless-stopped
     ports:
