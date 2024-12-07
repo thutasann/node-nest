@@ -1,5 +1,6 @@
 // @ts-check
 const http = require('http');
+const cpuIntensiveTask = require('./utils/cpuIntensiveTask');
 const servers = require('./config.json').servers;
 
 /**
@@ -9,9 +10,17 @@ const servers = require('./config.json').servers;
  */
 const createServer = (host, port) => {
 	http
-		.createServer((req, res) => {
-			res.writeHead(200);
-			res.end(`Server response from port: ${port}`);
+		.createServer(async (req, res) => {
+			try {
+				const result = await cpuIntensiveTask();
+				res.writeHead(200, { 'Content-Type': 'text/plain' });
+				res.end(
+					`Server response from port: ${port}, Computation Result: ${result}`,
+				);
+			} catch (error) {
+				res.writeHead(500, { 'Content-Type': 'text/plain' });
+				res.end(`Error: ${error.message}`);
+			}
 		})
 		.listen(port, host, () => {
 			console.log(`Server is running at http://${host}:${port}`);

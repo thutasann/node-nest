@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REQUEST=10
+REQUEST=40
 URL="http://localhost:3000"
 
 echo "Sending $REQUEST requests to $URL"
