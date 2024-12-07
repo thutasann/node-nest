@@ -1,5 +1,6 @@
 // @ts-check
-import Kafka from 'node-rdkafka';
+const Kafka = require('node-rdkafka');
+const eventType = require('../event-type');
 
 const consumer = new Kafka.KafkaConsumer(
 	{
@@ -18,5 +19,7 @@ consumer
 		consumer.consume();
 	})
 	.on('data', (data) => {
-		console.log(`received message : ${data.value} ⭐️`);
+		if (data.value) {
+			console.log(`received message : ${eventType.fromBuffer(data.value)} ⭐️`);
+		}
 	});

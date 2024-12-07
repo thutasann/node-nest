@@ -1,5 +1,6 @@
 // @ts-check
-import Kafka from 'node-rdkafka';
+const Kafka = require('node-rdkafka');
+const eventType = require('../event-type');
 
 const stream = Kafka.Producer.createWriteStream(
 	{
@@ -11,7 +12,8 @@ const stream = Kafka.Producer.createWriteStream(
 
 /** Queue message */
 function queueMessage() {
-	const success = stream.write(Buffer.from(`hi from producer`));
+	const buf = eventType.toBuffer({ kind: 'CAT', name: 'Albert' });
+	const success = stream.write(buf);
 	if (success) {
 		console.log('message wrote successfully to stream. ✅');
 	} else {
