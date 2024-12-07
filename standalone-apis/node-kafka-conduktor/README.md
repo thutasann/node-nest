@@ -1,5 +1,10 @@
 # Nodejs Kafka Event-driven Microsevices
 
+## Services
+
+- Messages Service [Producer]
+- Notifications Service [Consumer]
+
 ## Kafka terms and definitions
 
 - **Producer** - A producer is a client that sends messages to a topic on the Kafka cluster
