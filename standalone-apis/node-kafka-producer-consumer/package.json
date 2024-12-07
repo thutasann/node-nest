@@ -1,0 +1,18 @@
+{
+  "name": "kafka-producer-consumer",
+  "version": "1.0.0",
+  "description": "## Create Kafka Topic",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start:producer": "node ./producer/index.js",
+    "start:consumer": "node ./consumer/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "avsc": "^5.7.7",
+    "node-rdkafka": "^3.2.1"
+  }
+}
