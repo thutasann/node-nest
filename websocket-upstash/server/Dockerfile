@@ -1,4 +1,4 @@
-FROM node:18-alpine AS base
+FROM node:alpine AS base
 WORKDIR /app
 COPY src ./src
 COPY package*.json ./
@@ -9,7 +9,7 @@ FROM base AS build
 WORKDIR /app
 RUN npm run build
 
-FROM node:18-alpine
+FROM node:alpine
 WORKDIR /app
 COPY package*.json ./
 RUN npm install --only-production
