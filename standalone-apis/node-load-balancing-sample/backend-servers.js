@@ -1,5 +1,6 @@
 // @ts-check
 const http = require('http');
+const servers = require('./config.json').servers;
 
 /**
  * Create Server
@@ -17,7 +18,4 @@ const createServer = (host, port) => {
 		});
 };
 
-createServer('localhost', 3001);
-createServer('localhost', 3002);
-createServer('localhost', 3003);
-createServer('localhost', 3004);
+servers.forEach((server) => createServer(server.host, server.port));

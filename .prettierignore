@@ -10,7 +10,6 @@ dist
 ./**/.next
 
 *.yml
-*.json
 *.next
 # /packages/**/build
 # /packages/**/dist
