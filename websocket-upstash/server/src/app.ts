@@ -1,9 +1,15 @@
-import { config, events } from './config';
+import { config, events, messageSamplePayload } from './config';
 import Redis from 'ioredis';
 import fastify from 'fastify';
 import fastifyCors from '@fastify/cors';
 import fastifyIO from 'fastify-socket.io';
 import { randomUUID } from 'crypto';
+
+const {
+	CONNECTION_COUNT_KEY,
+	NEW_MESSAGE_CHANNEL,
+	CONNECTION_COUNT_UPDATED_CHANNEL,
+} = events;
 
 if (!config.UPSTASH_REDIS_REST_URL) {
 	console.error('missing UPSTASH_REDIS_REST_URL');
@@ -13,12 +19,6 @@ if (!config.UPSTASH_REDIS_REST_URL) {
 // redis pub-sub
 export const publisher = new Redis(config.UPSTASH_REDIS_REST_URL);
 export const subscriber = new Redis(config.UPSTASH_REDIS_REST_URL);
-
-const {
-	CONNECTION_COUNT_KEY,
-	NEW_MESSAGE_CHANNEL,
-	CONNECTION_COUNT_UPDATED_CHANNEL,
-} = events;
 
 export let connectedClients = 0;
 
@@ -42,13 +42,16 @@ export async function buildServer() {
 
 		// publisher: chat:connection-count-updated ✅
 		await publisher.publish(CONNECTION_COUNT_UPDATED_CHANNEL, String(inResult));
+		await publisher.publish(
+			NEW_MESSAGE_CHANNEL,
+			JSON.stringify(messageSamplePayload),
+		);
 
 		// io: chat:new-message ✅
 		io.on(NEW_MESSAGE_CHANNEL, async (payload) => {
-			const message = payload.message;
+			const message = JSON.parse(payload).message;
 			if (!message) return;
-			console.log('reset', message);
-			await publisher.publish(events.NEW_MESSAGE_CHANNEL, message.toString());
+			await publisher.publish(NEW_MESSAGE_CHANNEL, message.toString());
 		});
 
 		// io: disconnect 🔴

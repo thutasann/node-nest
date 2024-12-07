@@ -1,3 +1,4 @@
+import { randomUUID } from 'crypto';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -23,4 +24,11 @@ export const events = {
 	CONNECTION_COUNT_KEY,
 	CONNECTION_COUNT_UPDATED_CHANNEL,
 	NEW_MESSAGE_CHANNEL,
+};
+
+export const messageSamplePayload = {
+	message: 'Hi Im new joiner',
+	id: randomUUID(),
+	createdAt: new Date(),
+	port: config.PORT,
 };
