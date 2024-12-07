@@ -42,6 +42,7 @@ These are the microservices and server side developments with Nestjs and Nodejs
 | nestjs kafka microservices sample | [Source](./standalone-apis/nest-kafka-microservices)           | Nestjs Kakfa Microservices            |
 | node kafka producer & consumer    | [Source](./standalone-apis/node-kafka-producer-consumer/)      | Nodejs kafka producer consumer        |
 | node kafka conduktor              | [Source](./standalone-apis/node-kafka-conduktor/)              | Nodejs kafka conduktor                |
+| websocket upstash                 | [Source](./websocket-upstash)                                  | websocket, upstash, redis             |
 
 ## Tips & Tricks
 
