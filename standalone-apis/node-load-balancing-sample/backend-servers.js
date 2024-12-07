@@ -10,7 +10,7 @@ const servers = require('./config.json').servers;
 const createServer = (host, port) => {
 	http
 		.createServer((req, res) => {
-			res.write(200);
+			res.writeHead(200);
 			res.end(`Server response from port: ${port}`);
 		})
 		.listen(port, host, () => {

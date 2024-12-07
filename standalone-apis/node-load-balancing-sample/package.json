@@ -4,7 +4,8 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"dev": "node --watch backend-servers"
+		"servers": "node backend-servers",
+		"load-balancer": "node server"
 	},
 	"keywords": [],
 	"author": "",
