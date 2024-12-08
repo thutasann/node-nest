@@ -2,7 +2,9 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+require('dotenv').config();
 const port = 3000;
+const replicaApp = process.env.APP_NAME;
 
 app.use(
 	'/images',
@@ -14,9 +16,9 @@ app.use(
 app.use('/', (req, res) => {
 	res.set('Cache-Control', 'public, max-age=3600');
 	res.sendFile(path.join(__dirname, 'index.html'));
-	console.log('Request served by node app');
+	console.log(`Request served by ${replicaApp}`);
 });
 
 app.listen(port, () => {
-	console.log(`Server is listening on port http://localhost:${port}`);
+	console.log(`${replicaApp} is listening on port http://localhost:${port}`);
 });
