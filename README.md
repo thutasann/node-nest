@@ -44,6 +44,7 @@ These are the microservices and server side developments with Nestjs and Nodejs
 | node kafka conduktor              | [Source](./standalone-apis/node-kafka-conduktor/)              | Nodejs kafka conduktor                |
 | websocket upstash                 | [Source](./websocket-upstash)                                  | websocket, upstash, redis             |
 | nodejs load balancing             | [Source](./standalone-apis/node-load-balancing-sample/)        | nodejs, load balancing                |
+| nodejs NGINX                      | [Source](./node-nginx/)                                        | nodejs, NGINX                         |
 
 ## Tips & Tricks
 
