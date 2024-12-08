@@ -27,3 +27,19 @@ docker ps
 ```bash
 docker stop <Container ID>
 ```
+
+## NGINX Scrips
+
+```bash
+brew install nginx
+```
+
+```bash
+nginx -v
+
+nginx -V
+```
+
+```bash
+cat /opt/homebrew/etc/nginx/nginx.conf
+```
